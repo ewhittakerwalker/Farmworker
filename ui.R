@@ -20,6 +20,7 @@ definition <- unique(CHVI_df$Definition)
 load(paste0(dir, "/data/merged_map.rda"))
 indicator_choices <- colnames(df_merge)
 indicator_choices <- indicator_choices[16:503]
+indicator_choices <- indicator_choices[grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|Tree|Housing", indicator_choices)]
 
 # 
 # CES_df <- read.csv("/Users/ewanwhittaker-walker/Rshiny/calenviroscreen40resultsdatadictionary_F_2021.xlsx")
