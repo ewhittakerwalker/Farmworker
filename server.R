@@ -13,14 +13,17 @@ print(dir)
 
 shinyServer(function(input, output, session) {
 
+  ## load df long for data tab 
+  load(paste0(dir, "/data/merged_map_long.rda"))
+  
   dataset <- reactive({
     
-    df <- read.csv(paste0(dir, "/Rshiny/data/selectedCHVIdata.csv"))
+    df <- df_merge_long
     
     # grep user input on table
-    if (length(input$county) != 0) {
-      grep_query = paste(input$county, collapse = "|")
-      df <- dplyr::filter(df, grepl(grep_query, County))
+    if (length(input$indicator) != 0) {
+      grep_query = paste(input$indicator, collapse = "|")
+      df <- dplyr::filter(df, grepl(grep_query, indication))
     }
   })
   
@@ -75,8 +78,9 @@ shinyServer(function(input, output, session) {
   # map <- st_read("/Users/ewanwhittaker-walker/Rshiny/tl_2019_06_tract/tl_2019_06_tract.shp", quiet = TRUE)
   # head(map)
   
+  ## loading merged dataframe for 
   load(paste0(dir, "/data/merged_map.rda"))
-  
+  load(paste0(dir, "/data/merged_map_pop.rda"))
   ## mapview code 
   # map_plot <- mapview(map, zcol = "TRACTCE")
   # output$map <- renderLeaflet({
@@ -105,7 +109,7 @@ shinyServer(function(input, output, session) {
   output$map <-
     renderLeaflet({
       map <- map_react()
-      pal <- colorNumeric("YlOrRd", domain = map$col_to_show)
+      pal <- colorNumeric("YlOrRd", domain = map$col_to_show, na.color = NA)
     leaflet(map, options = leafletOptions(minZoom = 5.35)) %>%
       addTiles() %>%
       addPolygons(
@@ -120,10 +124,11 @@ shinyServer(function(input, output, session) {
           weight = 5,
           color = "#666",
           dashArray = "",
-          fillOpacity = 0.7,
+          fillOpacity = 0.5,
           bringToFront = TRUE)
       ) %>% 
-      addLegend(pal = pal, values = ~col_to_show, opacity = 1, title = input$indicator) %>% 
+      addLegend(pal = pal, values = ~col_to_show, opacity = 1, 
+                title = input$indicator) %>% 
       setView(lng = -120.00000, lat = 37.00000, zoom = 5.35)  %>% 
       
       setMaxBounds( lng1 =  -125.00000
@@ -144,7 +149,7 @@ shinyServer(function(input, output, session) {
     
     pop_dataset <- reactive({
       
-      df <- df_merge
+      df <- df_merge_pop
       
       # grep user input on table
       if (length(input$indicator) != 0) {
