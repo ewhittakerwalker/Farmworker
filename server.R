@@ -10,7 +10,14 @@ library(stringr)
 
 dir <- getwd()
 print(dir)
+  ## loading merged dataframe for 
+  load(paste0(dir, "/data/merged_map.rda"))
+  load(paste0(dir, "/data/merged_map_pop.rda"))
 
+  map <- st_transform(df_merge, 4326)
+  print(head(map))
+  print("head map")
+  
 shinyServer(function(input, output, session) {
 
   ## load df long for data tab 
@@ -78,9 +85,7 @@ shinyServer(function(input, output, session) {
   # map <- st_read("/Users/ewanwhittaker-walker/Rshiny/tl_2019_06_tract/tl_2019_06_tract.shp", quiet = TRUE)
   # head(map)
   
-  ## loading merged dataframe for 
-  load(paste0(dir, "/data/merged_map.rda"))
-  load(paste0(dir, "/data/merged_map_pop.rda"))
+
   ## mapview code 
   # map_plot <- mapview(map, zcol = "TRACTCE")
   # output$map <- renderLeaflet({
@@ -88,10 +93,7 @@ shinyServer(function(input, output, session) {
   # })
   
   ## leaflet code 
-  map <- st_transform(df_merge, 4326)
-  print(head(map))
-  print("head map")
-  observe({print(input$indicator)})
+  # observe({print(input$indicator)})
   
   # indicator <- reactive({paste0(input$indicator)})
   # observe({print(indicator())})
