@@ -56,7 +56,8 @@ shinyUI(navbarPage(
            #                                           choices = counties))
            # ),
            sidebarPanel(selectInput("indicator", "select a indicator:",
-                                    choices = indicator_choices)
+                                    choices = indicator_choices, 
+                                    selected = "Air_Quality")
            ),
            mainPanel(
              tabsetPanel(

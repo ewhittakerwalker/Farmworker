@@ -121,7 +121,7 @@ shinyServer(function(input, output, session) {
                     , lng2 =  -110.00000
                     , lat2 = 45.00000 )%>%  
       addPolygons(
-        weight = 1,
+        weight = 0.2,
         color = NA, 
         # fillColor = ~ pal(col_to_show),
         #fillColor = ~ pal(indicator),
@@ -163,7 +163,7 @@ shinyServer(function(input, output, session) {
         setShapeStyle(layerId = map_base$GEOID, 
                       fillColor = pal( map_base[[paste(input$indicator)]]), 
                       color = "#666", 
-                      fillOpacity = 0.9) %>%  
+                      fillOpacity = 0.8) %>%  
         clearControls() %>%
         addLegend(pal = pal, 
                 values = map_base[[paste(input$indicator)]], 
