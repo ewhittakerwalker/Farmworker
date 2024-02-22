@@ -18,7 +18,7 @@ print(dir)
   # print(head(map))
   # print("head map")
 
- source("global.R") 
+source("global.R") 
 
 shinyServer(function(input, output, session) {
 
@@ -108,8 +108,8 @@ shinyServer(function(input, output, session) {
   #pal <- observe({colorNumeric("YlOrRd", domain = map$voting)})
   # map$col_to_show <- map[["voting"]]
 
-  print("made pal")
   ## rendering the map 
+  print("rendered base map")
   output$map <-
     renderLeaflet({
       leaflet(map_base, options = leafletOptions(minZoom = 5.35)) %>%
@@ -126,20 +126,21 @@ shinyServer(function(input, output, session) {
         # fillColor = ~ pal(col_to_show),
         #fillColor = ~ pal(indicator),
         fillColor = "#666",
-        fillOpacity = 0.1, 
+        fillOpacity = 0, 
         dashArray = "3",
-        layerId = map_base$GEOID, 
+        layerId = map_base$GEOID,
         highlightOptions = highlightOptions(
           weight = 5,
-          color = "#666",
+          # color = "#666",
           dashArray = "",
-          fillOpacity = 0.5,
-          bringToFront = TRUE)
+          # fillOpacity = 0,
+          bringToFront = FALSE)
       )
       })
     
   observe({
     # map1 <- map_react()
+    print("made pal")
     pal <- colorNumeric("YlOrRd", domain = map_base[[paste(input$indicator)]], na.color = NA)
     # leafletProxy("map", data = map) %>% clearShapes() %>%  
     #   addPolygons(
@@ -161,7 +162,8 @@ shinyServer(function(input, output, session) {
     leafletProxy("map", data = map_base) %>% 
         setShapeStyle(layerId = map_base$GEOID, 
                       fillColor = pal( map_base[[paste(input$indicator)]]), 
-                      color = "#666", fillOpacity = 1) %>%  
+                      color = "#666", 
+                      fillOpacity = 0.9) %>%  
         clearControls() %>%
         addLegend(pal = pal, 
                 values = map_base[[paste(input$indicator)]], 
@@ -242,7 +244,7 @@ shinyServer(function(input, output, session) {
     }
   })
   
-  ## querying data based on observed clics 
+  # # querying data based on observed clics 
   # observe({
   #   event <- input$map_shape_click
   #   
