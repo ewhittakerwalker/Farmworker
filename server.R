@@ -112,9 +112,9 @@ shinyServer(function(input, output, session) {
   print("rendered base map")
   output$map <-
     renderLeaflet({
-      leaflet(map_base, options = leafletOptions(minZoom = 5.35)) %>%
+      leaflet(map_base, options = leafletOptions(minZoom = 6)) %>%
       addTiles() %>% 
-      setView(lng = -120.00000, lat = 37.00000, zoom = 5.35)  %>% 
+      setView(lng = -120.00000, lat = 37.00000, zoom = 6.45)  %>% 
       
       setMaxBounds( lng1 =  -125.00000
                     , lat1 = 30.00000
@@ -122,16 +122,16 @@ shinyServer(function(input, output, session) {
                     , lat2 = 45.00000 )%>%  
       addPolygons(
         weight = 1,
-        color = "white", 
+        color = NA, 
         # fillColor = ~ pal(col_to_show),
         #fillColor = ~ pal(indicator),
-        fillColor = "#666",
+        fillColor = NA,
         fillOpacity = 0, 
         dashArray = "3",
         layerId = map_base$GEOID,
         highlightOptions = highlightOptions(
           weight = 5,
-          # color = "#666",
+          color = "#666",
           dashArray = "",
           # fillOpacity = 0,
           bringToFront = FALSE)

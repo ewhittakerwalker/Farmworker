@@ -61,6 +61,8 @@ shinyUI(navbarPage(
            mainPanel(
              tabsetPanel(
                tabPanel("Map", value = 1,               
+                        tags$style(type = "text/css", "#map {height: calc(80vh - 80px) !important;}"),
+
                         leafletjs,
                         leafletOutput("map") 
                         #mapview:::plainViewOutput("test"),
