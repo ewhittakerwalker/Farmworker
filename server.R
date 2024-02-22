@@ -15,9 +15,9 @@ print(dir)
   load(paste0(dir, "/data/merged_map_pop.rda"))
 
   map <- st_transform(df_merge, 4326)
-  print(head(map))
-  print("head map")
-  
+  # print(head(map))
+  # print("head map")
+
 shinyServer(function(input, output, session) {
 
   ## load df long for data tab 
@@ -100,7 +100,7 @@ shinyServer(function(input, output, session) {
   map_react <- reactive({
     map$col_to_show <- map[[paste(input$indicator)]]
     print("in obs")
-    print(map$col_to_show)
+    print(head(map$col_to_show))
     map
     })
   #pal <- observe({colorNumeric("YlOrRd", domain = map$voting)})
@@ -164,7 +164,7 @@ shinyServer(function(input, output, session) {
     })
     
     popup_df <- pop_dataset()
-    print(popup_df)
+    # print(popup_df)
     
     # print(head(popup_df))
     # 

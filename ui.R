@@ -12,8 +12,8 @@ dir <- getwd()
 print(dir)
 
 CHVI_df <- read.csv(paste0(dir, "/data/selectedCHVIdata.csv"))
-print(CHVI_df)
-print(colnames(CHVI_df))
+# print(CHVI_df)
+# print(colnames(CHVI_df))
 counties <- unique(CHVI_df$County)
 definition <- unique(CHVI_df$Definition)
 
