@@ -14,9 +14,11 @@ print(dir)
   load(paste0(dir, "/data/merged_map.rda"))
   load(paste0(dir, "/data/merged_map_pop.rda"))
 
-  map <- st_transform(df_merge, 4326)
+  map_base <- st_transform(df_merge, 4326)
   # print(head(map))
   # print("head map")
+
+ source("global.R") 
 
 shinyServer(function(input, output, session) {
 
@@ -98,10 +100,10 @@ shinyServer(function(input, output, session) {
   # indicator <- reactive({paste0(input$indicator)})
   # observe({print(indicator())})
   map_react <- reactive({
-    map$col_to_show <- map[[paste(input$indicator)]]
+    map_base$col_to_show <- map_base[[paste(input$indicator)]]
     print("in obs")
-    print(head(map$col_to_show))
-    map
+    print(head(map_base$col_to_show))
+    map_base
     })
   #pal <- observe({colorNumeric("YlOrRd", domain = map$voting)})
   # map$col_to_show <- map[["voting"]]
@@ -110,36 +112,63 @@ shinyServer(function(input, output, session) {
   ## rendering the map 
   output$map <-
     renderLeaflet({
-      map <- map_react()
-      pal <- colorNumeric("YlOrRd", domain = map$col_to_show, na.color = NA)
-    leaflet(map, options = leafletOptions(minZoom = 5.35)) %>%
-      addTiles() %>%
+      leaflet(map_base, options = leafletOptions(minZoom = 5.35)) %>%
+      addTiles() %>% 
+      setView(lng = -120.00000, lat = 37.00000, zoom = 5.35)  %>% 
+      
+      setMaxBounds( lng1 =  -125.00000
+                    , lat1 = 30.00000
+                    , lng2 =  -110.00000
+                    , lat2 = 45.00000 )%>%  
       addPolygons(
         weight = 1,
         color = "white", 
-        fillColor = ~ pal(col_to_show),
+        # fillColor = ~ pal(col_to_show),
         #fillColor = ~ pal(indicator),
-        fillOpacity = 1, 
+        fillColor = "#666",
+        fillOpacity = 0.1, 
         dashArray = "3",
-        layerId = map$GEOID, 
+        layerId = map_base$GEOID, 
         highlightOptions = highlightOptions(
           weight = 5,
           color = "#666",
           dashArray = "",
           fillOpacity = 0.5,
           bringToFront = TRUE)
-      ) %>% 
-      addLegend(pal = pal, values = ~col_to_show, opacity = 1, 
-                title = input$indicator) %>% 
-      setView(lng = -120.00000, lat = 37.00000, zoom = 5.35)  %>% 
-      
-      setMaxBounds( lng1 =  -125.00000
-                    , lat1 = 30.00000
-                    , lng2 =  -110.00000
-                    , lat2 = 45.00000 )
+      )
       })
     
-  
+  observe({
+    # map1 <- map_react()
+    pal <- colorNumeric("YlOrRd", domain = map_base[[paste(input$indicator)]], na.color = NA)
+    # leafletProxy("map", data = map) %>% clearShapes() %>%  
+    #   addPolygons(
+    #     weight = 1,
+    #     color = "white", 
+    #     fillColor = ~ pal(col_to_show),
+    #     #fillColor = ~ pal(indicator),
+    #     fillOpacity = 1, 
+    #     dashArray = "3",
+    #     layerId = map$GEOID, 
+    #     highlightOptions = highlightOptions(
+    #       weight = 5,
+    #       color = "#666",
+    #       dashArray = "",
+    #       fillOpacity = 0.5,
+    #       bringToFront = TRUE)
+    #   ) %>% 
+    print(head(pal( map_base[[paste(input$indicator)]])))
+    leafletProxy("map", data = map_base) %>% 
+        setShapeStyle(layerId = map_base$GEOID, 
+                      fillColor = pal( map_base[[paste(input$indicator)]]), 
+                      color = "#666", fillOpacity = 1) %>%  
+        clearControls() %>%
+        addLegend(pal = pal, 
+                values = map_base[[paste(input$indicator)]], 
+                opacity = 1, 
+                title = input$indicator) 
+      print("updated map")
+    })
   
   ## showing popups 
   showPopup <- function(id, lat, lng) {

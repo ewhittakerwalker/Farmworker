@@ -60,7 +60,8 @@ shinyUI(navbarPage(
            ),
            mainPanel(
              tabsetPanel(
-               tabPanel("Map", value = 1,
+               tabPanel("Map", value = 1,               
+                        leafletjs,
                         leafletOutput("map") 
                         #mapview:::plainViewOutput("test"),
                ),
