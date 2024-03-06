@@ -10,20 +10,64 @@ library(stringr)
 
 dir <- getwd()
 print(dir)
-  ## loading merged dataframe for 
-  load(paste0(dir, "/data/merged_map.rda"))
-  load(paste0(dir, "/data/merged_map_pop.rda"))
 
-  map_base <- st_transform(df_merge, 4326)
-  # print(head(map))
-  # print("head map")
+
+## loading merged dataframe for map
+load(paste0(dir, "/data/merged_map.rda"))
+load(paste0(dir, "/data/merged_map_pop.rda"))
+## load df long for data tab 
+load(paste0(dir, "/data/merged_map_long.rda"))
+# load(paste0(dir, "/data/merged_map_spanish.rda"))
+# load(paste0(dir, "/data/merged_map_pop_spanish.rda"))
+## load df long for data tab 
+#load(paste0(dir, "/data/merged_map_long_spanish.rda"))
+
+
+
+map_base <- st_transform(df_merge, 4326)
+# print(head(map))
+# print("head map")
 
 source("global.R") 
 
 shinyServer(function(input, output, session) {
-
-  ## load df long for data tab 
-  load(paste0(dir, "/data/merged_map_long.rda"))
+  
+  observe({
+  if (input$language == "English") {
+    print("English")
+  } else {
+    print("inside language observer")
+    indicator_choices <- colnames(df_merge)
+    print(indicator_choices)
+    indicator_choices <- indicator_choices[
+      grepl("_calor_|Agua|aire|Plomo|Ozono|Pesticidas|enviro|árbol|alojamiento", 
+            indicator_choices)]
+    
+    indicator_choices <- indicator_choices[
+      indicator_choices != "Avg_Daily_Max_Ozone_Conc_Other_2012_2014"]
+    indicator_choices <- indicator_choices[
+      indicator_choices != "Porcentaje_sin_cobertura_de_cobertura_de_árboles_Total_2011"]
+    indicator_choices <- indicator_choices[
+      indicator_choices != "Porcentaje_sin_cobertura_de_cobertura_de_árboles_Otros_2011"]
+    
+    
+    print(indicator_choices[10])
+    
+    updateSelectInput(session, "indicator",
+                      label = "indicator",
+                      choices = indicator_choices,
+                      selected = "Calidad del aire")
+    
+    # df_merge <- df_merge_spanish
+    # map_base <- st_transform(df_merge_spanish, 4326)
+    # #df_merge_long <- df_merge_long_spanish
+    # df_merge_pop <- df_merge_pop_spanish
+    # map_react()
+    #print(map_base[[paste(indicator_choices[10])]])
+    #print(map_base$GEOID)
+    
+  }}
+  )
   
   dataset <- reactive({
     
@@ -158,7 +202,10 @@ shinyServer(function(input, output, session) {
     #       fillOpacity = 0.5,
     #       bringToFront = TRUE)
     #   ) %>% 
-    print(head(pal( map_base[[paste(input$indicator)]])))
+    #print(colnames(map_base))
+    
+    #print(map_base[[paste(input$indicator)]])
+    #print(head(pal( map_base[[paste(input$indicator)]])))
     leafletProxy("map", data = map_base) %>% 
         setShapeStyle(layerId = map_base$GEOID, 
                       fillColor = pal( map_base[[paste(input$indicator)]]), 

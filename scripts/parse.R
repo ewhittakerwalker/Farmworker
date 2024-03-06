@@ -6,10 +6,15 @@ library(viridis)
 library(readxl)
 library(tidyr)
 library(leaflet)
+library(deeplr)
+library(polyglotr)
+#library(cld2)
 
+dire <- getwd()
+dire <- paste0(dire, "/Desktop/Farmworker")
 
 ## read in all the data and pivot to wide format based on specific columns for each dataset
-CHVI_df <- read.csv("/Users/ewanwhittaker-walker/github_farm/data/selectedCHVIdata.csv")
+CHVI_df <- read.csv(paste0(dire, "/data/selectedCHVIdata.csv"))
 # print(head(CHVI_df))
 # print(colnames(CHVI_df))
 
@@ -26,7 +31,7 @@ piv_CHVI <- piv_CHVI %>% mutate_at(3:206, unlist)
 piv_CHVI <- piv_CHVI %>% mutate_at(3:206, as.numeric)
 
 
-CES_df <- read_excel("/Users/ewanwhittaker-walker/github_farm/data/calenviroscreen40resultsdatadictionary_F_2021.xlsx")
+CES_df <- read_excel(paste0(dire, "/data/calenviroscreen40resultsdatadictionary_F_2021.xlsx"))
 # print(head(CES_df))
 colnames(CES_df) <- gsub(" ", "_", colnames(CES_df)) 
 CES_df <- CES_df %>% mutate_at(5:58, as.numeric)
@@ -34,7 +39,7 @@ CES_df <- CES_df %>% mutate_at(5:58, as.numeric)
 CES_df$GEOID <- paste0("0" , as.character(CES_df$Census_Tract))
 
 
-ROI_df <- read_excel("/Users/ewanwhittaker-walker/github_farm/data//ROI_data.xlsx")
+ROI_df <- read_excel(paste0(dire, "/data//ROI_data.xlsx"))
 colnames(ROI_df) <- gsub(" ", "_", colnames(ROI_df)) 
 ROI_df <- ROI_df %>% mutate_at(6:143, as.numeric)
 # print(head(ROI_df))
@@ -43,7 +48,7 @@ ROI_df$GEOID <- paste0("0" , as.character(ROI_df$Census_Tract))
 
                        
 
-HPI_df <- read_excel("/Users/ewanwhittaker-walker/github_farm/data/hpi_3_complete_file.xlsx")
+HPI_df <- read_excel(paste0(dire, "/data/hpi_3_complete_file.xlsx"))
 colnames(HPI_df) <- gsub(" ", "_", colnames(HPI_df)) 
 HPI_df <- HPI_df %>% mutate_at(7:84, as.numeric)
 # print(head(HPI_df))
@@ -51,7 +56,7 @@ HPI_df <- HPI_df %>% mutate_at(7:84, as.numeric)
 HPI_df$GEOID <- paste0("0" , as.character(HPI_df$GEO_ID))
 
 
-map_df <- st_read("/Users/ewanwhittaker-walker/github_farm/data/tl_2019_06_tract/tl_2019_06_tract.shp", quiet = TRUE)
+map_df <- st_read(paste0(dire, "/data/tl_2019_06_tract/tl_2019_06_tract.shp"), quiet = TRUE)
 head(map)
 
 
@@ -73,9 +78,32 @@ colnames(df_merge) <- str_replace(colnames(df_merge), "Average", "Avg")
 colnames(df_merge) <- str_replace(colnames(df_merge), "Health/Environment", "Health/Environ")
 
 
-save(df_merge, file = "/Users/ewanwhittaker-walker/github_farm/data/merged_map.rda")
+## spanish translation
+print("doing translation")
+## authentication key ff1a8324-b541-4e57-8e29-c40778bf7c8e:fx
+
+df_merge_spanish <- df_merge
+colnames(df_merge_spanish) <- lapply(colnames(df_merge_spanish), function(x) {google_translate(x, target_language = 'es')})
+names(df_merge_spanish)[names(df_merge_spanish) == "geometría"] <- "geometry"
+names(df_merge_spanish)[names(df_merge_spanish) == "GEOIDE"] <- "GEOID"
+print(df_merge)
+df_merge_spanish <- df_merge_spanish %>% st_set_geometry(NULL)
+
+## addid in spansih versions of names
+df_merge <- merge(df_merge, df_merge_spanish, by="GEOID")
+## removing duplicate names 
+#df_merge <- df_merge %>% names() %>% stringr::str_remove(pattern = "\\.x")
+df_merge <- df_merge[grep(".y", colnames(df_merge), invert = TRUE)]
+
+
+print(colnames(df_merge))
+
+## saving R objects
+save(df_merge, file = paste0(dire, "/data/merged_map.rda"))
 print("saved")
 
+
+save(df_merge_spanish, file = paste0(dire, "/data/merged_map_spanish.rda"))
 
 ## dropping geometry column for querying pop-up data
 st_geometry(map_df) <- NULL
@@ -98,7 +126,19 @@ colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "_Total_2080_2099"
 colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Average", "Avg")
 colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Health/Environment", "Health/Environ")
 
-save(df_merge_pop, file = "/Users/ewanwhittaker-walker/github_farm/data/merged_map_pop.rda")
+
+## translation for pop-ups
+df_merge_pop_spanish <- df_merge_pop
+colnames(df_merge_pop_spanish) <- lapply(colnames(df_merge_pop_spanish), function(x) {google_translate(x, target_language = 'es')})
+names(df_merge_pop_spanish)[names(df_merge_pop_spanish) == "GEOIDE"] <- "GEOID"
+
+print(df_merge)
+
+## saving 
+save(df_merge_pop, file = paste0(dire, "/data/merged_map_pop.rda"))
+print("saved pop")
+
+save(df_merge_pop_spanish, file = paste0(dire, "/data/merged_map_pop_spanish.rda"))
 print("saved pop")
 
 ## pivoting data down for data tab
@@ -115,9 +155,15 @@ df_merge_long <- merge(df_merge_long, add_county_df, by.x = "GEOID", by.y = "GEO
 df_merge_long <- df_merge_long[,c("GEOID", "indication", "Value", "County.x")]
 names(df_merge_long)[names(df_merge_long) == 'County.x'] <- 'County'
 
-save(df_merge_long , file = "/Users/ewanwhittaker-walker/github_farm/data/merged_map_long.rda")
+save(df_merge_long , file = paste0(dire, "/data/merged_map_long.rda"))
 print("saved long")
 
+## translation
+df_merge_long_spanish <- df_merge_long
+df_merge_long_spanish["indication"] <- lapply(df_merge_long_spanish["indication"], 
+                                              function(x) {google_translate(x, target_language = 'es')})
 
+print(df_merge_long_spanish["indication"])
+save(df_merge_long_spanish, file = paste0(dire, "/data/merged_map_long_spanish.rda")) 
 
 

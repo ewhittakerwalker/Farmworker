@@ -1,0 +1,10 @@
+name: farmworker
+title:
+username: farmworker
+account: farmworker
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11302008
+bundleId: 8286175
+url: https://farmworker.shinyapps.io/farmworker/
+version: 1
