@@ -79,31 +79,54 @@ colnames(df_merge) <- str_replace(colnames(df_merge), "Health/Environment", "Hea
 
 
 ## spanish translation
-print("doing translation")
-## authentication key ff1a8324-b541-4e57-8e29-c40778bf7c8e:fx
+# print("doing translation")
+# ## authentication key ff1a8324-b541-4e57-8e29-c40778bf7c8e:fx
+# 
+# df_merge_spanish <- df_merge
+# colnames(df_merge_spanish) <- lapply(colnames(df_merge_spanish), function(x) {google_translate(x, target_language = 'es')})
+# names(df_merge_spanish)[names(df_merge_spanish) == "geometría"] <- "geometry"
+# names(df_merge_spanish)[names(df_merge_spanish) == "GEOIDE"] <- "GEOID"
+# print(df_merge)
+# df_merge_spanish <- df_merge_spanish %>% st_set_geometry(NULL)
 
-df_merge_spanish <- df_merge
-colnames(df_merge_spanish) <- lapply(colnames(df_merge_spanish), function(x) {google_translate(x, target_language = 'es')})
-names(df_merge_spanish)[names(df_merge_spanish) == "geometría"] <- "geometry"
-names(df_merge_spanish)[names(df_merge_spanish) == "GEOIDE"] <- "GEOID"
-print(df_merge)
-df_merge_spanish <- df_merge_spanish %>% st_set_geometry(NULL)
-
-## addid in spansih versions of names
-df_merge <- merge(df_merge, df_merge_spanish, by="GEOID")
-## removing duplicate names 
-#df_merge <- df_merge %>% names() %>% stringr::str_remove(pattern = "\\.x")
-df_merge <- df_merge[grep(".y", colnames(df_merge), invert = TRUE)]
-
-
-print(colnames(df_merge))
+# ## addid in spansih versions of names
+# df_merge <- merge(df_merge, df_merge_spanish, by="GEOID")
+# ## removing duplicate names 
+# #df_merge <- df_merge %>% names() %>% stringr::str_remove(pattern = "\\.x")
+# df_merge <- df_merge[grep(".y", colnames(df_merge), invert = TRUE)]
+# 
+# 
+# print(colnames(df_merge))
 
 ## saving R objects
 save(df_merge, file = paste0(dire, "/data/merged_map.rda"))
 print("saved")
 
+indicator_choices <- colnames(df_merge)
+print(indicator_choices)
+indicator_choices <- indicator_choices[
+  grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|tree|Housing", 
+        indicator_choices)]
 
-save(df_merge_spanish, file = paste0(dire, "/data/merged_map_spanish.rda"))
+df_merge_columns_table <- df_merge
+df_merge_columns_table <- df_merge_columns_table[,indicator_choices]
+cols <- colnames(df_merge_columns_table)
+
+cols_spanish <- lapply(cols, function(x) {google_translate(x, target_language = 'es')})
+cols_spanish <- unlist(cols_spanish)
+
+col_to_save <- data.frame(indicator = cols, 
+                          spanish_translation = cols_spanish)
+
+write.csv(col_to_save, paste0(dire, "/data/df_merge_columns.csv"))
+
+cols_df_merge <- colnames(df_merge)
+
+col_to_save_df_merge <- data.frame(indicator = cols_df_merge)
+
+write.csv(col_to_save_df_merge, paste0(dire, "/data/df_merge_all_columns.csv"))
+
+# save(df_merge_spanish, file = paste0(dire, "/data/merged_map_spanish.rda"))
 
 ## dropping geometry column for querying pop-up data
 st_geometry(map_df) <- NULL
@@ -128,9 +151,9 @@ colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Health/Environmen
 
 
 ## translation for pop-ups
-df_merge_pop_spanish <- df_merge_pop
-colnames(df_merge_pop_spanish) <- lapply(colnames(df_merge_pop_spanish), function(x) {google_translate(x, target_language = 'es')})
-names(df_merge_pop_spanish)[names(df_merge_pop_spanish) == "GEOIDE"] <- "GEOID"
+# df_merge_pop_spanish <- df_merge_pop
+# colnames(df_merge_pop_spanish) <- lapply(colnames(df_merge_pop_spanish), function(x) {google_translate(x, target_language = 'es')})
+# names(df_merge_pop_spanish)[names(df_merge_pop_spanish) == "GEOIDE"] <- "GEOID"
 
 print(df_merge)
 
@@ -138,8 +161,8 @@ print(df_merge)
 save(df_merge_pop, file = paste0(dire, "/data/merged_map_pop.rda"))
 print("saved pop")
 
-save(df_merge_pop_spanish, file = paste0(dire, "/data/merged_map_pop_spanish.rda"))
-print("saved pop")
+# save(df_merge_pop_spanish, file = paste0(dire, "/data/merged_map_pop_spanish.rda"))
+# print("saved pop")
 
 ## pivoting data down for data tab
 print(colnames(df_merge_pop))
@@ -158,12 +181,12 @@ names(df_merge_long)[names(df_merge_long) == 'County.x'] <- 'County'
 save(df_merge_long , file = paste0(dire, "/data/merged_map_long.rda"))
 print("saved long")
 
-## translation
-df_merge_long_spanish <- df_merge_long
-df_merge_long_spanish["indication"] <- lapply(df_merge_long_spanish["indication"], 
-                                              function(x) {google_translate(x, target_language = 'es')})
-
-print(df_merge_long_spanish["indication"])
-save(df_merge_long_spanish, file = paste0(dire, "/data/merged_map_long_spanish.rda")) 
-
+# ## translation
+# df_merge_long_spanish <- df_merge_long
+# df_merge_long_spanish["indication"] <- lapply(df_merge_long_spanish["indication"], 
+#                                               function(x) {google_translate(x, target_language = 'es')})
+# 
+# print(df_merge_long_spanish["indication"])
+# save(df_merge_long_spanish, file = paste0(dire, "/data/merged_map_long_spanish.rda")) 
+# 
 

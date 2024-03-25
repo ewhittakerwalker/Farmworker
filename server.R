@@ -21,43 +21,67 @@ load(paste0(dir, "/data/merged_map_long.rda"))
 # load(paste0(dir, "/data/merged_map_pop_spanish.rda"))
 ## load df long for data tab 
 #load(paste0(dir, "/data/merged_map_long_spanish.rda"))
+df_indicator_choices <- read.csv(paste0(dir, "/data/Indicators_Farmworker_WebApplication.csv"))
 
+dict_english_to_spanish <- c()
 
+for (i in 1:nrow(df_indicator_choices)) {
+  row <- df_indicator_choices[i,]
+  eng_inc <- row$indicator
+  span_inc <- row$spanish_translation
+  dict_english_to_spanish[span_inc] = eng_inc
+}
 
+print(dict_english_to_spanish["Calidad del aire"])
 map_base <- st_transform(df_merge, 4326)
+
+#server_indicator <- "Air_Quality"
 # print(head(map))
 # print("head map")
 
 source("global.R") 
 
+
 shinyServer(function(input, output, session) {
   
-  observe({
+  server_indicator <- reactiveVal("Air_Quality")
+  
+  observeEvent(input$language, {
   if (input$language == "English") {
     print("English")
-  } else {
-    print("inside language observer")
-    indicator_choices <- colnames(df_merge)
-    print(indicator_choices)
-    indicator_choices <- indicator_choices[
-      grepl("_calor_|Agua|aire|Plomo|Ozono|Pesticidas|enviro|árbol|alojamiento", 
-            indicator_choices)]
     
-    indicator_choices <- indicator_choices[
-      indicator_choices != "Avg_Daily_Max_Ozone_Conc_Other_2012_2014"]
-    indicator_choices <- indicator_choices[
-      indicator_choices != "Porcentaje_sin_cobertura_de_cobertura_de_árboles_Total_2011"]
-    indicator_choices <- indicator_choices[
-      indicator_choices != "Porcentaje_sin_cobertura_de_cobertura_de_árboles_Otros_2011"]
+    # df_indicator_choices <- df_indicator_choices[df_indicator_choices$category == paste0(input$category),]
+    # print(df_indicator_choices)
+    # indicator_choices <- df_indicator_choices$indicator
+    # print(indicator_choices)
     
-    
-    print(indicator_choices[10])
+    indicator_choices <- df_indicator_choices$indicator 
+    category_choices <- df_indicator_choices$category
     
     updateSelectInput(session, "indicator",
                       label = "indicator",
-                      choices = indicator_choices,
+                      choices = indicator_choices, 
+                      selected = "Air_Quality")
+    
+    updateSelectInput(session, "category",
+                      label = "category",
+                      choices = category_choices, 
+                      selected = "Air")
+    
+    
+  } else if (input$language == "Spanish"){
+    indicator_choices <- df_indicator_choices$spanish_translation
+    category_choices <- df_indicator_choices$spanish_category
+    
+    updateSelectInput(session, "indicator",
+                      label = "indicator",
+                      choices = indicator_choices, 
                       selected = "Calidad del aire")
     
+    updateSelectInput(session, "category",
+                      label = "category",
+                      choices = category_choices, 
+                      selected = "Aire")
     # df_merge <- df_merge_spanish
     # map_base <- st_transform(df_merge_spanish, 4326)
     # #df_merge_long <- df_merge_long_spanish
@@ -65,9 +89,38 @@ shinyServer(function(input, output, session) {
     # map_react()
     #print(map_base[[paste(indicator_choices[10])]])
     #print(map_base$GEOID)
-    
-  }}
+  }  
+  }
   )
+  
+  observeEvent(input$category, {
+    if (input$language == "English") {
+    
+    df_indicator_choices <- df_indicator_choices[df_indicator_choices$category == paste0(input$category),]
+    indicator_choices <- df_indicator_choices$indicator
+    
+    updateSelectInput(session, "indicator",
+                      label = "indicator",
+                      choices = indicator_choices)
+  } else if (input$language == "Spanish") {
+    
+    df_indicator_choices <- df_indicator_choices[df_indicator_choices$spanish_category == paste0(input$category),]
+    indicator_choices <- df_indicator_choices$spanish_translation
+    
+    updateSelectInput(session, "indicator",
+                      label = "indicator",
+                      choices = indicator_choices)
+  }
+  })
+  
+  observeEvent(input$indicator, {
+    if (input$language == "English") {
+      server_indicator(paste0(input$indicator))
+    } else if (input$language == "Spanish"){
+      server_indicator(dict_english_to_spanish[paste0(input$indicator)])
+      
+    }
+  })
   
   dataset <- reactive({
     
@@ -75,7 +128,9 @@ shinyServer(function(input, output, session) {
     
     # grep user input on table
     if (length(input$indicator) != 0) {
-      grep_query = paste(input$indicator, collapse = "|")
+      grep_query = paste0("^", server_indicator(), "$")
+      print(grep_query)
+      print(input$indicator)
       df <- dplyr::filter(df, grepl(grep_query, indication))
     }
   })
@@ -144,7 +199,7 @@ shinyServer(function(input, output, session) {
   # indicator <- reactive({paste0(input$indicator)})
   # observe({print(indicator())})
   map_react <- reactive({
-    map_base$col_to_show <- map_base[[paste(input$indicator)]]
+    map_base$col_to_show <- map_base[[paste(server_indicator())]]
     print("in obs")
     print(head(map_base$col_to_show))
     map_base
@@ -185,7 +240,7 @@ shinyServer(function(input, output, session) {
   observe({
     # map1 <- map_react()
     print("made pal")
-    pal <- colorNumeric("YlOrRd", domain = map_base[[paste(input$indicator)]], na.color = NA)
+    pal <- colorNumeric("YlOrRd", domain = map_base[[paste(server_indicator())]], na.color = NA)
     # leafletProxy("map", data = map) %>% clearShapes() %>%  
     #   addPolygons(
     #     weight = 1,
@@ -208,12 +263,12 @@ shinyServer(function(input, output, session) {
     #print(head(pal( map_base[[paste(input$indicator)]])))
     leafletProxy("map", data = map_base) %>% 
         setShapeStyle(layerId = map_base$GEOID, 
-                      fillColor = pal( map_base[[paste(input$indicator)]]), 
+                      fillColor = pal( map_base[[paste(server_indicator())]]), 
                       color = "#666", 
                       fillOpacity = 0.8) %>%  
         clearControls() %>%
         addLegend(pal = pal, 
-                values = map_base[[paste(input$indicator)]], 
+                values = map_base[[paste(server_indicator())]], 
                 opacity = 1, 
                 title = input$indicator) 
       print("updated map")
@@ -235,7 +290,7 @@ shinyServer(function(input, output, session) {
       if (length(input$indicator) != 0) {
         # grep_query = paste(input$indicator, collapse = "|")
         # df <- dplyr::filter(df, grepl(grep_query, Definition))
-        df <- df[,c("County", "GEOID", input$indicator)]
+        df <- df[,c("County", "GEOID", paste(server_indicator()))]
       }
       print(colnames(df))
       df <- dplyr::filter(df, grepl(paste0(id), GEOID))
@@ -250,7 +305,7 @@ shinyServer(function(input, output, session) {
     # print(toString(unlist(popup_df[1,"Year"])))
     # 
 
-    indic <- paste0(input$indicator)
+    indic <- paste0(server_indicator())
     
     print(paste("County: ", unlist(popup_df[1,"County"][1])))
     print("sep")

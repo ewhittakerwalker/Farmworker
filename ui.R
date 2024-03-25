@@ -19,18 +19,31 @@ definition <- unique(CHVI_df$Definition)
 
 
 load(paste0(dir, "/data/merged_map.rda"))
-indicator_choices <- colnames(df_merge)
-indicator_choices <- indicator_choices[16:503]
-indicator_choices <- indicator_choices[
-  grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|tree|Housing", 
-        indicator_choices)]
+df_indicator_choices <- read.csv(paste0(dir, "/data/Indicators_Farmworker_WebApplication.csv"))
+#df_indicator_choices$spanish_translation
+indicator_choices <- df_indicator_choices$indicator 
+category_choices <- df_indicator_choices$category
 
-indicator_choices <- indicator_choices[
-  indicator_choices != "Avg_Daily_Max_Ozone_Conc_Other_2012_2014"]
-indicator_choices <- indicator_choices[
-  indicator_choices != "Percent_without_tree_canopy_coverage_Other_2011"]
-indicator_choices <- indicator_choices[
-  indicator_choices != "Percent_without_tree_canopy_coverage_Total_2011"]
+# if (output$language == "English") {
+#   cat_desc <- paste0("select category:")
+# } else {
+#   print("Spanish")
+#   cat_desc <- paste0("select categoría:")
+# }
+
+# indicator_choices <- colnames(df_merge)
+# indicator_choices <- indicator_choices[16:503]
+# indicator_choices <- indicator_choices[
+#   grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|tree|Housing", 
+#         indicator_choices)]
+# 
+# indicator_choices <- indicator_choices[
+#   indicator_choices != "Avg_Daily_Max_Ozone_Conc_Other_2012_2014"]
+# indicator_choices <- indicator_choices[
+#   indicator_choices != "Percent_without_tree_canopy_coverage_Other_2011"]
+# indicator_choices <- indicator_choices[
+#   indicator_choices != "Percent_without_tree_canopy_coverage_Total_2011"]
+
 
 
 
@@ -64,6 +77,10 @@ shinyUI(navbarPage(
            #                                           "select a county:", 
            #                                           choices = counties))
            # ),
+           sidebarPanel(selectInput("category", "select a category:",
+                                    choices = category_choices, 
+                                    selected = "Air")
+           ),
            sidebarPanel(selectInput("indicator", "select a indicator:",
                                     choices = indicator_choices, 
                                     selected = "Air_Quality")
