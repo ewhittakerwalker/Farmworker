@@ -316,7 +316,7 @@ shinyServer(function(input, output, session) {
     content <- as.character(tagList(
       tags$h4(paste("County: ", unlist(popup_df[1,"County"][1])[1])),
       tags$strong(HTML(
-        sprintf("Selected Indication: %s", indic)), tags$br(),
+        sprintf("Selected Indication: %s", paste(input$indicator))), tags$br(),
       # sprintf("latitude: %0.5f", as.integer(lat)), tags$br(),
       # sprintf("longitude: %0.5f", as.integer(lng)), tags$br(),
        sprintf("Value: %0.2f", as.numeric(unlist(popup_df[1,indic])[1])), tags$br(), 
@@ -365,6 +365,25 @@ shinyServer(function(input, output, session) {
   #   }
   # })
 
+  ## air quality index widget
+  
+  source_aqi <- reactiveVal(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=38.068501031272&longitude=-120.30029296875"))
+  
+  observe({ 
+    event <- input$map_shape_click
+    latitude <- as.character(event$lat)
+    longitude <- as.character(event$lng)
+    print(latitude)
+    print(longitude)    
+    source_aqi(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=", latitude, "&longitude=", longitude))
+    
+  })
+  
+  output$frame <- renderUI({
+    my_test <- tags$iframe(src=paste0(source_aqi()), height=340, width=240)
+    print(my_test)
+    my_test
+  })
     
 
     

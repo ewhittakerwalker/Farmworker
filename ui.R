@@ -79,23 +79,23 @@ shinyUI(navbarPage(
            # ),
            sidebarPanel(selectInput("category", "select a category:",
                                     choices = category_choices, 
-                                    selected = "Air")
-           ),
-           sidebarPanel(selectInput("indicator", "select a indicator:",
+                                    selected = "Air"),
+                        selectInput("indicator", "select a indicator:",
                                     choices = indicator_choices, 
-                                    selected = "Air_Quality")
-           ),
-           sidebarPanel(selectInput("language", "select language/lengua:",
+                                    selected = "Air_Quality"), 
+                        selectInput("language", "select language/lengua:",
                                     choices = c("English", "Spanish"), 
-                                    selected = "English")
+                                    selected = "English"), 
+                        htmlOutput("frame")
            ),
            mainPanel(
              tabsetPanel(
-               tabPanel("Map", value = 1,               
+               tabPanel("Map", value = 1,    
                         tags$style(type = "text/css", "#map {height: calc(80vh - 80px) !important;}"),
 
                         leafletjs,
-                        leafletOutput("map") 
+                        
+                        leafletOutput("map")
                         #mapview:::plainViewOutput("test"),
                ),
                tabPanel("Data", value = 2,
