@@ -78,6 +78,8 @@ colnames(df_merge) <- str_replace(colnames(df_merge), "Average", "Avg")
 colnames(df_merge) <- str_replace(colnames(df_merge), "Health/Environment", "Health/Environ")
 
 
+
+
 ## spanish translation
 # print("doing translation")
 # ## authentication key ff1a8324-b541-4e57-8e29-c40778bf7c8e:fx
@@ -107,6 +109,7 @@ print(indicator_choices)
 indicator_choices <- indicator_choices[
   grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|tree|Housing", 
         indicator_choices)]
+print(indicator_choices)
 
 df_merge_columns_table <- df_merge
 df_merge_columns_table <- df_merge_columns_table[,indicator_choices]
@@ -125,6 +128,9 @@ cols_df_merge <- colnames(df_merge)
 col_to_save_df_merge <- data.frame(indicator = cols_df_merge)
 
 write.csv(col_to_save_df_merge, paste0(dire, "/data/df_merge_all_columns.csv"))
+
+print(df_merge_percentile_table["Housing_Burden"])
+
 
 # save(df_merge_spanish, file = paste0(dire, "/data/merged_map_spanish.rda"))
 
@@ -180,6 +186,56 @@ names(df_merge_long)[names(df_merge_long) == 'County.x'] <- 'County'
 
 save(df_merge_long , file = paste0(dire, "/data/merged_map_long.rda"))
 print("saved long")
+
+
+## calculate percentile for all indicators of interest 
+df_indicator_choices <- read.csv(paste0(dire, "/data/Indicators_Farmworker_WebApplication.csv"))
+
+indicator_choices <- df_indicator_choices$indicator
+
+df_merge_percentile_table <- df_merge_pop
+df_merge_percentile_table <- df_merge_percentile_table[c("GEOID", indicator_choices)]
+
+
+for (colname_i in colnames(df_merge_percentile_table)) {
+  print(colname_i)
+  if (colname_i != "GEOID") {
+    num_col <- sapply(df_merge_percentile_table[colname_i], as.numeric)
+    #print(unlist(df_merge_percentile_table[colname_i]))
+    print(percent_rank(num_col))
+    df_merge_percentile_table[paste0(colname_i, "_percentile")] <- percent_rank(num_col)
+    
+  }
+  
+}
+
+above_80th_percentile_df = data.frame(GEOID = c("GEOID"), 
+                        indicator = c("indicator"),
+                        value = c("value"), 
+                        percentile = c("percentile"))
+j = 0
+for (i in 1:nrow(df_merge_percentile_table)) {
+  for (column in colnames(df_merge_percentile_table)) {
+    if (grepl("_percentile", column, fixed = TRUE)) {
+      tract <- df_merge_percentile_table[i,"GEOID"]
+      if (!(grepl("_Pctl", column, fixed = TRUE)) & !(grepl("_pctile", column, fixed = TRUE)))  {
+        #print(column)
+        percentile <- df_merge_percentile_table[i,column]
+        value <- df_merge_percentile_table[i,gsub("_percentile", "", column)]
+        if (!is.na(percentile)) {
+          if (percentile > .80) {
+            vec <- c(tract, gsub("_percentile", "", column), value, percentile)
+            #rint(vec)
+            above_80th_percentile_df = rbind(above_80th_percentile_df , vec)
+            j = j + 1
+        }
+        }
+      }
+    }
+  }
+}
+
+save(above_80th_percentile_df , file = paste0(dire, "/data/above_80th_percentile_df.rda"))
 
 # ## translation
 # df_merge_long_spanish <- df_merge_long

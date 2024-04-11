@@ -21,7 +21,7 @@ definition <- unique(CHVI_df$Definition)
 load(paste0(dir, "/data/merged_map.rda"))
 df_indicator_choices <- read.csv(paste0(dir, "/data/Indicators_Farmworker_WebApplication.csv"))
 #df_indicator_choices$spanish_translation
-indicator_choices <- df_indicator_choices$indicator 
+indicator_choices <- df_indicator_choices$interpretable_name
 category_choices <- df_indicator_choices$category
 
 # if (output$language == "English") {
@@ -82,11 +82,15 @@ shinyUI(navbarPage(
                                     selected = "Air"),
                         selectInput("indicator", "select a indicator:",
                                     choices = indicator_choices, 
-                                    selected = "Air_Quality"), 
+                                    selected = "PM2.5 concentration"), 
                         selectInput("language", "select language/lengua:",
                                     choices = c("English", "Spanish"), 
                                     selected = "English"), 
-                        htmlOutput("frame")
+                        htmlOutput("frame"), 
+                        strong("Hazards in this region"),
+                        tableOutput('Hazards'),
+                        strong("Indicator description"),
+                        p(textOutput("Indicator_Description"))
            ),
            mainPanel(
              tabsetPanel(

@@ -17,22 +17,32 @@ load(paste0(dir, "/data/merged_map.rda"))
 load(paste0(dir, "/data/merged_map_pop.rda"))
 ## load df long for data tab 
 load(paste0(dir, "/data/merged_map_long.rda"))
+load(paste0(dire, "/data/above_80th_percentile_df.rda"))
 # load(paste0(dir, "/data/merged_map_spanish.rda"))
 # load(paste0(dir, "/data/merged_map_pop_spanish.rda"))
 ## load df long for data tab 
 #load(paste0(dir, "/data/merged_map_long_spanish.rda"))
 df_indicator_choices <- read.csv(paste0(dir, "/data/Indicators_Farmworker_WebApplication.csv"))
 
-dict_english_to_spanish <- c()
+dict_spanish_to_server_indicator <- c()
 
 for (i in 1:nrow(df_indicator_choices)) {
   row <- df_indicator_choices[i,]
   eng_inc <- row$indicator
   span_inc <- row$spanish_translation
-  dict_english_to_spanish[span_inc] = eng_inc
+  dict_spanish_to_server_indicator[span_inc] = eng_inc
 }
 
-print(dict_english_to_spanish["Calidad del aire"])
+dict_interpretable_english_to_server_indicator <- c()
+
+for (i in 1:nrow(df_indicator_choices)) {
+  row <- df_indicator_choices[i,]
+  interpret_inc <- row$interpretable_name
+  server_inc <- row$indicator
+  dict_interpretable_english_to_server_indicator[interpret_inc] = server_inc
+}
+
+print(dict_spanish_to_server_indicator["Calidad del aire"])
 map_base <- st_transform(df_merge, 4326)
 
 #server_indicator <- "Air_Quality"
@@ -44,8 +54,12 @@ source("global.R")
 
 shinyServer(function(input, output, session) {
   
-  server_indicator <- reactiveVal("Air_Quality")
   
+  ###########
+  ## functionality for indicator clean-up and ui vv
+  server_indicator <- reactiveVal("PM2.5 concentration")
+  
+  ## update ui to english or spanish
   observeEvent(input$language, {
   if (input$language == "English") {
     print("English")
@@ -55,7 +69,7 @@ shinyServer(function(input, output, session) {
     # indicator_choices <- df_indicator_choices$indicator
     # print(indicator_choices)
     
-    indicator_choices <- df_indicator_choices$indicator 
+    indicator_choices <- df_indicator_choices$interpretable_name
     category_choices <- df_indicator_choices$category
     
     updateSelectInput(session, "indicator",
@@ -93,11 +107,12 @@ shinyServer(function(input, output, session) {
   }
   )
   
+  ## filter available indicators based on category
   observeEvent(input$category, {
     if (input$language == "English") {
     
     df_indicator_choices <- df_indicator_choices[df_indicator_choices$category == paste0(input$category),]
-    indicator_choices <- df_indicator_choices$indicator
+    indicator_choices <- df_indicator_choices$interpretable_name
     
     updateSelectInput(session, "indicator",
                       label = "indicator",
@@ -113,15 +128,40 @@ shinyServer(function(input, output, session) {
   }
   })
   
+  ## update server indicator when input indicator changes
   observeEvent(input$indicator, {
     if (input$language == "English") {
-      server_indicator(paste0(input$indicator))
+      server_indicator(dict_interpretable_english_to_server_indicator[paste0(input$indicator)])
+      
+      print(paste0(input$indicator))
+      print(paste0(server_indicator()))
+      print("^^ interpretable name to server indicator")
     } else if (input$language == "Spanish"){
-      server_indicator(dict_english_to_spanish[paste0(input$indicator)])
+      server_indicator(dict_spanish_to_server_indicator[paste0(input$indicator)])
       
     }
   })
   
+  ## description functionality
+  output$Indicator_Description <- reactive({
+    df_indicator_choices <- df_indicator_choices[df_indicator_choices$indicator == paste0(server_indicator()),]
+    df_indicator_choices$indicator_calculation_description
+    
+  })
+  
+  clicked_id <- reactiveVal("06043000200")
+  
+  output$Hazards <- renderTable({ 
+    above_80th_percentile_df <- above_80th_percentile_df[above_80th_percentile_df$GEOID == paste0(clicked_id()),]
+    above_80th_percentile_df <- above_80th_percentile_df[,c("indicator", "percentile", "value")]
+    above_80th_percentile_df
+  })
+  ## functionality for indicator clean-up and ui ^^
+  ###########
+  
+  
+  #########################
+  ## dataset functionality
   dataset <- reactive({
     
     df <- df_merge_long
@@ -181,6 +221,7 @@ shinyServer(function(input, output, session) {
       
     )})
     # %>% formatStyle(columns = c(1,2,3,4,5,6,7,8,9, 10, 11, 12  , 13, 14, 15,16, 17, 18), fontSize = '90%')
+  ##########################
   
 
   # map <- st_read("/Users/ewanwhittaker-walker/Rshiny/tl_2019_06_tract/tl_2019_06_tract.shp", quiet = TRUE)
@@ -269,8 +310,7 @@ shinyServer(function(input, output, session) {
         clearControls() %>%
         addLegend(pal = pal, 
                 values = map_base[[paste(server_indicator())]], 
-                opacity = 1, 
-                title = input$indicator) 
+                opacity = 1) 
       print("updated map")
     })
   
@@ -369,6 +409,7 @@ shinyServer(function(input, output, session) {
   
   source_aqi <- reactiveVal(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=38.068501031272&longitude=-120.30029296875"))
   
+  ## observng map clicks for geo ID and air quality widget
   observe({ 
     event <- input$map_shape_click
     latitude <- as.character(event$lat)
@@ -376,6 +417,7 @@ shinyServer(function(input, output, session) {
     print(latitude)
     print(longitude)    
     source_aqi(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=", latitude, "&longitude=", longitude))
+    clicked_id(event$id)
     
   })
   
