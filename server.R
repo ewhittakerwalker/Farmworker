@@ -125,15 +125,22 @@ shinyServer(function(input, output, session) {
     indicator_choices <- df_indicator_choices$interpretable_name
     
     updateSelectInput(session, "indicator",
-                      label = "indicator",
+                      label = "select an indicator",
                       choices = indicator_choices)
   } else if (input$language == "Spanish") {
     
     df_indicator_choices <- df_indicator_choices[df_indicator_choices$spanish_category == paste0(input$category),]
+    
+    if (input$percentile_box == TRUE) {
+      df_indicator_choices <- dplyr::filter(df_indicator_choices, grepl("_percentile", indicator))
+    } else {
+      df_indicator_choices <- dplyr::filter(df_indicator_choices, !grepl("_percentile", indicator))
+    }
+    
     indicator_choices <- df_indicator_choices$spanish_translation
     
     updateSelectInput(session, "indicator",
-                      label = "indicacion",
+                      label =  "elige un indicador",
                       choices = indicator_choices)
   }
   })
