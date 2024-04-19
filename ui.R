@@ -7,6 +7,7 @@ library(stringr)
 library("openxlsx")
 library(mapview)
 library(leaflet)
+library(openmeteo)
 
 dir <- getwd()
 print(dir)
@@ -77,18 +78,17 @@ shinyUI(navbarPage(
            #                                           "select a county:", 
            #                                           choices = counties))
            # ),
-           sidebarPanel(selectInput("category", "select a category:",
+           sidebarPanel(selectInput("language", "select language/lengua:",
+                                    choices = c("English", "Spanish"), 
+                                    selected = "English"),
+                        selectInput("category", "select a category:",
                                     choices = category_choices, 
                                     selected = "Air"),
                         selectInput("indicator", "select a indicator:",
                                     choices = indicator_choices, 
-                                    selected = "PM2.5 concentration"), 
-                        selectInput("language", "select language/lengua:",
-                                    choices = c("English", "Spanish"), 
-                                    selected = "English"), 
-                        htmlOutput("frame"), 
-                        strong("Hazards in this region"),
-                        tableOutput('Hazards'),
+                                    selected = "PM2.5 concentration"),
+                        checkboxInput("percentile_box", "Use percentiles by census tract", TRUE),
+                        checkboxInput("absolute_value_box", "Use absolute values", FALSE),
                         strong("Indicator description"),
                         p(textOutput("Indicator_Description"))
            ),
@@ -99,9 +99,26 @@ shinyUI(navbarPage(
 
                         leafletjs,
                         
-                        leafletOutput("map")
-                        #mapview:::plainViewOutput("test"),
+                        leafletOutput("map"), 
+                        fluidRow(column(2,
+                                        strong("Air Quality"),
+                                        htmlOutput("frame")),
+                                 column(3,offset = 1,
+                                        strong("Dangerous Heat"),
+                                        plotOutput('forecast')),
+                                 column(4, offset = 1.5,
+                                        strong("Top hazards in this region (above 80th percentile)"),
+                                        verbatimTextOutput('Hazards'),
+                                        tags$head(tags$style("#Hazards{color:red; 
+                                                             font-size:12px; 
+                                                             font-style:italic;
+                                                             overflow-y:scroll;
+                                                             height: 400px; 
+                                                             width: 400px; 
+                                                             background: ghostwhite;}")))
+                        )
                ),
+                        #mapview:::plainViewOutput("test"),
                tabPanel("Data", value = 2,
                         # tags$head(tags$style("#tbl1 {white-space: nowrap;}")),
                         # tags$head(tags$style(".modal-dialog{ width:1000px}")),

@@ -4,6 +4,7 @@ library(ggplot2)
 library(viridis)
 library(leaflet)
 library(stringr)
+library(openmeteo)
 
 
 ## github toe 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
@@ -73,12 +74,12 @@ shinyServer(function(input, output, session) {
     category_choices <- df_indicator_choices$category
     
     updateSelectInput(session, "indicator",
-                      label = "indicator",
+                      label = "select a indicator",
                       choices = indicator_choices, 
                       selected = "Air_Quality")
     
     updateSelectInput(session, "category",
-                      label = "category",
+                      label = "select a category",
                       choices = category_choices, 
                       selected = "Air")
     
@@ -88,12 +89,12 @@ shinyServer(function(input, output, session) {
     category_choices <- df_indicator_choices$spanish_category
     
     updateSelectInput(session, "indicator",
-                      label = "indicator",
+                      label = "elige un indicador",
                       choices = indicator_choices, 
                       selected = "Calidad del aire")
     
     updateSelectInput(session, "category",
-                      label = "category",
+                      label = "elige una categoría",
                       choices = category_choices, 
                       selected = "Aire")
     # df_merge <- df_merge_spanish
@@ -108,10 +109,19 @@ shinyServer(function(input, output, session) {
   )
   
   ## filter available indicators based on category
-  observeEvent(input$category, {
+  observeEvent({input$category 
+    input$percentile_box 
+    input$absolute_value_box}, 
+    {
     if (input$language == "English") {
     
     df_indicator_choices <- df_indicator_choices[df_indicator_choices$category == paste0(input$category),]
+    if (input$percentile_box == TRUE) {
+      df_indicator_choices <- dplyr::filter(df_indicator_choices, grepl("_percentile", indicator))
+    } else {
+      df_indicator_choices <- dplyr::filter(df_indicator_choices, !grepl("_percentile", indicator))
+    }
+    
     indicator_choices <- df_indicator_choices$interpretable_name
     
     updateSelectInput(session, "indicator",
@@ -123,7 +133,7 @@ shinyServer(function(input, output, session) {
     indicator_choices <- df_indicator_choices$spanish_translation
     
     updateSelectInput(session, "indicator",
-                      label = "indicator",
+                      label = "indicacion",
                       choices = indicator_choices)
   }
   })
@@ -149,12 +159,16 @@ shinyServer(function(input, output, session) {
     
   })
   
-  clicked_id <- reactiveVal("06043000200")
+  observeEvent(input$percentile_box, {
+    if (input$percentile_box == TRUE) {
+      updateCheckboxInput(session, "absolute_value_box", value = FALSE)
+    }
+  })
   
-  output$Hazards <- renderTable({ 
-    above_80th_percentile_df <- above_80th_percentile_df[above_80th_percentile_df$GEOID == paste0(clicked_id()),]
-    above_80th_percentile_df <- above_80th_percentile_df[,c("indicator", "percentile", "value")]
-    above_80th_percentile_df
+  observeEvent(input$absolute_value_box, {
+    if (input$absolute_value_box == TRUE) {
+      updateCheckboxInput(session, "percentile_box", value = FALSE)
+    }
   })
   ## functionality for indicator clean-up and ui ^^
   ###########
@@ -407,29 +421,95 @@ shinyServer(function(input, output, session) {
 
   ## air quality index widget
   
+  ###################################3
+  ## all on click functionality that is not pop-ups below
+  weather_report <- reactiveVal(weather_forecast(c(36,-117), hourly = list("temperature_2m", "precipitation", "windspeed_10m"),
+                                                 response_units = list(
+                                                   temperature_unit = "fahrenheit",
+                                                   windspeed_unit = "mph", precipitation_unit = 'mm' 
+                                                 )
+  ))
   source_aqi <- reactiveVal(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=38.068501031272&longitude=-120.30029296875"))
+  clicked_id <- reactiveVal("06043000200")
+  hazard_sentences <-reactiveVal("")
   
   ## observng map clicks for geo ID and air quality widget
   observe({ 
     event <- input$map_shape_click
     latitude <- as.character(event$lat)
     longitude <- as.character(event$lng)
-    print(latitude)
-    print(longitude)    
+    print(as.numeric(latitude))
+    print(as.numeric(longitude))
+    if (is.null(event)) {
+      latitude <- as.character(36)
+      longitude <- as.character(-117)
+
+    }
     source_aqi(paste0("https://widget.airnow.gov/aq-dial-widget/?latitude=", latitude, "&longitude=", longitude))
+    weather_report(weather_forecast(c(as.numeric(latitude), as.numeric(longitude)), 
+                                 hourly = list("temperature_2m", 
+                                               "precipitation", 
+                                               "windspeed_10m"),
+                                 
+                                 response_units = list(temperature_unit = "fahrenheit",
+                                 windspeed_unit = "mph", 
+                                 precipitation_unit = 'mm' )
+                                 )
+                )
     clicked_id(event$id)
-    
   })
   
   output$frame <- renderUI({
-    my_test <- tags$iframe(src=paste0(source_aqi()), height=340, width=240)
+    my_test <- tags$iframe(src=paste0(source_aqi()), height=340, width=230)
     print(my_test)
     my_test
   })
+  
+  observeEvent(input$map_shape_click, {
+    hazard_sentences("")
+    above_80th_percentile_df <- above_80th_percentile_df[above_80th_percentile_df$GEOID == paste0(clicked_id()),]
+    above_80th_percentile_df <- above_80th_percentile_df[,c("indicator", "percentile", "value")]
+    print("above 80th df vv")
+    print(above_80th_percentile_df)
+    if (length(rownames(above_80th_percentile_df)) > 0) {
+      hazard_sentences(paste(hazard_sentences(), "This county has some hazards such as: \n"))
+      for (i in 1:nrow(above_80th_percentile_df)) {
+        indic <- unlist(above_80th_percentile_df[i,"indicator"])
+        percent <- unlist(above_80th_percentile_df[i,"percentile"])
+        val <- unlist(above_80th_percentile_df[i,"value"])
+        print(indic)
+        print(percent)
+        print(val)
+        hazard_sentences(paste(hazard_sentences(), indic, "which has a percentile of", percent, "and a value of", val, "\n"))
+      }
+    } else {
+      hazard_sentences(paste("This county has no indicators above the 80th percentile"))
+    }
+  })
+  
+  output$Hazards <- renderText({
+    paste(hazard_sentences())
+  })
+  
+  output$forecast <- renderPlot({ 
+    df <- data.frame(weather_report())
+    print(weather_report())
+    df <- head(df, 48)
+    #df <- df[df$hourly_temperature_2m >= 70,]
     
+    p1 <- ggplot() + theme_bw() + geom_line(aes(y = hourly_temperature_2m, x = datetime), size=1.5,
+                               data = df, stat="identity")
+    p1 <- p1 + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+    #p1 <- p1 + geom_rect(aes(xmin=159683.438, xmax=159684.186, ymin=0, ymax=Inf))
+    p1
+    })
+  
+  
 
     
-    
+  ## all on click functionality that is not pop-ups above
+  ###################################3
+
     
     # isolate({
     #   showZipcodePopup(event$id, event$lat, event$lng)

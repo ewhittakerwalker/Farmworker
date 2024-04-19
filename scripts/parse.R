@@ -100,14 +100,32 @@ colnames(df_merge) <- str_replace(colnames(df_merge), "Health/Environment", "Hea
 # 
 # print(colnames(df_merge))
 
-## saving R objects
+## adding percentile columns to df_merge 
+df_indicator_choices <- read.csv(paste0(dire, "/data/Indicators_Farmworker_WebApplication.csv"))
+print(df_indicator_choices)
+
+save_geo <- df_merge$geometry
+st_geometry(df_merge) <- NULL
+
+for (column_name in df_indicator_choices$indicator) {
+  #print(df_merge[column_name])
+  num_col <- sapply(df_merge[column_name], as.numeric)
+  #print(unlist(df_merge_percentile_table[colname_i]))
+  df_merge[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+}
+
+st_geometry(df_merge) <- save_geo
+
+df_merge_for_app <- df_merge[, df_indicator_choices$indicator]
+
+ ## saving R objects
 save(df_merge, file = paste0(dire, "/data/merged_map.rda"))
 print("saved")
 
 indicator_choices <- colnames(df_merge)
 print(indicator_choices)
 indicator_choices <- indicator_choices[
-  grepl("_heat_|Water|Air|Lead|Ozone|Pesticides|Environment|tree|Housing", 
+  grepl("_heat_|Water|water|Air|air|Lead|lead|Ozone|ozone|Pesticides|pesticides|Environment|environment|tree|Tree|Housing|housing", 
         indicator_choices)]
 print(indicator_choices)
 
@@ -128,8 +146,6 @@ cols_df_merge <- colnames(df_merge)
 col_to_save_df_merge <- data.frame(indicator = cols_df_merge)
 
 write.csv(col_to_save_df_merge, paste0(dire, "/data/df_merge_all_columns.csv"))
-
-print(df_merge_percentile_table["Housing_Burden"])
 
 
 # save(df_merge_spanish, file = paste0(dire, "/data/merged_map_spanish.rda"))
@@ -155,13 +171,17 @@ colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "_Total_2080_2099"
 colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Average", "Avg")
 colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Health/Environment", "Health/Environ")
 
+for (column_name in df_indicator_choices$indicator) {
+  #print(df_merge_pop [column_name])
+  num_col <- sapply(df_merge_pop[column_name], as.numeric)
+  #print(unlist(df_merge_percentile_table[colname_i]))
+  df_merge_pop[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+}
 
 ## translation for pop-ups
 # df_merge_pop_spanish <- df_merge_pop
 # colnames(df_merge_pop_spanish) <- lapply(colnames(df_merge_pop_spanish), function(x) {google_translate(x, target_language = 'es')})
 # names(df_merge_pop_spanish)[names(df_merge_pop_spanish) == "GEOIDE"] <- "GEOID"
-
-print(df_merge)
 
 ## saving 
 save(df_merge_pop, file = paste0(dire, "/data/merged_map_pop.rda"))
@@ -173,7 +193,7 @@ print("saved pop")
 ## pivoting data down for data tab
 print(colnames(df_merge_pop))
 
-df_merge_pop <- df_merge_pop[,c(1, (16:503))]
+df_merge_pop <- df_merge_pop[,c(1, (16:525))]
 df_merge_pop <- df_merge_pop %>% mutate_at(2:489, as.numeric)
 
 df_merge_long <- df_merge_pop %>%
@@ -181,8 +201,9 @@ df_merge_long <- df_merge_pop %>%
 
 ## add bac in county data 
 df_merge_long <- merge(df_merge_long, add_county_df, by.x = "GEOID", by.y = "GEOID")
-df_merge_long <- df_merge_long[,c("GEOID", "indication", "Value", "County.x")]
-names(df_merge_long)[names(df_merge_long) == 'County.x'] <- 'County'
+print(colnames(df_merge_long))
+df_merge_long <- df_merge_long[,c("GEOID", "indication", "Value", "County")]
+#names(df_merge_long)[names(df_merge_long) == 'County.x'] <- 'County'
 
 save(df_merge_long , file = paste0(dire, "/data/merged_map_long.rda"))
 print("saved long")
@@ -234,6 +255,13 @@ for (i in 1:nrow(df_merge_percentile_table)) {
     }
   }
 }
+above_80th_percentile_df  = above_80th_percentile_df[-1,]
+above_80th_percentile_df$value <- as.numeric(above_80th_percentile_df$value)
+above_80th_percentile_df$percentile <- as.numeric(above_80th_percentile_df$percentile)
+
+above_80th_percentile_df <- above_80th_percentile_df  %>% mutate_at(vars(value, percentile), list(~ round(., 3)))
+above_80th_percentile_df <- unique(above_80th_percentile_df[,c("GEOID","indicator","value","percentile")])
+print(above_80th_percentile_df)
 
 save(above_80th_percentile_df , file = paste0(dire, "/data/above_80th_percentile_df.rda"))
 
