@@ -87,8 +87,9 @@ shinyUI(navbarPage(
                         selectInput("indicator", "select a indicator:",
                                     choices = indicator_choices, 
                                     selected = "PM2.5 concentration"),
-                        checkboxInput("percentile_box", "Use percentiles by census tract", TRUE),
-                        checkboxInput("absolute_value_box", "Use absolute values", FALSE),
+                        radioButtons("percentile_or_value", "Show indicator in:",
+                                       c("Percentile by census tract" = "percentile",
+                                         "Exact values" = "value")),
                         checkboxInput("crowdsourced_box", "Show crowdsourced data", FALSE),
                         strong("Indicator description"),
                         p(textOutput("Indicator_Description"))
