@@ -120,13 +120,12 @@ shinyServer(function(input, output, session) {
   
   ## filter available indicators based on category
   observeEvent({input$category 
-    input$percentile_box 
-    input$absolute_value_box}, 
+    input$percentile_or_value}, 
     {
     if (input$language == "English") {
     
     df_indicator_choices <- df_indicator_choices[df_indicator_choices$category == paste0(input$category),]
-    if (input$percentile_box == TRUE) {
+    if (input$percentile_or_value == "percentile") {
       df_indicator_choices <- dplyr::filter(df_indicator_choices, grepl("_percentile", indicator))
     } else {
       df_indicator_choices <- dplyr::filter(df_indicator_choices, !grepl("_percentile", indicator))
@@ -141,7 +140,7 @@ shinyServer(function(input, output, session) {
     
     df_indicator_choices <- df_indicator_choices[df_indicator_choices$spanish_category == paste0(input$category),]
     
-    if (input$percentile_box == TRUE) {
+    if (input$percentile_or_value == "percentile") {
       df_indicator_choices <- dplyr::filter(df_indicator_choices, grepl("_percentile", indicator))
     } else {
       df_indicator_choices <- dplyr::filter(df_indicator_choices, !grepl("_percentile", indicator))
@@ -176,21 +175,16 @@ shinyServer(function(input, output, session) {
     
   })
   
-  observeEvent(input$percentile_box, {
-    if (input$percentile_box == TRUE) {
-      updateCheckboxInput(session, "absolute_value_box", value = FALSE)
-    }
-  })
-  
-  observeEvent(input$absolute_value_box, {
-    if (input$absolute_value_box == TRUE) {
-      updateCheckboxInput(session, "percentile_box", value = FALSE)
-    }
-  })
-  
+
+  # observeEvent(!input$crowdsourced_box, {
+  #     leafletProxy("map",  data = map_base) %>%
+  #       removeMarker(layerId = "points")
+  # })
   observeEvent(input$crowdsourced_box, {
+    
+    proxy <-  leafletProxy("map",  data = map_base) 
+    
     if (input$crowdsourced_box == TRUE) {
-      
       getColor <- function(gsheet_df) {
         sapply(gsheet_df$Category, function(Category) {
           print("CATEGORY")
@@ -222,13 +216,16 @@ shinyServer(function(input, output, session) {
         library = "fa"
       )
       
-      leafletProxy("map",  data = map_base) %>%
-        addAwesomeMarkers(
+     proxy %>%
+        addMarkers(
           icon = ~icons,
           lng = ~c(gsheet_df$long), 
           lat = ~c(gsheet_df$lat), 
-          label = ~paste(gsheet_df$Category, ":", gsheet_df$Describe),
-          layerId = ~map_base$GEOID)
+          label = ~paste(gsheet_df$Category, ":", gsheet_df$Describe), 
+          layerId = as.character(gsheet_df$`Submission ID`), 
+          group = "points",
+          clusterOptions = markerClusterOptions())
+      
       
       # for (i in 1:nrow(gsheet_df)) {
       #   print("inside forloop")
@@ -247,6 +244,8 @@ shinyServer(function(input, output, session) {
       #     label = ~cate,
       #     layerId = ~map_base$GEOID)
       # }
+    }else{
+      proxy %>% clearGroup(group = "points")
     }
   })
   ## functionality for indicator clean-up and ui ^^
@@ -447,7 +446,7 @@ shinyServer(function(input, output, session) {
     print("sep")
     print(as.numeric(unlist(popup_df[1,indic])))
     
-    if (input$percentile_box != TRUE) {
+    if (input$percentile_or_value != "percentile") {
       content <- as.character(tagList(
         tags$h4(paste("County: ", unlist(popup_df[1,"County"][1])[1])),
         tags$strong(HTML(
