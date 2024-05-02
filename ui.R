@@ -89,6 +89,7 @@ shinyUI(navbarPage(
                                     selected = "PM2.5 concentration"),
                         checkboxInput("percentile_box", "Use percentiles by census tract", TRUE),
                         checkboxInput("absolute_value_box", "Use absolute values", FALSE),
+                        checkboxInput("crowdsourced_box", "Show crowdsourced data", FALSE),
                         strong("Indicator description"),
                         p(textOutput("Indicator_Description"))
            ),
@@ -104,17 +105,18 @@ shinyUI(navbarPage(
                                         strong("Air Quality"),
                                         htmlOutput("frame")),
                                  column(3,offset = 1,
-                                        strong("Dangerous Heat"),
+                                        strong("Today and Tomorrow's Temperature"),
                                         plotOutput('forecast')),
                                  column(4, offset = 1.5,
-                                        strong("Top hazards in this region (above 80th percentile)"),
+                                        strong("Top hazards in this region"),
                                         verbatimTextOutput('Hazards'),
                                         tags$head(tags$style("#Hazards{color:red; 
                                                              font-size:12px; 
                                                              font-style:italic;
                                                              overflow-y:scroll;
+                                                             overflow-wrap: break-word;
                                                              height: 400px; 
-                                                             width: 400px; 
+                                                             width: 450px; 
                                                              background: ghostwhite;}")))
                         )
                ),

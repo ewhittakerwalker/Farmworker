@@ -7,6 +7,7 @@ library(stringr)
 library(openmeteo)
 
 
+
 ## github toe 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
 
 dir <- getwd()
@@ -18,7 +19,8 @@ load(paste0(dir, "/data/merged_map.rda"))
 load(paste0(dir, "/data/merged_map_pop.rda"))
 ## load df long for data tab 
 load(paste0(dir, "/data/merged_map_long.rda"))
-load(paste0(dire, "/data/above_80th_percentile_df.rda"))
+load(paste0(dir, "/data/above_80th_percentile_df.rda"))
+load(paste0(dir, "/data/crowdsourced_data.rda"))
 # load(paste0(dir, "/data/merged_map_spanish.rda"))
 # load(paste0(dir, "/data/merged_map_pop_spanish.rda"))
 ## load df long for data tab 
@@ -41,6 +43,14 @@ for (i in 1:nrow(df_indicator_choices)) {
   interpret_inc <- row$interpretable_name
   server_inc <- row$indicator
   dict_interpretable_english_to_server_indicator[interpret_inc] = server_inc
+}
+
+dict_server_indicator_to_interpretable_english <- c()
+for (i in 1:nrow(df_indicator_choices)) {
+  row <- df_indicator_choices[i,]
+  interpret_inc <- row$interpretable_name
+  server_inc <- row$indicator
+  dict_server_indicator_to_interpretable_english[server_inc] = interpret_inc
 }
 
 print(dict_spanish_to_server_indicator["Calidad del aire"])
@@ -175,6 +185,68 @@ shinyServer(function(input, output, session) {
   observeEvent(input$absolute_value_box, {
     if (input$absolute_value_box == TRUE) {
       updateCheckboxInput(session, "percentile_box", value = FALSE)
+    }
+  })
+  
+  observeEvent(input$crowdsourced_box, {
+    if (input$crowdsourced_box == TRUE) {
+      
+      getColor <- function(gsheet_df) {
+        sapply(gsheet_df$Category, function(Category) {
+          print("CATEGORY")
+          print(Category)
+          print("Drinking Water ")
+          print(str_equal(Category, "Drinking Water "))
+          if(str_equal(Category, "Drinking Water ", ignore_case = TRUE)) {
+            "blue"
+          } else if(str_equal(Category,"Bathrooms", ignore_case = TRUE)) {
+            "darkgreen"
+          } else if(str_equal(Category,"Pesticides ", ignore_case = TRUE)){
+            "red"
+          } else if(str_equal(Category, "Unfair Conditions", ignore_case = TRUE)){
+            "purple"
+          } })
+      }
+      
+      icons <- awesomeIcons(
+        icon = 'ios-close',
+        iconColor = 'black',
+        library = 'ion',
+        markerColor = getColor(gsheet_df)
+      )
+      
+      awesome <- makeAwesomeIcon(
+        icon = "fire",
+        iconColor = "black",
+        markerColor = "blue",
+        library = "fa"
+      )
+      
+      leafletProxy("map",  data = map_base) %>%
+        addAwesomeMarkers(
+          icon = ~icons,
+          lng = ~c(gsheet_df$long), 
+          lat = ~c(gsheet_df$lat), 
+          label = ~paste(gsheet_df$Category, ":", gsheet_df$Describe),
+          layerId = ~map_base$GEOID)
+      
+      # for (i in 1:nrow(gsheet_df)) {
+      #   print("inside forloop")
+      #   lat <- unlist(gsheet_df[i,"lat"])
+      #   long <- unlist(gsheet_df[i,"long"])
+      #   cate <- unlist(gsheet_df[i,"Category"])
+      #   print(lat)
+      #   
+      #   #showPopup("placeholder_id", lat, long)
+      #   
+      #   leafletProxy("map",  data = map_base) %>%
+      #   addAwesomeMarkers(
+      #     icon = ~awesome,
+      #     lng = ~c(long), 
+      #     lat = ~c(lat), 
+      #     label = ~cate,
+      #     layerId = ~map_base$GEOID)
+      # }
     }
   })
   ## functionality for indicator clean-up and ui ^^
@@ -333,6 +405,7 @@ shinyServer(function(input, output, session) {
                 values = map_base[[paste(server_indicator())]], 
                 opacity = 1) 
       print("updated map")
+      
     })
   
   ## showing popups 
@@ -374,16 +447,29 @@ shinyServer(function(input, output, session) {
     print("sep")
     print(as.numeric(unlist(popup_df[1,indic])))
     
-    content <- as.character(tagList(
-      tags$h4(paste("County: ", unlist(popup_df[1,"County"][1])[1])),
-      tags$strong(HTML(
-        sprintf("Selected Indication: %s", paste(input$indicator))), tags$br(),
-      # sprintf("latitude: %0.5f", as.integer(lat)), tags$br(),
-      # sprintf("longitude: %0.5f", as.integer(lng)), tags$br(),
-       sprintf("Value: %0.2f", as.numeric(unlist(popup_df[1,indic])[1])), tags$br(), 
-       #sprintf("Year: %s", toString(popup_df[1,"Year"])), tags$br(),
-      #sprintf("More info?") 
-    )))
+    if (input$percentile_box != TRUE) {
+      content <- as.character(tagList(
+        tags$h4(paste("County: ", unlist(popup_df[1,"County"][1])[1])),
+        tags$strong(HTML(
+          sprintf("Selected Indication: %s", paste(input$indicator))), tags$br(),
+          # sprintf("latitude: %0.5f", as.integer(lat)), tags$br(),
+          # sprintf("longitude: %0.5f", as.integer(lng)), tags$br(),
+          sprintf("Value: %0.2f", as.numeric(unlist(popup_df[1,indic])[1])), tags$br(), 
+          #sprintf("Year: %s", toString(popup_df[1,"Year"])), tags$br(),
+          #sprintf("More info?") 
+        )))
+    } else {
+      content <- as.character(tagList(
+        tags$h4(paste("County: ", unlist(popup_df[1,"County"][1])[1])),
+        tags$strong(HTML(
+          sprintf("Selected Indication: %s", paste(input$indicator))), tags$br(),
+          # sprintf("latitude: %0.5f", as.integer(lat)), tags$br(),
+          # sprintf("longitude: %0.5f", as.integer(lng)), tags$br(),
+          sprintf("Percentile: %0.2f", as.numeric(unlist(popup_df[1,indic])[1])), tags$br(), 
+          #sprintf("Year: %s", toString(popup_df[1,"Year"])), tags$br(),
+          #sprintf("More info?") 
+        )))
+    }
     leafletProxy("map") %>% 
       addPopups(lng, lat, content) 
     
@@ -479,15 +565,38 @@ shinyServer(function(input, output, session) {
     print("above 80th df vv")
     print(above_80th_percentile_df)
     if (length(rownames(above_80th_percentile_df)) > 0) {
-      hazard_sentences(paste(hazard_sentences(), "This county has some hazards such as: \n"))
+      hazard_sentences(paste(hazard_sentences(), "This census tract has some hazards such as: \n"))
       for (i in 1:nrow(above_80th_percentile_df)) {
         indic <- unlist(above_80th_percentile_df[i,"indicator"])
+        indic <- dict_server_indicator_to_interpretable_english[paste0(indic)]
         percent <- unlist(above_80th_percentile_df[i,"percentile"])
         val <- unlist(above_80th_percentile_df[i,"value"])
+        print(dict_server_indicator_to_interpretable_english)
         print(indic)
         print(percent)
         print(val)
-        hazard_sentences(paste(hazard_sentences(), indic, "which has a percentile of", percent, "and a value of", val, "\n"))
+        if (percent > .80) {
+          if (length(as.list(strsplit(indic, "")[[1]])) > 50) {
+            hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "\n",
+                                   "which has a percentile", "of", percent, "and a value of", val, "\n"))
+          } else if (length(paste(indic, "which has a percentile of", percent) > 50)) { 
+            hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "which has a percentile",  
+                                   "\n",  "of", percent, "and a value of", val, "\n"))
+          } else {
+            hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "which has a percentile",  
+                                   "\n",  "of", percent, "and a value of", val, "\n"))
+            
+          }
+        } else {
+          if (length(as.list(strsplit(indic, "")[[1]])) > 50) {
+            hazard_sentences(paste(hazard_sentences(), paste0("Low ", indic, ":"), "\n",
+                                   "which has a percentile", "of", percent, "and a value of", val, "\n"))
+          }  else {
+            hazard_sentences(paste(hazard_sentences(), "Low ", indic, "which has a percentile",  
+                                   "\n",  "of", percent, "and a value of", val, "\n"))
+            
+          }
+        }
       }
     } else {
       hazard_sentences(paste("This county has no indicators above the 80th percentile"))
@@ -510,6 +619,7 @@ shinyServer(function(input, output, session) {
     #p1 <- p1 + geom_rect(aes(xmin=159683.438, xmax=159684.186, ymin=0, ymax=Inf))
     p1
     })
+  
   
   
 

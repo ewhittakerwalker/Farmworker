@@ -8,10 +8,56 @@ library(tidyr)
 library(leaflet)
 library(deeplr)
 library(polyglotr)
+library(ggmap)
 #library(cld2)
 
 dire <- getwd()
 dire <- paste0(dire, "/Desktop/Farmworker")
+
+
+##crowdsourcing data 
+## register_google(key = "AIzaSyDt01LDXBHuoBn9xp9-jygsFZlSy91cH-4")
+gsheet_df <- read_csv(paste0(dire, "/data/Farmworker Form Sheet.csv"))
+print(gsheet_df)
+print(colnames(gsheet_df))
+
+names(gsheet_df)[names(gsheet_df) == "Address - Address to Report"] <- "Address"
+names(gsheet_df)[names(gsheet_df) == "City - Address to Report"] <- "City"
+names(gsheet_df)[names(gsheet_df) == "State - Address to Report"] <- "State"
+names(gsheet_df)[names(gsheet_df) == "Zip Code - Address to Report"] <- "Zip"
+
+ggmap::register_google(key = "AIzaSyDt01LDXBHuoBn9xp9-jygsFZlSy91cH-4")
+
+gsheet_df$full_address <- paste0(gsheet_df$Address, ", ",
+                                gsheet_df$City,", ",
+                                gsheet_df$State,", ",
+                                gsheet_df$Zip
+                                )
+print(gsheet_df$full_address)
+latlong <- geocode(gsheet_df$full_address)
+print(latlong)
+gsheet_df$lat <- latlong$lat 
+gsheet_df$long <- latlong$lon
+
+save(gsheet_df, file = paste0(dire, "/data/crowdsourced_data.rda"))
+
+
+
+
+## read in all the data and pivot to wide format based on specific columns for each dataset
+
+## immigrant data portal CIDP 
+cidp_services_df <- read_xlsx(paste0(dire, "/data/cidp_accessibility__servces_20220713_map.xlsx"))
+cidp_services_df$FIPS <- lapply(cidp_services_df$geo_code_long, function(x) substr(x, 14, 18))
+cidp_services_df_for_merge  <- cidp_services_df[,c("FIPS","imm_org_score")]
+
+print(cidp_services_df)
+
+
+cidp_hatecrimes_df <- read_xlsx(paste0(dire, "/data/cidp_hate_crimes_20220718_map.xlsx"))
+cidp_hatecrimes_df$FIPS <- lapply(cidp_hatecrimes_df$geo_code_long, function(x) substr(x, 14, 18))
+cidp_hatecrimes_df_for_merge  <- cidp_hatecrimes_df[,c("FIPS","total_incidents_per_100k")]
+
 
 ## read in all the data and pivot to wide format based on specific columns for each dataset
 CHVI_df <- read.csv(paste0(dire, "/data/selectedCHVIdata.csv"))
@@ -64,9 +110,12 @@ map_df$FIPS<- sapply(map_df$GEOID, function(id) str_sub(id,2,5))
 #print(map_df$FIPS)
 
 df_merge <- merge(map_df,piv_CHVI,by="FIPS")
+df_merge <- merge(df_merge, cidp_services_df_for_merge,by="FIPS", all = TRUE)
+df_merge <- merge(df_merge, cidp_hatecrimes_df_for_merge,by="FIPS", all = TRUE)
 df_merge <- merge(df_merge,CES_df,by="GEOID")
 df_merge <- merge(df_merge,HPI_df,by="GEOID")
 df_merge <- merge(df_merge, ROI_df,by="GEOID")
+
 
 ## clean up column names
 colnames(df_merge) <- str_replace(colnames(df_merge), "Maximum_Ozone_Concentration", "Max_Ozone_Conc")
@@ -109,9 +158,12 @@ st_geometry(df_merge) <- NULL
 
 for (column_name in df_indicator_choices$indicator) {
   #print(df_merge[column_name])
-  num_col <- sapply(df_merge[column_name], as.numeric)
-  #print(unlist(df_merge_percentile_table[colname_i]))
-  df_merge[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+  if (!grepl("percentile", column_name)) {
+    print(column_name)
+    num_col <- sapply(df_merge[column_name], as.numeric)
+    #print(unlist(df_merge_percentile_table[colname_i]))
+    df_merge[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+  }
 }
 
 st_geometry(df_merge) <- save_geo
@@ -157,6 +209,8 @@ print(colnames(map_df_dropped))
 print(head(map_df_dropped))
 
 df_merge_pop <- merge(map_df_dropped,piv_CHVI,by="FIPS")
+df_merge_pop <- merge(df_merge_pop, cidp_services_df_for_merge,by="FIPS", all = TRUE)
+df_merge_pop <- merge(df_merge_pop, cidp_hatecrimes_df_for_merge,by="FIPS", all = TRUE)
 df_merge_pop <- merge(df_merge_pop,CES_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop,HPI_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop, ROI_df,by="GEOID")
@@ -173,9 +227,11 @@ colnames(df_merge_pop) <- str_replace(colnames(df_merge_pop), "Health/Environmen
 
 for (column_name in df_indicator_choices$indicator) {
   #print(df_merge_pop [column_name])
-  num_col <- sapply(df_merge_pop[column_name], as.numeric)
-  #print(unlist(df_merge_percentile_table[colname_i]))
-  df_merge_pop[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+  if (!grepl("percentile", column_name)) {
+    num_col <- sapply(df_merge_pop[column_name], as.numeric)
+    #print(unlist(df_merge_percentile_table[colname_i]))
+    df_merge_pop[paste0(column_name, "_percentile")] <- percent_rank(num_col)
+  }
 }
 
 ## translation for pop-ups
@@ -187,14 +243,15 @@ for (column_name in df_indicator_choices$indicator) {
 save(df_merge_pop, file = paste0(dire, "/data/merged_map_pop.rda"))
 print("saved pop")
 
+
 # save(df_merge_pop_spanish, file = paste0(dire, "/data/merged_map_pop_spanish.rda"))
 # print("saved pop")
 
 ## pivoting data down for data tab
 print(colnames(df_merge_pop))
 
-df_merge_pop <- df_merge_pop[,c(1, (16:525))]
-df_merge_pop <- df_merge_pop %>% mutate_at(2:489, as.numeric)
+df_merge_pop <- df_merge_pop[,c(1, (16:517))]
+df_merge_pop <- df_merge_pop %>% mutate_at(2:503, as.numeric)
 
 df_merge_long <- df_merge_pop %>%
   pivot_longer(!GEOID, names_to = "indication", values_to = "Value")
@@ -234,6 +291,19 @@ above_80th_percentile_df = data.frame(GEOID = c("GEOID"),
                         indicator = c("indicator"),
                         value = c("value"), 
                         percentile = c("percentile"))
+
+ls_high_percentile_indics <- c("extreme_heat_days_2040_2060_percentile", 
+                               "Ozone_percentile",
+                               "Drinking_Water_percentile", 
+                               "Lead_percentile",
+                               "Pesticides_percentile", 
+                               "Air_Quality_percentile", 
+                               "total_incidents_per_100k_percentile")
+
+ls_low_percentile_indics <- c("treecanopy_percentile",
+                              "Housing_Cost_Burden_percentile", 
+                              "Housing_Affordability_percentile", 
+                              "imm_org_score_percentile")
 j = 0
 for (i in 1:nrow(df_merge_percentile_table)) {
   for (column in colnames(df_merge_percentile_table)) {
@@ -244,7 +314,12 @@ for (i in 1:nrow(df_merge_percentile_table)) {
         percentile <- df_merge_percentile_table[i,column]
         value <- df_merge_percentile_table[i,gsub("_percentile", "", column)]
         if (!is.na(percentile)) {
-          if (percentile > .80) {
+          if ((percentile > .80) && (column %in% ls_high_percentile_indics)) {
+            vec <- c(tract, gsub("_percentile", "", column), value, percentile)
+            #rint(vec)
+            above_80th_percentile_df = rbind(above_80th_percentile_df , vec)
+            j = j + 1
+          } else if ((percentile < .20) && (column %in% ls_low_percentile_indics)) {
             vec <- c(tract, gsub("_percentile", "", column), value, percentile)
             #rint(vec)
             above_80th_percentile_df = rbind(above_80th_percentile_df , vec)

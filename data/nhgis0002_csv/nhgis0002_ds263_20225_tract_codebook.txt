@@ -1,0 +1,288 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0002_ds263_20225_tract'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             2018-2022
+Geographic level: Census Tract (by State--County)
+Dataset:          2022 American Community Survey: 5-Year Data [2018-2022, Tracts & Larger Areas]
+   NHGIS code:    2018_2022_ACS5b
+   NHGIS ID:      ds263
+Breakdown(s):     Geographic Component:
+                     Total area (00)
+Data type(s):     (E) Estimates
+                  (M) Margins of error
+ 
+Tables:
+ 
+1. Monthly Housing Costs
+   Universe:    Occupied housing units
+   Source code: B25104
+   NHGIS code:  ARDK
+ 
+2. Tenure by Housing Costs as a Percentage of Household Income in the Past 12 Months
+   Universe:    Occupied housing units
+   Source code: B25106
+   NHGIS code:  ARDM
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+        GISJOIN:     GIS Join Match Code
+        YEAR:        Data File Year
+        STUSAB:      State/US-Abbreviation (USPS)
+        REGIONA:     Region Code
+        DIVISIONA:   Division Code
+        STATE:       State Name
+        STATEA:      State Code
+        COUNTY:      County Name
+        COUNTYA:     County Code
+        COUSUBA:     County Subdivision Code
+        PLACEA:      Place Code
+        TRACTA:      Census Tract Code
+        BLKGRP:      Block Group
+        CONCITA:     Consolidated City Code
+        AIANHHA:     American Indian Area/Alaska Native Area/Hawaiian Home Land Code
+        RES_ONLYA:   American Indian Area/Alaska Native Area (Reservation or Statistical Entity Only) Code
+        TRUSTA:      American Indian Area (Off-Reservation Trust Land Only)/Hawaiian Home Land Code
+        AIHHTLI:     American Indian/Hawaiian Home Land Trust Land Indicator
+        AITSA:       Tribal Subdivision/Remainder Code
+        ANRCA:       Alaska Native Regional Corporation Code
+        CBSAA:       Metropolitan Statistical Area/Micropolitan Statistical Area Code
+        CSAA:        Combined Statistical Area Code
+        METDIVA:     Metropolitan Division Code
+        NECTAA:      New England City and Town Area Code
+        CNECTAA:     Combined New England City and Town Area Code
+        NECTADIVA:   New England City and Town Area Division Code
+        UAA:         Urban Area Code
+        CDCURRA:     Congressional District (2023-2025, 118th Congress) Code
+        SLDUA:       State Legislative District (Upper Chamber) Code
+        SLDLA:       State Legislative District (Lower Chamber) Code
+        ZCTA5A:      5-Digit ZIP Code Tabulation Area Code
+        SUBMCDA:     Subminor Civil Division Code
+        SDELMA:      School District (Elementary)/Remainder Code
+        SDSECA:      School District (Secondary)/Remainder Code
+        SDUNIA:      School District (Unified)/Remainder Code
+        PCI:         Metropolitan/Micropolitan Principal City Indicator
+        PUMAA:       Public Use Microdata Area Code
+        GEO_ID:      Census Geographic Area Identifier
+        BTTRA:       Tribal Census Tract Code
+        BTBG:        Tribal Block Group
+        TL_GEO_ID:   TIGER/Line Shapefile Geographic Area Identifier
+ 
+Data Type (E):
+    Estimates
+ 
+        NAME_E:      Geographic Area Full Name
+ 
+    Table 1:     Monthly Housing Costs
+    Universe:    Occupied housing units
+    Source code: B25104
+    NHGIS code:  ARDK
+        ARDKE001:    Total
+        ARDKE002:    Less than $100
+        ARDKE003:    $100 to $199
+        ARDKE004:    $200 to $299
+        ARDKE005:    $300 to $399
+        ARDKE006:    $400 to $499
+        ARDKE007:    $500 to $599
+        ARDKE008:    $600 to $699
+        ARDKE009:    $700 to $799
+        ARDKE010:    $800 to $899
+        ARDKE011:    $900 to $999
+        ARDKE012:    $1,000 to $1,499
+        ARDKE013:    $1,500 to $1,999
+        ARDKE014:    $2,000 to $2,499
+        ARDKE015:    $2,500 to $2,999
+        ARDKE016:    $3,000 or more
+        ARDKE017:    No cash rent
+ 
+    Table 2:     Tenure by Housing Costs as a Percentage of Household Income in the Past 12 Months
+    Universe:    Occupied housing units
+    Source code: B25106
+    NHGIS code:  ARDM
+        ARDME001:    Total
+        ARDME002:    Owner-occupied housing units
+        ARDME003:    Owner-occupied housing units: Less than $20,000
+        ARDME004:    Owner-occupied housing units: Less than $20,000: Less than 20 percent
+        ARDME005:    Owner-occupied housing units: Less than $20,000: 20 to 29 percent
+        ARDME006:    Owner-occupied housing units: Less than $20,000: 30 percent or more
+        ARDME007:    Owner-occupied housing units: $20,000 to $34,999
+        ARDME008:    Owner-occupied housing units: $20,000 to $34,999: Less than 20 percent
+        ARDME009:    Owner-occupied housing units: $20,000 to $34,999: 20 to 29 percent
+        ARDME010:    Owner-occupied housing units: $20,000 to $34,999: 30 percent or more
+        ARDME011:    Owner-occupied housing units: $35,000 to $49,999
+        ARDME012:    Owner-occupied housing units: $35,000 to $49,999: Less than 20 percent
+        ARDME013:    Owner-occupied housing units: $35,000 to $49,999: 20 to 29 percent
+        ARDME014:    Owner-occupied housing units: $35,000 to $49,999: 30 percent or more
+        ARDME015:    Owner-occupied housing units: $50,000 to $74,999
+        ARDME016:    Owner-occupied housing units: $50,000 to $74,999: Less than 20 percent
+        ARDME017:    Owner-occupied housing units: $50,000 to $74,999: 20 to 29 percent
+        ARDME018:    Owner-occupied housing units: $50,000 to $74,999: 30 percent or more
+        ARDME019:    Owner-occupied housing units: $75,000 or more
+        ARDME020:    Owner-occupied housing units: $75,000 or more: Less than 20 percent
+        ARDME021:    Owner-occupied housing units: $75,000 or more: 20 to 29 percent
+        ARDME022:    Owner-occupied housing units: $75,000 or more: 30 percent or more
+        ARDME023:    Owner-occupied housing units: Zero or negative income
+        ARDME024:    Renter-occupied housing units
+        ARDME025:    Renter-occupied housing units: Less than $20,000
+        ARDME026:    Renter-occupied housing units: Less than $20,000: Less than 20 percent
+        ARDME027:    Renter-occupied housing units: Less than $20,000: 20 to 29 percent
+        ARDME028:    Renter-occupied housing units: Less than $20,000: 30 percent or more
+        ARDME029:    Renter-occupied housing units: $20,000 to $34,999
+        ARDME030:    Renter-occupied housing units: $20,000 to $34,999: Less than 20 percent
+        ARDME031:    Renter-occupied housing units: $20,000 to $34,999: 20 to 29 percent
+        ARDME032:    Renter-occupied housing units: $20,000 to $34,999: 30 percent or more
+        ARDME033:    Renter-occupied housing units: $35,000 to $49,999
+        ARDME034:    Renter-occupied housing units: $35,000 to $49,999: Less than 20 percent
+        ARDME035:    Renter-occupied housing units: $35,000 to $49,999: 20 to 29 percent
+        ARDME036:    Renter-occupied housing units: $35,000 to $49,999: 30 percent or more
+        ARDME037:    Renter-occupied housing units: $50,000 to $74,999
+        ARDME038:    Renter-occupied housing units: $50,000 to $74,999: Less than 20 percent
+        ARDME039:    Renter-occupied housing units: $50,000 to $74,999: 20 to 29 percent
+        ARDME040:    Renter-occupied housing units: $50,000 to $74,999: 30 percent or more
+        ARDME041:    Renter-occupied housing units: $75,000 or more
+        ARDME042:    Renter-occupied housing units: $75,000 or more: Less than 20 percent
+        ARDME043:    Renter-occupied housing units: $75,000 or more: 20 to 29 percent
+        ARDME044:    Renter-occupied housing units: $75,000 or more: 30 percent or more
+        ARDME045:    Renter-occupied housing units: Zero or negative income
+        ARDME046:    Renter-occupied housing units: No cash rent
+ 
+Data Type (M):
+    Margins of error
+ 
+        NAME_M:      Geographic Area Full Name
+ 
+    Table 1:     Monthly Housing Costs
+    Universe:    Occupied housing units
+    Source code: B25104
+    NHGIS code:  ARDK
+        ARDKM001:    Total
+        ARDKM002:    Less than $100
+        ARDKM003:    $100 to $199
+        ARDKM004:    $200 to $299
+        ARDKM005:    $300 to $399
+        ARDKM006:    $400 to $499
+        ARDKM007:    $500 to $599
+        ARDKM008:    $600 to $699
+        ARDKM009:    $700 to $799
+        ARDKM010:    $800 to $899
+        ARDKM011:    $900 to $999
+        ARDKM012:    $1,000 to $1,499
+        ARDKM013:    $1,500 to $1,999
+        ARDKM014:    $2,000 to $2,499
+        ARDKM015:    $2,500 to $2,999
+        ARDKM016:    $3,000 or more
+        ARDKM017:    No cash rent
+ 
+    Table 2:     Tenure by Housing Costs as a Percentage of Household Income in the Past 12 Months
+    Universe:    Occupied housing units
+    Source code: B25106
+    NHGIS code:  ARDM
+        ARDMM001:    Total
+        ARDMM002:    Owner-occupied housing units
+        ARDMM003:    Owner-occupied housing units: Less than $20,000
+        ARDMM004:    Owner-occupied housing units: Less than $20,000: Less than 20 percent
+        ARDMM005:    Owner-occupied housing units: Less than $20,000: 20 to 29 percent
+        ARDMM006:    Owner-occupied housing units: Less than $20,000: 30 percent or more
+        ARDMM007:    Owner-occupied housing units: $20,000 to $34,999
+        ARDMM008:    Owner-occupied housing units: $20,000 to $34,999: Less than 20 percent
+        ARDMM009:    Owner-occupied housing units: $20,000 to $34,999: 20 to 29 percent
+        ARDMM010:    Owner-occupied housing units: $20,000 to $34,999: 30 percent or more
+        ARDMM011:    Owner-occupied housing units: $35,000 to $49,999
+        ARDMM012:    Owner-occupied housing units: $35,000 to $49,999: Less than 20 percent
+        ARDMM013:    Owner-occupied housing units: $35,000 to $49,999: 20 to 29 percent
+        ARDMM014:    Owner-occupied housing units: $35,000 to $49,999: 30 percent or more
+        ARDMM015:    Owner-occupied housing units: $50,000 to $74,999
+        ARDMM016:    Owner-occupied housing units: $50,000 to $74,999: Less than 20 percent
+        ARDMM017:    Owner-occupied housing units: $50,000 to $74,999: 20 to 29 percent
+        ARDMM018:    Owner-occupied housing units: $50,000 to $74,999: 30 percent or more
+        ARDMM019:    Owner-occupied housing units: $75,000 or more
+        ARDMM020:    Owner-occupied housing units: $75,000 or more: Less than 20 percent
+        ARDMM021:    Owner-occupied housing units: $75,000 or more: 20 to 29 percent
+        ARDMM022:    Owner-occupied housing units: $75,000 or more: 30 percent or more
+        ARDMM023:    Owner-occupied housing units: Zero or negative income
+        ARDMM024:    Renter-occupied housing units
+        ARDMM025:    Renter-occupied housing units: Less than $20,000
+        ARDMM026:    Renter-occupied housing units: Less than $20,000: Less than 20 percent
+        ARDMM027:    Renter-occupied housing units: Less than $20,000: 20 to 29 percent
+        ARDMM028:    Renter-occupied housing units: Less than $20,000: 30 percent or more
+        ARDMM029:    Renter-occupied housing units: $20,000 to $34,999
+        ARDMM030:    Renter-occupied housing units: $20,000 to $34,999: Less than 20 percent
+        ARDMM031:    Renter-occupied housing units: $20,000 to $34,999: 20 to 29 percent
+        ARDMM032:    Renter-occupied housing units: $20,000 to $34,999: 30 percent or more
+        ARDMM033:    Renter-occupied housing units: $35,000 to $49,999
+        ARDMM034:    Renter-occupied housing units: $35,000 to $49,999: Less than 20 percent
+        ARDMM035:    Renter-occupied housing units: $35,000 to $49,999: 20 to 29 percent
+        ARDMM036:    Renter-occupied housing units: $35,000 to $49,999: 30 percent or more
+        ARDMM037:    Renter-occupied housing units: $50,000 to $74,999
+        ARDMM038:    Renter-occupied housing units: $50,000 to $74,999: Less than 20 percent
+        ARDMM039:    Renter-occupied housing units: $50,000 to $74,999: 20 to 29 percent
+        ARDMM040:    Renter-occupied housing units: $50,000 to $74,999: 30 percent or more
+        ARDMM041:    Renter-occupied housing units: $75,000 or more
+        ARDMM042:    Renter-occupied housing units: $75,000 or more: Less than 20 percent
+        ARDMM043:    Renter-occupied housing units: $75,000 or more: 20 to 29 percent
+        ARDMM044:    Renter-occupied housing units: $75,000 or more: 30 percent or more
+        ARDMM045:    Renter-occupied housing units: Zero or negative income
+        ARDMM046:    Renter-occupied housing units: No cash rent
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite NHGIS appropriately.
+
+    * Publications and research reports employing NHGIS data (either tabular or GIS) 
+      should include the following citation:
+
+        Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles.
+        IPUMS National Historical Geographic Information System: Version 18.0 
+        [dataset]. Minneapolis, MN: IPUMS. 2023.
+        http://doi.org/10.18128/D050.V18.0
+
+    * For policy briefs, online resources, or articles in the popular press, we 
+      recommend that you cite the use of NHGIS data as follows:
+
+        IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: nhgis@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS NHGIS
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455

@@ -1,0 +1,417 @@
+--------------------------------------------------------------------------------
+Codebook for NHGIS data file 'nhgis0002_ds262_20225_county'
+--------------------------------------------------------------------------------
+ 
+Contents
+    - Data Summary
+    - Data Dictionary
+    - Citation and Use
+ 
+Additional documentation on NHGIS data sources is available at: 
+    https://www.nhgis.org/documentation/tabular-data 
+ 
+--------------------------------------------------------------------------------
+Data Summary
+--------------------------------------------------------------------------------
+ 
+Year:             2018-2022
+Geographic level: County (by State)
+Dataset:          2022 American Community Survey: 5-Year Data [2018-2022, Block Groups & Larger Areas]
+   NHGIS code:    2018_2022_ACS5a
+   NHGIS ID:      ds262
+Breakdown(s):     Geographic Component:
+                     Total area (00)
+Data type(s):     (E) Estimates
+                  (M) Margins of error
+ 
+Tables:
+ 
+1. Tenure by Occupants per Room
+   Universe:    Occupied housing units
+   Source code: B25014
+   NHGIS code:  AQTO
+ 
+2. Contract Rent
+   Universe:    Renter-occupied housing units
+   Source code: B25056
+   NHGIS code:  AQUK
+ 
+3. Gross Rent
+   Universe:    Renter-occupied housing units
+   Source code: B25063
+   NHGIS code:  AQUR
+ 
+4. Bedrooms by Gross Rent
+   Universe:    Renter-occupied housing units
+   Source code: B25068
+   NHGIS code:  AQUW
+ 
+5. Median Value (Dollars)
+   Universe:    Owner-occupied housing units
+   Source code: B25077
+   NHGIS code:  AQU4
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Context Fields 
+        GISJOIN:     GIS Join Match Code
+        YEAR:        Data File Year
+        STUSAB:      State/US-Abbreviation (USPS)
+        REGIONA:     Region Code
+        DIVISIONA:   Division Code
+        STATE:       State Name
+        STATEA:      State Code
+        COUNTY:      County Name
+        COUNTYA:     County Code
+        COUSUBA:     County Subdivision Code
+        PLACEA:      Place/Remainder Code
+        TRACTA:      Census Tract Code
+        BLKGRPA:     Block Group Code
+        CONCITA:     Consolidated City Code
+        AIANHHA:     American Indian Area/Alaska Native Area/Hawaiian Home Land Code
+        RES_ONLYA:   American Indian Area/Alaska Native Area (Reservation or Statistical Entity Only) Code
+        TRUSTA:      American Indian Area (Off-Reservation Trust Land Only)/Hawaiian Home Land Code
+        AIHHTLI:     American Indian/Hawaiian Home Land Trust Land Indicator
+        AITSA:       Tribal Subdivision/Remainder Code
+        ANRCA:       Alaska Native Regional Corporation Code
+        CBSAA:       Metropolitan Statistical Area/Micropolitan Statistical Area Code
+        CSAA:        Combined Statistical Area Code
+        METDIVA:     Metropolitan Division Code
+        NECTAA:      New England City and Town Area Code
+        CNECTAA:     Combined New England City and Town Area Code
+        NECTADIVA:   New England City and Town Area Division Code
+        UAA:         Urban Area Code
+        CDCURRA:     Congressional District (2023-2025, 118th Congress) Code
+        SLDUA:       State Legislative District (Upper Chamber) Code
+        SLDLA:       State Legislative District (Lower Chamber) Code
+        ZCTA5A:      5-Digit ZIP Code Tabulation Area Code
+        SUBMCDA:     Subminor Civil Division Code
+        SDELMA:      School District (Elementary)/Remainder Code
+        SDSECA:      School District (Secondary)/Remainder Code
+        SDUNIA:      School District (Unified)/Remainder Code
+        PCI:         Metropolitan/Micropolitan Principal City Indicator
+        PUMAA:       Public Use Microdata Area Code
+        GEO_ID:      Census Geographic Area Identifier
+        BTTRA:       Tribal Census Tract Code
+        BTBGA:       Tribal Block Group Code
+        TL_GEO_ID:   TIGER/Line Shapefile Geographic Area Identifier
+ 
+Data Type (E):
+    Estimates
+ 
+        NAME_E:      Geographic Area Full Name
+ 
+    Table 1:     Tenure by Occupants per Room
+    Universe:    Occupied housing units
+    Source code: B25014
+    NHGIS code:  AQTO
+        AQTOE001:    Total
+        AQTOE002:    Owner occupied
+        AQTOE003:    Owner occupied: 0.50 or less occupants per room
+        AQTOE004:    Owner occupied: 0.51 to 1.00 occupants per room
+        AQTOE005:    Owner occupied: 1.01 to 1.50 occupants per room
+        AQTOE006:    Owner occupied: 1.51 to 2.00 occupants per room
+        AQTOE007:    Owner occupied: 2.01 or more occupants per room
+        AQTOE008:    Renter occupied
+        AQTOE009:    Renter occupied: 0.50 or less occupants per room
+        AQTOE010:    Renter occupied: 0.51 to 1.00 occupants per room
+        AQTOE011:    Renter occupied: 1.01 to 1.50 occupants per room
+        AQTOE012:    Renter occupied: 1.51 to 2.00 occupants per room
+        AQTOE013:    Renter occupied: 2.01 or more occupants per room
+ 
+    Table 2:     Contract Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25056
+    NHGIS code:  AQUK
+        AQUKE001:    Total
+        AQUKE002:    With cash rent
+        AQUKE003:    With cash rent: Less than $100
+        AQUKE004:    With cash rent: $100 to $149
+        AQUKE005:    With cash rent: $150 to $199
+        AQUKE006:    With cash rent: $200 to $249
+        AQUKE007:    With cash rent: $250 to $299
+        AQUKE008:    With cash rent: $300 to $349
+        AQUKE009:    With cash rent: $350 to $399
+        AQUKE010:    With cash rent: $400 to $449
+        AQUKE011:    With cash rent: $450 to $499
+        AQUKE012:    With cash rent: $500 to $549
+        AQUKE013:    With cash rent: $550 to $599
+        AQUKE014:    With cash rent: $600 to $649
+        AQUKE015:    With cash rent: $650 to $699
+        AQUKE016:    With cash rent: $700 to $749
+        AQUKE017:    With cash rent: $750 to $799
+        AQUKE018:    With cash rent: $800 to $899
+        AQUKE019:    With cash rent: $900 to $999
+        AQUKE020:    With cash rent: $1,000 to $1,249
+        AQUKE021:    With cash rent: $1,250 to $1,499
+        AQUKE022:    With cash rent: $1,500 to $1,999
+        AQUKE023:    With cash rent: $2,000 to $2,499
+        AQUKE024:    With cash rent: $2,500 to $2,999
+        AQUKE025:    With cash rent: $3,000 to $3,499
+        AQUKE026:    With cash rent: $3,500 or more
+        AQUKE027:    No cash rent
+ 
+    Table 3:     Gross Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25063
+    NHGIS code:  AQUR
+        AQURE001:    Total
+        AQURE002:    With cash rent
+        AQURE003:    With cash rent: Less than $100
+        AQURE004:    With cash rent: $100 to $149
+        AQURE005:    With cash rent: $150 to $199
+        AQURE006:    With cash rent: $200 to $249
+        AQURE007:    With cash rent: $250 to $299
+        AQURE008:    With cash rent: $300 to $349
+        AQURE009:    With cash rent: $350 to $399
+        AQURE010:    With cash rent: $400 to $449
+        AQURE011:    With cash rent: $450 to $499
+        AQURE012:    With cash rent: $500 to $549
+        AQURE013:    With cash rent: $550 to $599
+        AQURE014:    With cash rent: $600 to $649
+        AQURE015:    With cash rent: $650 to $699
+        AQURE016:    With cash rent: $700 to $749
+        AQURE017:    With cash rent: $750 to $799
+        AQURE018:    With cash rent: $800 to $899
+        AQURE019:    With cash rent: $900 to $999
+        AQURE020:    With cash rent: $1,000 to $1,249
+        AQURE021:    With cash rent: $1,250 to $1,499
+        AQURE022:    With cash rent: $1,500 to $1,999
+        AQURE023:    With cash rent: $2,000 to $2,499
+        AQURE024:    With cash rent: $2,500 to $2,999
+        AQURE025:    With cash rent: $3,000 to $3,499
+        AQURE026:    With cash rent: $3,500 or more
+        AQURE027:    No cash rent
+ 
+    Table 4:     Bedrooms by Gross Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25068
+    NHGIS code:  AQUW
+        AQUWE001:    Total
+        AQUWE002:    No bedroom
+        AQUWE003:    No bedroom: With cash rent
+        AQUWE004:    No bedroom: With cash rent: Less than $300
+        AQUWE005:    No bedroom: With cash rent: $300 to $499
+        AQUWE006:    No bedroom: With cash rent: $500 to $749
+        AQUWE007:    No bedroom: With cash rent: $750 to $999
+        AQUWE008:    No bedroom: With cash rent: $1,000 to $1,499
+        AQUWE009:    No bedroom: With cash rent: $1,500 or more
+        AQUWE010:    No bedroom: No cash rent
+        AQUWE011:    1 bedroom
+        AQUWE012:    1 bedroom: With cash rent
+        AQUWE013:    1 bedroom: With cash rent: Less than $300
+        AQUWE014:    1 bedroom: With cash rent: $300 to $499
+        AQUWE015:    1 bedroom: With cash rent: $500 to $749
+        AQUWE016:    1 bedroom: With cash rent: $750 to $999
+        AQUWE017:    1 bedroom: With cash rent: $1,000 to $1,499
+        AQUWE018:    1 bedroom: With cash rent: $1,500 or more
+        AQUWE019:    1 bedroom: No cash rent
+        AQUWE020:    2 bedrooms
+        AQUWE021:    2 bedrooms: With cash rent
+        AQUWE022:    2 bedrooms: With cash rent: Less than $300
+        AQUWE023:    2 bedrooms: With cash rent: $300 to $499
+        AQUWE024:    2 bedrooms: With cash rent: $500 to $749
+        AQUWE025:    2 bedrooms: With cash rent: $750 to $999
+        AQUWE026:    2 bedrooms: With cash rent: $1,000 to $1,499
+        AQUWE027:    2 bedrooms: With cash rent: $1,500 or more
+        AQUWE028:    2 bedrooms: No cash rent
+        AQUWE029:    3 or more bedrooms
+        AQUWE030:    3 or more bedrooms: With cash rent
+        AQUWE031:    3 or more bedrooms: With cash rent: Less than $300
+        AQUWE032:    3 or more bedrooms: With cash rent: $300 to $499
+        AQUWE033:    3 or more bedrooms: With cash rent: $500 to $749
+        AQUWE034:    3 or more bedrooms: With cash rent: $750 to $999
+        AQUWE035:    3 or more bedrooms: With cash rent: $1,000 to $1,499
+        AQUWE036:    3 or more bedrooms: With cash rent: $1,500 or more
+        AQUWE037:    3 or more bedrooms: No cash rent
+ 
+    Table 5:     Median Value (Dollars)
+    Universe:    Owner-occupied housing units
+    Source code: B25077
+    NHGIS code:  AQU4
+        AQU4E001:    Median value (dollars)
+ 
+Data Type (M):
+    Margins of error
+ 
+        NAME_M:      Geographic Area Full Name
+ 
+    Table 1:     Tenure by Occupants per Room
+    Universe:    Occupied housing units
+    Source code: B25014
+    NHGIS code:  AQTO
+        AQTOM001:    Total
+        AQTOM002:    Owner occupied
+        AQTOM003:    Owner occupied: 0.50 or less occupants per room
+        AQTOM004:    Owner occupied: 0.51 to 1.00 occupants per room
+        AQTOM005:    Owner occupied: 1.01 to 1.50 occupants per room
+        AQTOM006:    Owner occupied: 1.51 to 2.00 occupants per room
+        AQTOM007:    Owner occupied: 2.01 or more occupants per room
+        AQTOM008:    Renter occupied
+        AQTOM009:    Renter occupied: 0.50 or less occupants per room
+        AQTOM010:    Renter occupied: 0.51 to 1.00 occupants per room
+        AQTOM011:    Renter occupied: 1.01 to 1.50 occupants per room
+        AQTOM012:    Renter occupied: 1.51 to 2.00 occupants per room
+        AQTOM013:    Renter occupied: 2.01 or more occupants per room
+ 
+    Table 2:     Contract Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25056
+    NHGIS code:  AQUK
+        AQUKM001:    Total
+        AQUKM002:    With cash rent
+        AQUKM003:    With cash rent: Less than $100
+        AQUKM004:    With cash rent: $100 to $149
+        AQUKM005:    With cash rent: $150 to $199
+        AQUKM006:    With cash rent: $200 to $249
+        AQUKM007:    With cash rent: $250 to $299
+        AQUKM008:    With cash rent: $300 to $349
+        AQUKM009:    With cash rent: $350 to $399
+        AQUKM010:    With cash rent: $400 to $449
+        AQUKM011:    With cash rent: $450 to $499
+        AQUKM012:    With cash rent: $500 to $549
+        AQUKM013:    With cash rent: $550 to $599
+        AQUKM014:    With cash rent: $600 to $649
+        AQUKM015:    With cash rent: $650 to $699
+        AQUKM016:    With cash rent: $700 to $749
+        AQUKM017:    With cash rent: $750 to $799
+        AQUKM018:    With cash rent: $800 to $899
+        AQUKM019:    With cash rent: $900 to $999
+        AQUKM020:    With cash rent: $1,000 to $1,249
+        AQUKM021:    With cash rent: $1,250 to $1,499
+        AQUKM022:    With cash rent: $1,500 to $1,999
+        AQUKM023:    With cash rent: $2,000 to $2,499
+        AQUKM024:    With cash rent: $2,500 to $2,999
+        AQUKM025:    With cash rent: $3,000 to $3,499
+        AQUKM026:    With cash rent: $3,500 or more
+        AQUKM027:    No cash rent
+ 
+    Table 3:     Gross Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25063
+    NHGIS code:  AQUR
+        AQURM001:    Total
+        AQURM002:    With cash rent
+        AQURM003:    With cash rent: Less than $100
+        AQURM004:    With cash rent: $100 to $149
+        AQURM005:    With cash rent: $150 to $199
+        AQURM006:    With cash rent: $200 to $249
+        AQURM007:    With cash rent: $250 to $299
+        AQURM008:    With cash rent: $300 to $349
+        AQURM009:    With cash rent: $350 to $399
+        AQURM010:    With cash rent: $400 to $449
+        AQURM011:    With cash rent: $450 to $499
+        AQURM012:    With cash rent: $500 to $549
+        AQURM013:    With cash rent: $550 to $599
+        AQURM014:    With cash rent: $600 to $649
+        AQURM015:    With cash rent: $650 to $699
+        AQURM016:    With cash rent: $700 to $749
+        AQURM017:    With cash rent: $750 to $799
+        AQURM018:    With cash rent: $800 to $899
+        AQURM019:    With cash rent: $900 to $999
+        AQURM020:    With cash rent: $1,000 to $1,249
+        AQURM021:    With cash rent: $1,250 to $1,499
+        AQURM022:    With cash rent: $1,500 to $1,999
+        AQURM023:    With cash rent: $2,000 to $2,499
+        AQURM024:    With cash rent: $2,500 to $2,999
+        AQURM025:    With cash rent: $3,000 to $3,499
+        AQURM026:    With cash rent: $3,500 or more
+        AQURM027:    No cash rent
+ 
+    Table 4:     Bedrooms by Gross Rent
+    Universe:    Renter-occupied housing units
+    Source code: B25068
+    NHGIS code:  AQUW
+        AQUWM001:    Total
+        AQUWM002:    No bedroom
+        AQUWM003:    No bedroom: With cash rent
+        AQUWM004:    No bedroom: With cash rent: Less than $300
+        AQUWM005:    No bedroom: With cash rent: $300 to $499
+        AQUWM006:    No bedroom: With cash rent: $500 to $749
+        AQUWM007:    No bedroom: With cash rent: $750 to $999
+        AQUWM008:    No bedroom: With cash rent: $1,000 to $1,499
+        AQUWM009:    No bedroom: With cash rent: $1,500 or more
+        AQUWM010:    No bedroom: No cash rent
+        AQUWM011:    1 bedroom
+        AQUWM012:    1 bedroom: With cash rent
+        AQUWM013:    1 bedroom: With cash rent: Less than $300
+        AQUWM014:    1 bedroom: With cash rent: $300 to $499
+        AQUWM015:    1 bedroom: With cash rent: $500 to $749
+        AQUWM016:    1 bedroom: With cash rent: $750 to $999
+        AQUWM017:    1 bedroom: With cash rent: $1,000 to $1,499
+        AQUWM018:    1 bedroom: With cash rent: $1,500 or more
+        AQUWM019:    1 bedroom: No cash rent
+        AQUWM020:    2 bedrooms
+        AQUWM021:    2 bedrooms: With cash rent
+        AQUWM022:    2 bedrooms: With cash rent: Less than $300
+        AQUWM023:    2 bedrooms: With cash rent: $300 to $499
+        AQUWM024:    2 bedrooms: With cash rent: $500 to $749
+        AQUWM025:    2 bedrooms: With cash rent: $750 to $999
+        AQUWM026:    2 bedrooms: With cash rent: $1,000 to $1,499
+        AQUWM027:    2 bedrooms: With cash rent: $1,500 or more
+        AQUWM028:    2 bedrooms: No cash rent
+        AQUWM029:    3 or more bedrooms
+        AQUWM030:    3 or more bedrooms: With cash rent
+        AQUWM031:    3 or more bedrooms: With cash rent: Less than $300
+        AQUWM032:    3 or more bedrooms: With cash rent: $300 to $499
+        AQUWM033:    3 or more bedrooms: With cash rent: $500 to $749
+        AQUWM034:    3 or more bedrooms: With cash rent: $750 to $999
+        AQUWM035:    3 or more bedrooms: With cash rent: $1,000 to $1,499
+        AQUWM036:    3 or more bedrooms: With cash rent: $1,500 or more
+        AQUWM037:    3 or more bedrooms: No cash rent
+ 
+    Table 5:     Median Value (Dollars)
+    Universe:    Owner-occupied housing units
+    Source code: B25077
+    NHGIS code:  AQU4
+        AQU4M001:    Median value (dollars)
+ 
+--------------------------------------------------------------------------------
+Citation and Use of NHGIS Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* REDISTRIBUTION: You will not redistribute the data without permission.
+
+  You may publish a subset of the data to meet journal requirements for accessing 
+  data related to a particular publication. Contact us for permission for any other 
+  redistribution; we will consider requests for free and commercial redistribution.
+
+* CITATION: You will cite NHGIS appropriately.
+
+    * Publications and research reports employing NHGIS data (either tabular or GIS) 
+      should include the following citation:
+
+        Steven Manson, Jonathan Schroeder, David Van Riper, Katherine Knowles, Tracy Kugler, Finn Roberts, and Steven Ruggles.
+        IPUMS National Historical Geographic Information System: Version 18.0 
+        [dataset]. Minneapolis, MN: IPUMS. 2023.
+        http://doi.org/10.18128/D050.V18.0
+
+    * For policy briefs, online resources, or articles in the popular press, we 
+      recommend that you cite the use of NHGIS data as follows:
+
+        IPUMS NHGIS, University of Minnesota, www.nhgis.org.
+
+These terms of use are a legally binding agreement. You can use the data only in 
+accordance with these terms, and any other use is a violation of the agreement. 
+Violations may result in revocation of the agreement and prohibition from using other 
+IPUMS data. If IPUMS or our partners are harmed from your violation, you are 
+responsible for all damages, including reasonable attorney's fees and expenses.
+        
+In addition, we request that users send us a copy of any publications, research
+reports, or educational material making use of the data or documentation.
+
+Send electronic material to: nhgis@umn.edu
+
+Printed matter should be sent to:
+
+    IPUMS NHGIS
+    Institute for Social Research and Data Innovation
+    University of Minnesota
+    50 Willey Hall
+    225 19th Ave S
+    Minneapolis, MN 55455
