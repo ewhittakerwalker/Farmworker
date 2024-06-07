@@ -1,0 +1,318 @@
+CHEMICAL VVL	CHEMICAL NAME	NATURALLY OCCURRING	UNITS	COMPARISON CONCENTRATION (VALUE)	COMPARISON CONCENTRATION TYPE	DDW (WQM)	DDW (SDWIS)	DPR	DWR	WB CLEANUP (EDF)	GAMA DOM (EL_DORADO)	GAMA SP-STUDY (LLNL)	GAMA DOM (TEHAMA)	GAMA USGS	GAMA DOM (YUBA)	WRD	USGS (NWIS)	
+DCE11	1,1 Dichloroethylene (1,1 DCE)		UG/L	6	MCL	34501	2977		1,1-Dichloroethene	DCE11	1,1-Dichloroethene/ 1,1-Dichloroethylene 		DCE11	1,1-Dichloroethene, wu	1,1-Dichloroethene/ 1,1-Dichloroethylene 	34501	1,1-Dichloroethene, wu	
+TCA111	1,1,1-Trichloroethane		UG/L	200	MCL	34506	2981		1,1,1-Trichloroethane	TCA111	1,1,1-Trichloroethane 		TCA111	1,1,1-Trichloroethane, wu	1,1,1-Trichloroethane 	34506	1,1,1-Trichloroethane, wu	
+PCA	1,1,2,2 Tetrachloroethane (PCA)		UG/L	1	MCL	34516	2988		1,1,2,2-Tetrachloroethane	PCA	1,1,2,2-Tetrachloroethane 			1,1,2,2-Tetrachloroethane, wu	1,1,2,2-Tetrachloroethane 	34516	1,1,2,2-Tetrachloroethane, wu	
+FC113	1,1,2-Trichloro-1,2,2-Trifluoroethane (Freon 113)		MG/L	1.2	MCL	81611	2904			FC113	Trichlorotrifluoroethane (FREON 113)		FC113	CFC-113, wu		81611	CFC-113, wu	
+TCA112	1,1,2-Trichloroethane		UG/L	5	MCL	34511	2985		1,1,2-Trichloroethane	TCA112	1,1,2-Trichloroethane 		TCA112	1,1,2-Trichloroethane, wu	1,1,2-Trichloroethane 	34511	1,1,2-Trichloroethane, wu	
+DCA11	1,1-Dichloroethane (1,1 DCA)		UG/L	5	MCL	34496	2978		1,1-Dichloroethane	DCA11	1,1-Dichloroethane 		DCA11	1,1-Dichloroethane, wu	1,1-Dichloroethane 	34496	1,1-Dichloroethane, wu	
+EDB	1,2 Dibromoethane (EDB)		UG/L	0.05	MCL	77651	2946	271	1,2-Dibromoethane (EDB)	EDB	1,2-Dibromoethane (EDB)			1,2-Dibromoethane, wu		77651	1,2-Dibromoethane, wu	
+DCBZ12	1,2 Dichlorobenzene (1,2-DCB)		UG/L	600	MCL	34536	2968	578 -- 90683	1,2-Dichlorobenzene	DCBZ12	1,2-Dichlorobenzene 		DCBZ12	1,2-Dichlorobenzene, wu	1,2-Dichlorobenzene 	34536	1,2-Dichlorobenzene, wu	
+DCA12	1,2 Dichloroethane (1,2 DCA)		UG/L	0.5	MCL	34531	2980		1,2-Dichloroethane	DCA12	1,2-Dichloroethane 		DCA12	1,2-Dichloroethane, wu	1,2-Dichloroethane 	34531	1,2-Dichloroethane, wu	
+DCPA12	1,2 Dichloropropane (1,2 DCP)		UG/L	5	MCL	34541	2983	2501	1,2-Dichloropropane	DCPA12	1,2-Dichloropropane 		DCPA12	1,2-Dichloropropane, wu	1,2-Dichloropropane 	34541	1,2-Dichloropropane, wu	
+TCPR123	1,2,3-Trichloropropane (1,2,3 TCP)		UG/L	0.005	MCL	77443 -- 7744X	2414 -- 2414		1,2,3-Trichloropropane	TCPR123	1,2,3-Trichloropropane 			1,2,3-Trichloropropane, wu	1,2,3-Trichloropropane 	77443 -- 7744X	1,2,3-Trichloropropane, wu	
+TCB124	1,2,4- Trichlorobenzene (1,2,4 TCB)		UG/L	5	MCL	34551	2378		1,2,4-Trichlorobenzene	TCB124	1,2,4-Trichlorobenzene 		TCB124	1,2,4-Trichlorobenzene, wu	1,2,4-Trichlorobenzene 	34551	1,2,4-Trichlorobenzene, wu	
+TMB124	1,2,4-Trimethylbenzene		UG/L	330	NL	77222	2418		1,2,4-Trimethylbenzene	TMB124	1,2,4-Trimethylbenzene 		TMB124		1,2,4-Trimethylbenzene 	77222	1,2,4-Trimethylbenzene, wu	
+DBCP	1,2-Dibromo-3-chloropropane (DBCP)		UG/L	0.2	MCL	38761	2931	183	1,2-Dibromo-3-chloropropane (DBCP)	DBCP	1,2-Dibromo-3-Chloropropane 			Dibromochloropropane, wu		38761	Dibromochloropropane, wu	
+DCE12TOT	1,2-Dichloroethene		UG/L	0	No Comparison Conc.					DCE12TOT								
+DCP13	1,3 Dichloropropene		UG/L	0.5	MCL	34561	2413	573		DCP13			DCP13C -- DCP13T	cis-1,3-Dichloropropene, wu -- trans-1,3-Dichloropropene, wu	Total, 1,3-Dichloropropene 	34561	cis-1,3-Dichloropropene, wu -- trans-1,3-Dichloropropene, wu	
+TMB135	1,3,5-Trimethylbenzene		UG/L	330	NL	77226	2424		1,3,5-Trimethylbenzene	TMB135	1,3,5-Trimethylbenzene 		TMB135		1,3,5-Trimethylbenzene 	77226	1,3,5-Trimethylbenzene, wu	
+DCBZ13	1,3-Dichlorobenzene 		UG/L	600	HAL-US	34566	2967		1,3-Dichlorobenzene	DCBZ13	1,3-Dichlorobenzene 		DCBZ13	1,3-Dichlorobenzene, wu	1,3-Dichlorobenzene 	34566	1,3-Dichlorobenzene, wu	
+DCBZ14	1,4-Dichlorobenzene (p-DCB)		UG/L	5	MCL	34571	2969		1,4-Dichlorobenzene	DCBZ14	1,4-Dichlorobenzene 		DCBZ14	 -- 1,4-Dichlorobenzene, wu	1,4-Dichlorobenzene 	34571	1,4-Dichlorobenzene, wu	
+DIOXANE14	1,4-Dioxane		UG/L	1	NL	A-032	2049			DIOXANE14				1,4-Dioxane, wu		A-032	1,4-Dioxane, wu	
+17DIMETHYLX	1,7-Dimethylxanthine  		UG/L	0	No Comparison Conc.					17DIMETHYLX				1,7-Dimethylxanthine, wf			1,7-Dimethylxanthine, wf	
+10:2FTS	10:2 Fluorotelomer sulfonic acid (10:2 FTS)		NG/L	0	No Comparison Conc.					10:2FTS						WRD225		
+11ClPF3OUDS	11-Chloroeicosafluoro-3-oxaundecane-1-sulfonic acid (11-Cl-PF3OUdS)		NG/L	0	No Comparison Conc.	C2817	2813			11ClPF3OUDS						C2817		
+CLBZME2	2 Chlorotoluene		UG/L	140	NL	A-008	2965		2-Chlorotoluene	CLBZME2	2-Chlorotoluene 		CLBZME2	2-Chlorotoluene, wu	2-Chlorotoluene 	A-008	2-Chlorotoluene, wu	
+HFPA-DA	2,3,3,3-tetrafluoro-2-(1,1,2,2,3,3,3-heptafluoropropoxy) propanoic acid (HFPO-DA)		NG/L	0	No Comparison Conc.	C2815	2816			HFPA-DA -- HFPO-DA						C2815		
+TCDD2378	2,3,7,8-TCDD		UG/L	0.00003	MCL	34676	2063			TCDD2378						34676		
+SILVEX	2,4,5-TP (Silvex)		UG/L	50	MCL	39045	2110		2,4,5-TP (Silvex)	SILVEX						39045	Silvex, wf -- Silvex, wu	
+TNT	2,4,6-Trinitrotoluene (TNT)		UG/L	1	NL	81360	C206			TNT						81360		
+24D	2,4-Dichlorophenoxyacetic acid (2,4 D)		UG/L	70	MCL	39730	2105	636	2,4-D	24D				2,4-D, wf		39730	2,4-D, wf	
+7:3FTCA	2H,2H,3H,3H-Perfluorodecanoic acid (7:3 FTCA)		NG/L	0	No Comparison Conc.					7:3FTCA								
+5:3FTCA	2H,2H,3H,3H-Perfluorooctanoic Acid (5:3 FTCA)		NG/L	0	No Comparison Conc.					5:3FTCA								
+CLBZME4	4 Chlorotoluene		UG/L	140	NL	A-009	2966		4-Chlorotoluene	CLBZME4	4-Chlorotoluene 		CLBZME4	4-Chlorotoluene, wu	4-Chlorotoluene 	A-009	4-Chlorotoluene, wu	
+DDD44	4,4'-DDD		UG/L	0.1	CA-CPF	39310	2071		p,p'-DDD	DDD44						39310		
+DDE44	4,4'-DDE		UG/L	0.1	CA-CPF	39320	2069		p,p'-DDE	DDE44						39320		
+DDT44	4,4'-DDT		UG/L	0.1	CA-CPF	39300	2075		p,p'-DDT	DDT44						39300		
+3:3FTCA	4,4,5,5,6,6,6-Heptafluorohexanoic Acid (3:3 FTCA)		NG/L	0	No Comparison Conc.					3:3FTCA								
+ADONA	4,8-Dioxa-3H-perfluorononanoic acid (ADONA)		NG/L	0	No Comparison Conc.	C2818	2815			ADONA						C2818	DONA, wu	
+4:2FTS	4:2 Fluorotelomer sulfonic acid (1H, 1H, 2H, 2H-Perfluorohexanesulfonic acid) (4:2 FTS)		NG/L	0	No Comparison Conc.		2821			4:2FTS				4:2 FTS, wu		WRD226	4:2 FTS, wu	
+6:2FTS	6:2 Fluorotelomer sulfonic acid (1H,1H,2H,2H-Perfluorooctanesulfonic acid) (6:2 FTS)		NG/L	0	No Comparison Conc.		2820			6:2FTS				6:2 FTS, wu		WRD227	6:2 FTS, wu	
+8:2FTS	8:2 Fluorotelomer sulfonic acid (1H, 1H, 2H, 2H-Perfluorodecanesulfonic acid) (8:2 FTS)		NG/L	0	No Comparison Conc.		2822			8:2FTS				8:2 FTS, wu		WRD228	8:2 FTS, wu	
+9ClPF3ONS	9-Chlorohexadecafluoro-3-oxanonane-1-sulfonic acid (9-Cl-PF3ONS)		NG/L	0	No Comparison Conc.	C2816	2814			9ClPF3ONS						C2816		
+ACETAMPHEN	Acetaminophen 		UG/L	0	No Comparison Conc.	A-058	C058			ACETAMPHEN				Acetaminophen, wf		A-058	Acetaminophen, wf	
+ACE	Acetone		UG/L	6300	RfD	81552	2243			ACE	ACETONE		ACE	Acetone, wu		81552	Acetone, wu	
+ALACL	Alachlor		UG/L	2	MCL	77825	2051	678	Alachlor	ALACL				Alachlor, wf		77825	Alachlor, wf	
+ALBUTEROL	Albuterol		UG/L	0	No Comparison Conc.					ALBUTEROL				Albuterol, wf			Albuterol, wf	
+ALDICARB	Aldicarb		UG/L	7	HBSL	39053	2047	575	Aldicarb	ALDICARB				Aldicarb, w,gf<.7u		39053	Aldicarb, w,gf<.7u	
+ALDSULF	Aldicarb Sulfone		UG/L	7	HBSL	A-020	2044	2265	Aldicarb sulfone	ALDSULF				Aldicarb sulfone, w,gf<.7		A-020	Aldicarb sulfone, w,gf<.7	
+ALDSULFOX	Aldicarb sulfoxide		UG/L	7	HBSL	A-019	2043	2361	Aldicarb sulfoxide	ALDSULFOX				Aldicarb sulfoxide, w,gf.7		A-019	Aldicarb sulfoxide, w,gf.7	
+ALKCACO3	Alkalinity as CaCO3	X	MG/L	0	No Comparison Conc.	00410	1927		Total Alkalinity	ALKCACO3	ALKALINITY (TOTAL) AS CACO3		ALK	Alkalinity,wf,fixedEP,lab	Alkalinity, Total	00410	Alkalinity,wf,fixedEP,lab	
+ALK	Alkalinity, total	X	MG/L	0	No Comparison Conc.	00410	1927			ALK -- ALKCACO3	ALKALINITY (TOTAL) AS CACO3		ALK	Alkalinity,wf,fixedEP,lab	Alkalinity, Total	00410	Alkalinity,wf,fixedEP,lab	
+BHCALPHA	Alpha-Benzene Hexachloride (Alpha-BHC)		UG/L	0.15	CA-Prop65	39337	2348		BHC-alpha	BHCALPHA						39337		
+AL	Aluminum	X	UG/L	1000	MCL	01105 -- 01106	1002 -- C250		Dissolved Aluminum -- Total Aluminum	AL	ALUMINUM		AL	Aluminum, wf	Aluminum, FAA -- Aluminum, GFAA	01105 -- 01106	Aluminum, wf	
+NH3NH4N	Ammonia		MG/L	30	HAL-US	00612	1003			NH3-NH4 -- NH3NH4N		AMMONIUM		Ammonia, wf		00612	Ammonia, wf	
+ACB	Anion/Cation Balance	X	Count	0	No Comparison Conc.					ACB								
+SB	Antimony	X	UG/L	6	MCL	01097	1074		Dissolved Antimony	SB	ANTIMONY		SB		Antimony, GFAA	01097	Antimony, wf -- Antimony, wu	
+AR	Argon	X	cm3STP/g	0	No Comparison Conc.					AR -- AR							Argon, w, diss	
+AS	Arsenic	X	UG/L	10	MCL	01002	1005		Dissolved Arsenic -- Total Arsenic	AS	ARSENIC		AS	Arsenic, wf	Arsenic, Hydride	01002	Arsenic, wf	
+ASBESTOS	Asbestos	X	UG/L	7	MCL	81855	1094			ASBESTOS	ASBESTOS					81855		
+ATRAZINE	Atrazine		UG/L	1	MCL	39033	2050	45	Atrazine	ATRAZINE				Atrazine, wf		39033	Atrazine, wf	
+AZIPE	Azinphos Ethyl		UG/L	10	HBSL	81292	C200			AZIPE						81292		
+BA	Barium	X	MG/L	1	MCL	01007	1010		Dissolved Barium	BA	BARIUM		BA	Barium, wf	Barium, FAA	01007	Barium, wf	
+BENSULM	Bensulfuron Methyl		UG/L	1000	HBSL					BENSULM				Bensulfuron-methyl, wf			Bensulfuron-methyl, wf	
+BTZ	Bentazon		UG/L	18	MCL	38710	2625	2999		BTZ			ACRAMD			38710		
+BZ	Benzene		UG/L	1	MCL	34030	2990		Benzene	BZ	BENZENE		BZ	Benzene, wu	BENZENE	34030	Benzene, wu	
+BZAP	Benzo(a)pyrene		UG/L	0.2	MCL	34247	2306			BZAP						34247	Benzo[a]pyrene, wf -- Benzo[a]pyrene, wu	
+BE	Beryllium	X	UG/L	4	MCL	01012	1075		Dissolved Beryllium	BE	BERYLLIUM		BE	Beryllium, wf	Beryllium, GFAA	01012	Beryllium, wf	
+BHCBETA	Beta-Benzene Hexachloride (Beta- BHC)		UG/L	0.25	CA-Prop65	39338	2350		BHC-beta	BHCBETA						39338		
+ALKB	Bicarbonate Alkalinity	X	MG/L	0	No Comparison Conc.	00440	1928			ALKB	BICARBONATE ALKALINITY		ALKB		Alkalinity, Bicarbonate	00440		
+TALSTAR	Bifenthrin		UG/L	70	HHBP					TALSTAR							Bifenthrin, wf	
+B	Boron	X	MG/L	1	NL	01020	1079		Dissolved Boron	B				Boron, wf		01020	Boron, wf	
+BROMCIL	Bromacil		UG/L	70	HAL-US	82198	2098	83	Bromacil	BROMCIL				Bromacil, wf		82198	Bromacil, wf	
+BRO3	Bromate		UG/L	10	MCL	A-027	1011			BRO3						A-027		
+BR	Bromide	X	MG/L	0	No Comparison Conc.	82298	1004			BR				Bromide, wf		82298	Bromide, wf	
+BRACETICA	Bromoacetic Acid		UG/L	0	No Comparison Conc.	A-041	2453		Monobromoacetic Acid (MBAA)	BRACETICA						A-041		
+BDCME	Bromodichloromethane (THM)		UG/L	80	MCL	32101	2943		Bromodichloromethane	BDCME	BROMODICHLOROMETHANE/ DICHLOROBROMOMETHANE		BDCME	Bromochloromethane, wu	BROMODICHLOROMETHANE/ DICHLOROBROMOMETHANE	32101	Bromochloromethane, wu	
+TBME	Bromoform (THM)		UG/L	80	MCL	32104	2942		Bromoform	TBME	BROMOFORM (THM)		TBME	 -- Tribromomethane, wu	BROMOFORM (THM)	32104	Tribromomethane, wu	
+CD	Cadmium	X	UG/L	5	MCL	01027	1015		Dissolved Cadmium -- Total Cadmium	CD	CADMIUM		CD	Cadmium, wf	Cadmium, GFAA	01027	Cadmium, wf	
+CA	Calcium	X	MG/L	0	No Comparison Conc.	00916	1919			CA	CALCIUM	CALCIUM	CA	Calcium, wf	Calcium, Titrimetric	00916	Calcium, wf	
+CARBAMPINE	Carbamazepine 		UG/L	0	No Comparison Conc.	A-061	C271			CARBAMPINE				Carbamazepine, wf		A-061	Carbamazepine, wf	
+SEVIN	Carbaryl (1-naphthyl methylcarbamate)		UG/L	40	HBSL	77700	2021		Carbaryl	SEVIN				Carbaryl, w,gf<.7u		77700	Carbaryl, w,gf<.7u	
+CRBFN	Carbofuran		UG/L	18	MCL	81405	2046	106	Carbofuran	CRBFN				Carbofuran, w,gf<.7u		81405	Carbofuran, w,gf<.7u	
+C-14	Carbon 14	X	PCT MODERN	0	No Comparison Conc.					C-14				C-14, wf			C-14, wf	
+CDS	Carbon Disulfide	X	UG/L	160	NL	77041	1902			CDS	Carbon Disulfide		CDS	Carbon disulfide, wu		77041	Carbon disulfide, wu	
+CTCL	Carbon Tetrachloride		UG/L	0.5	MCL	32102	2982		Carbon tetrachloride	CTCL	Carbon Tetrachloride 		CTCL	Tetrachloromethane, wu	Carbon Tetrachloride 	32102	Tetrachloromethane, wu	
+CHLORATE	Chlorate		UG/L	800	NL	A-037	1007			CHLORATE						A-037		
+CHLORDANE	Chlordane		UG/L	0.1	MCL	39350	2959	130	Chlordane	CHLORDANE -- CHLORDANETOT						39350	Chlordane (technical), wf -- Chlordane (technical), wu	
+CL	Chloride	X	MG/L	500	SMCL	00940	1017		Dissolved Chloride	CL	CHLORIDE	CHLORIDE	CL	Chloride, wf	Chloride	00940	Chloride, wf	
+CHLORITE	Chlorite		MG/L	1	MCL	50074	1009			CHLORITE						50074		
+CAA	Chloroacetic Acid		UG/L	0	No Comparison Conc.	A-042	2450		Monochloroacetic Acid (MCAA)	CAA						A-042		
+CLBZ	Chlorobenzene		UG/L	70	MCL	34301	2989		Chlorobenzene	CLBZ	Chlorobenzene/ Monochlorobenzene		CLBZ	Chlorobenzene, wu	Chlorobenzene/ Monochlorobenzene	34301	Chlorobenzene, wu	
+TCLME	Chloroform (THM)		UG/L	80	MCL	32106	2941		Chloroform	TCLME	CHLOROFORM (THM)		TCLME	Trichloromethane, wu	CHLOROFORM (THM)	32106	Trichloromethane, wu	
+CLPICRIN	Chloropicrin		UG/L	12	NAS-HAL	77548	2465			CLPICRIN						77548		
+TERMIL	Chorothalonil		UG/L	0	No Comparison Conc.	70314	2213		Chlorothalonil	TERMIL						70314	Chlorothalonil, w,gf<.7	
+CR	Chromium	X	UG/L	50	MCL	01034	1020		Total Chromium	CR	CHROMIUM (TOTAL)		CR	Chromium, wf	Chromium, GFAA @ 1 ug/ L	01034	Chromium, wf	
+CR6	Chromium, Hexavalent (Cr6)	X	UG/L	20	HBSL	01032	1080			CR6				Chromium(VI), wf		01032	Chromium(VI), wf	
+CO	Cobalt	X	UG/L	0	No Comparison Conc.	01035	1081			CO				Cobalt, wf		01035	Cobalt, wf	
+CODEINE	Codeine 		UG/L	0	No Comparison Conc.					CODEINE				Codeine, wf			Codeine, wf	
+CU	Copper	X	MG/L	1.3	Action Level	01042	1022		Dissolved Copper -- Total Copper	CU	COPPER		CU	Copper, wf	Copper, FAA	01042	Copper, wf	
+COTININE	Cotinine 		UG/L	0	No Comparison Conc.					COTININE				Cotinine, wf			Cotinine, wf	
+CYANAZ	Cyanazine		UG/L	0.3	HBSL	81757	2054		Cyanazine	CYANAZ				Cyanazine, wf		81757	Cyanazine, wf	
+CN	Cyanide (CN)		UG/L	150	MCL	01291	1024			CN	Cyanide (Total)		CN			01291	Cyanide, wf -- Cyanide, wu	
+CYPERM	Cypermethrin		UG/L	40	HBSL			2171		CYPERM				Cypermethrin, wf			Cypermethrin, wf	
+DACTH	Dacthal		UG/L	70	HBSL	39770	2099		Dacthal (DCPA)	DACTH				DCPA, w,gf<.7u		39770	DCPA, w,gf<.7u	
+METABOLITES	Dacthal Monoacide		UG/L	0	No Comparison Conc.					METABOLITES				DCPA monoacid, w,gf<.7u			DCPA monoacid, w,gf<.7u	
+DACTACID	Dacthalmonoacid		UG/L	0	No Comparison Conc.					DACTACID				DCPA monoacid, w,gf<.7u			DCPA monoacid, w,gf<.7u	
+DALAPON	Dalapon		UG/L	200	MCL	38432	2031			DALAPON						38432		
+DEATZ	Deethylatrazine		UG/L	50	CA-Prop65					DEATZ								
+DEHYDRONIF	Dehydronifedipine 		UG/L	0	No Comparison Conc.					DEHYDRONIF				Dehydronifedipine, wf			Dehydronifedipine, wf	
+DIPATZ	Deisopropyl Atrazine		UG/L	0	No Comparison Conc.					DIPATZ								
+DEUTERIUM	Deuterium	X	UG/L	0	No Comparison Conc.					DEUTERIUM								
+DOA	Di(2-ethylhexyl)adipate		MG/L	0.4	MCL	A-026	2035			DOA						A-026		
+BIS2EHP	Di(2-ethylhexyl)phthalate (DEHP)		UG/L	4	MCL	39100	2039			BIS2EHP						39100	Bis(2-ethylhexyl)phthalate,wu	
+DIAZ	Diazinon		UG/L	1.2	NL	39570	2056		Diazinon	DIAZ				Diazinon, wf		39570	Diazinon, wf	
+DBRACETICA	Dibromoacetic acid		UG/L	0	No Comparison Conc.	82721	2454			DBRACETICA -- ACETICACID						82721		
+DBCME	Dibromochloromethane (THM)		UG/L	80	MCL	32105	2944		Dibromochloromethane	DBCME	Dibromochloromethane 		DBCME	Dibromochloromethane, wu	Dibromochloromethane 	32105	Dibromochloromethane, wu	
+DICAMBA	Dicamba		UG/L	210	RfD	82052	2440		Dicamba	DICAMBA				Dicamba, w,gf<.7u		82052	Dicamba, w,gf<.7u	
+DCAA	Dichloroacetic Acid		UG/L	0	No Comparison Conc.	77288	2451			DCAA						77288		
+FC12	Dichlorodifluoromethane		MG/L	1	NL	34668	2212		Dichlorodifluoromethane	FC12	Dichlorodifluoromethane		FC12	CFC-12, wu	Dichlorodifluoromethane	34668	CFC-12, wu	
+DCMA	Dichloromethane (Methylene Chloride)		UG/L	5	MCL	34423	2964		Methylene chloride	DCMA	DICHLOROMETHANE		MTLNCL	Dichloromethane, wu	DICHLOROMETHANE/ Methylene Chloride	34423	Dichloromethane, wu	
+DCPROP	Dichlorprop		UG/L	300	HBSL	82356	2206		Dichlorprop	DCPROP				Dichlorprop, w,gf<.7u		82356	Dichlorprop, w,gf<.7u	
+DICHLORVOS	Dichlorvos (DDVP)		UG/L	0.4	HBSL			187		DICHLORVOS				Dichlorvos, wf			Dichlorvos, wf	
+DICOFOL	Dicofol		UG/L	0	No Comparison Conc.	39780	2370		Dicofol	DICOFOL						39780		
+DIELDRIN	Dieldrin		UG/L	0.002	HBSL	39380	2070			DIELDRIN				Dieldrin, wf		39380	Dieldrin, wf	
+DIESEL	Diesel		UG/L	100	HAL-US					DIESEL								
+DILTIAZEM	Diltiazem		UG/L	0	No Comparison Conc.					DILTIAZEM				Diltiazem, wf			Diltiazem, wf	
+DIMETHAT	Dimethoate		UG/L	2	HBSL	38458	2221	216	Dimethoate	DIMETHAT				Dimethoate, w,gf<.7u		38458	Dimethoate, w,gf<.7u	
+DINOSEB	Dinoseb		UG/L	7	MCL	81287	2041		Dinoseb (DNPB)	DINOSEB				Dinoseb, w,gf<.7u		81287	Dinoseb, w,gf<.7u	
+DIPHENHYDR	Diphenhydramine 		UG/L	0	No Comparison Conc.					DIPHENHYDR				Diphenhydramine, wf			Diphenhydramine, wf	
+DIQUAT	Diquat		UG/L	20	MCL	78885	2032			DIQUAT						78885		
+DO	Dissolved Oxygen (DO)	X	MG/L	0	No Comparison Conc.					DO				Dissolved oxygen			Dissolved oxygen	
+DOSAT	Dissolved Oxygen, Percent Saturation  	X	PERCENT	0	No Comparison Conc.					DOSAT								
+DIURON	Diuron		UG/L	2	HBSL	39650	2103	231	Diuron	DIURON				Diuron, w,gf<.7u		39650	Diuron, w,gf<.7u	
+EPTAM	EPTC		UG/L	200	HBSL	81894	2052	264		EPTAM				EPTC, w,gf<.7u		81894	EPTC, w,gf<.7u	
+ENDOSULFANA	Endosulfan I		UG/L	42	RfD	34361	2068		Endosulfan-I	ENDOSULFANA						34361	alpha-Endosulfan, wf -- alpha-Endosulfan, wu	
+ENDOSULFANB	Endosulfan II		UG/L	42	RfD	34356	2072		Endosulfan-II	ENDOSULFANB						34356	beta-Endosulfan, wf	
+ENDOSULFANS	Endosulfan Sulfate		UG/L	42	RfD	34351	2074		Endosulfan sulfate	ENDOSULFANS				Endosulfan sulfate, wf		34351	Endosulfan sulfate, wf	
+ENDOTHAL	Endothall		UG/L	100	MCL	38926	2033	260		ENDOTHAL						38926		
+ENDRIN	Endrin		UG/L	2	MCL	39390	2005		Endrin	ENDRIN						39390	Endrin, wf -- Endrin, wu	
+ENDRINALD	Endrin Aldehyde		UG/L	0	No Comparison Conc.	34366	2372		Endrin aldehyde	ENDRINALD						34366		
+ETBE	Ethyl tertiary butyl ether (ETBE)		UG/L	0	No Comparison Conc.	A-033	C033			ETBE	Ethyl tert-Butyl Ether (ETBE)				Ethyl tert-Butyl Ether (ETBE)	A-033	tert-Butyl ethyl ether, wu	
+EBZ	Ethylbenzene		UG/L	300	MCL	34371	2992		Ethyl benzene	EBZ	Ethylbenzene		EBZ	Ethylbenzene, wu	Ethylbenzene	34371	Ethylbenzene, wu	
+ETEGLY	Ethylene glycol		MG/L	14	NL	77023	2960			ETEGLY						77023		
+FCOLIFORM	Fecal Coliform (bacteria)		Count	0.99	MCL					FCOLIFORM	FECAL COLIFORM		FCOLIFORM		Fecal Coliform		Fecal coliforms,M-FC MF,0.45u	
+FENPHOS	Fenamiphos		UG/L	0.7	HBSL	38929	7585	1857		FENPHOS				Fenamiphos, wf		38929	Fenamiphos, wf	
+FIPRONIL	Fipronil		UG/L	1	HHBP			3995		FIPRONIL				Fipronil, wf			Fipronil, wf	
+F	Fluoride	X	MG/L	2	MCL	00951	1025		Dissolved Fluoride	F	FLUORIDE (TEMPERATURE DEPENDENT)	FLUORIDE	F	Fluoride, wf	Fluoride	00951	Fluoride, wf	
+FOAMAGENTS	Foaming Agents (MBAS)		MG/L	0.5	SMCL	38260	2905			FOAMAGENTS -- SURFACT	FOAMING AGENTS (MBAS)		MBAS		Foaming Agents (MBAS)	38260	MBAS, wu	
+FONOFOS	Fonofos		UG/L	10	HBSL	81294	2570	254		FONOFOS				Fonofos, wf		81294	Fonofos, wf	
+FORMALD	Formaldehyde		UG/L	100	NL	71880	2961			FORMALD						71880		
+GASOLINE	Gasoline		UG/L	5	HAL-US					GASOLINE								
+GLYP	Glyphosate (Round-up)		UG/L	700	MCL	39941 -- 79743	2034 -- 2034	1855	Glyphosate	GLYP						39941 -- 79743	Glyphosate, w,gf<.7u	
+ALPHA	Gross Alpha radioactivity	X	pCi/L	15	MCL	01501	4109			ALPHA	GROSS ALPHA		MBAS	Alpha activity, 30d,wf,Th230		01501	Alpha activity,30dr, wu,Th230	
+BETA	Gross beta	X	pCi/L	50	MCL	03501	4100			BETA				Beta activity, 72hr/ Cs137,wf		03501	Gross beta, 72hr,Cs137,wf	
+AZIPM	Guthion (Azinphos Methyl)		UG/L	10	HBSL	39580	2059	314	Azinphos methyl (Guthion)	AZIPM				Azinphos-methyl, w,gf<.7u		39580	Azinphos-methyl, w,gf<.7u	
+HARD	Hardness	X	MG/L	0	No Comparison Conc.	00900	1915		Hardness	HARD	HARDNESS (TOTAL) AS CACO3		HARD	Hardness, water	Hardness	00900	Hardness, water	
+HE-4	Helium	X	cm3STP/g	0	No Comparison Conc.					HE-4								
+HE-3/HE-4	Helium-3/Helium-4	X	atom ratio	0	No Comparison Conc.					HE-3/ HE-4								
+HEPTACHLOR	Heptachlor		UG/L	0.01	MCL	39410	2065	317	Heptachlor	HEPTACHLOR	Hexachlorobutadiene					39410	Heptachlor, wf -- Heptachlor, wu	
+HEPT-EPOX	Heptachlor Epoxide		UG/L	0.01	MCL	39420	2067	4073	Heptachlor epoxide	HEPT-EPOX						39420	Heptachlor epoxide, wf -- Heptachlor epoxide, wu	
+HCLBZ	Hexachlorobenzene (HCB)		UG/L	1	MCL	39700	2274			HCLBZ						39700	Hexachlorobenzene, wu	
+HCBU	Hexachlorobutadiene		UG/L	0.9	HBSL	34391	2246		Hexachlorobutadiene	HCBU				Hexachlorobutadiene, wu		34391	Hexachlorobutadiene, wu	
+HCCP	Hexachlorocyclopentadiene		UG/L	50	MCL	34386	2042			HCCP						34386	Hexachlorocyclopentadiene, wu	
+HEXAZINONE	Hexazinone		UG/L	400	HBSL	38815	7705	1871		HEXAZINONE				Hexazinone, wf		38815	Hexazinone, wf	
+IMIDPRID	Imidacloprid		UG/L	360	HHBP			3849		IMIDPRID				Imidacloprid, wf			Imidacloprid, wf	
+I	Iodide	X	UG/L	1190	NAS-HAL	71865	C166			I				Iodide, wf		71865	Iodide, wf	
+IPRODIONE	Iprodione		UG/L	0.8	HBSL					IPRODIONE				Iprodione, wf			Iprodione, wf	
+FE	Iron	X	UG/L	300	SMCL	01045 -- 01046	1028 -- 1082		Dissolved Iron	FE	IRON		FE	Iron, wf	Iron, FAA	01045 -- 01046	Iron, wf	
+IPBZ	Isopropylbenzene ( Cumene)		UG/L	770	NL	77356	2994		Isopropylbenzene	IPBZ	Isopropylbenzene (Cumene)		IPBZ	 -- Isopropylbenzene, wu	Isopropylbenzene (Cumene)	77356	Isopropylbenzene, wu	
+KEROSENE	Kerosene		UG/L	100	HAL-US	78878	2374			KEROSENE						78878		
+KR	Krypton	X	cm3STP/g	0	No Comparison Conc.					KR							Krypton, w, diss	
+PB	Lead	X	UG/L	15	Action Level	01051	1030		Dissolved Lead -- Total Lead	PB	LEAD		PB	Lead, wf	Lead, GFAA	01051	Lead, wf	
+BHCGAMMA	Lindane (Gamma-BHC) 		UG/L	0.2	MCL	39340	2010	359	BHC-gamma (Lindane)	BHCGAMMA						39340	Lindane, wf -- Lindane, wu	
+LINURON	Linuron		UG/L	5	HBSL	38478	2283	361		LINURON				Linuron, w,gf<.7u		38478	Linuron, w,gf<.7u	
+LI	Lithium	X	UG/L	0	No Comparison Conc.	01132	1083			LI				Lithium, wf		01132	Lithium, wf	
+MTBE	MTBE (Methyl-tert-butyl ether)		UG/L	13	MCL	46491	2251		Methyl tert-butyl ether (MTBE)	MTBE	METHYL-TERT-BUTYL-ETHER (MTBE)		MTBE	MTBE, wu	METHYL-TERT-BUTYL-ETHER (MTBE)	46491	MTBE, wu	
+MG	Magnesium	X	MG/L	0	No Comparison Conc.	00927	1031		Dissolved Magnesium -- Total Magnesium	MG	MAGNESIUM	MAGNESIUM	MG	Magnesium, wf	Magnesium, Calculation	00927	Magnesium, wf	
+MALA	Malathion		UG/L	500	HBSL	39530	2058	367	Malathion	MALA				Malathion, wf		39530	Malathion, wf	
+MN	Manganese	X	UG/L	50	SMCL	01055 -- 01056	1032 -- 1034		Dissolved Manganese -- Total Manganese	MN	MANGANESE		MN	Manganese, wf	Manganese, FAA	01055 -- 01056	Manganese, wf	
+HG	Mercury	X	UG/L	2	MCL	71900	1035		Dissolved Mercury -- Total Mercury	HG	MERCURY		HG	Mercury, wf	Mercury, CVAA	71900	Mercury, wf	
+HGE	Mercury (elemental)	X	UG/L	0	No Comparison Conc.					HGE								
+METALAXYL	Metalaxyl		UG/L	500	HBSL			2132		METALAXYL				Metalaxyl, wf			Metalaxyl, wf	
+CH4	Methane, dissolved  	X	MG/L	0	No Comparison Conc.					CH4							Methane, moles of diss gas -- Methane, w, diss	
+METHOMYL	Methomyl		UG/L	200	HBSL	39051	2022	383	Methomyl	METHOMYL				Methomyl, w,gf<.7u		39051	Methomyl, w,gf<.7u	
+MTXYCL	Methoxychlor		UG/L	30	MCL	39480	2015	384	Methoxychlor	MTXYCL						39480	p,p'-Methoxychlor, wf -- p,p'-Methoxychlor,wu	
+BRME	Methyl Bromide (Bromomethane)		UG/L	10	HAL-US	34413	2214		Bromomethane	BRME	BROMOMETHANE/ Methyl Bromide		BRME	Bromomethane, wu	BROMOMETHANE/ Methyl Bromide	34413	Bromomethane, wu	
+IME	Methyl Iodide		UG/L	0	No Comparison Conc.					IME	Methyl Iodide			Iodomethane, wu			Iodomethane, wu	
+MIBK	Methyl Isobutyl Ketone (MIBK)		UG/L	120	NL	81596	2277			MIBK			MIBK			81596	Isobutyl methyl ketone, wu	
+METOCHLOR	Metolachlor		UG/L	700	HBSL	39356	2045	1996	Metolachlor	METOCHLOR				Metolachlor, wf		39356	Metolachlor, wf	
+METRIBUZ	Metribuzin		UG/L	90	HBSL	81408	2595	1692		METRIBUZ				Metribuzin, wf		81408	Metribuzin, wf	
+MOLINATE	Molinate		UG/L	20	MCL	82199	2626	449		MOLINATE				Molinate, w,gf<.7u		82199	Molinate, w,gf<.7u	
+MO	Molybdenum	X	UG/L	40	HAL-US	01062	1084			MO				Molybdenum, wf		01062	Molybdenum, wf	
+ETFOSA	N-Ethyl perfluorooctane sulfonamide (EtFOSA)		NG/L	0	No Comparison Conc.					ETFOSA								
+ETFOSE	N-Ethyl perfluorooctane sulfonamide ethanol (EtFOSE)		NG/L	0	No Comparison Conc.					ETFOSE								
+NETFOSAA	N-Ethyl perfluorooctane sulfonamidoacetic acid (NEtFOSAA)		NG/L	0	No Comparison Conc.	C2807	2817			NETFOSAA				N-EtFOSAA, wu		C2807	N-EtFOSAA, wu	
+MEFOSA	N-Methyl perfluorooctane sulfonamide (MeFOSA)		NG/L	0	No Comparison Conc.					MEFOSA								
+MEFOSE	N-Methyl perfluorooctane sulfonamide ethanol (MeFOSE)		NG/L	0	No Comparison Conc.					MEFOSE								
+NMEFOSAA	N-Methyl perfluorooctane sulfonamidoacetic acid (NMeFOSAA)		NG/L	0	No Comparison Conc.	C2808	2818			NMEFOSAA				N-MeFOSAA, wu		C2808	N-MeFOSAA, wu	
+NNSPR	N-Nitrosodi-N-Propylamine (NDPA)		UG/L	0.01	NL	34428	2316			NNSPR						34428	N-Nitrosodi-n-propylamine, wu	
+NNSE	N-Nitrosodiethylamine (NDEA)		UG/L	0.01	NL	78200	C183			NNSE						78200		
+NNSM	N-Nitrosodimethylamine (NDMA)		UG/L	0.01	NL	34438	2314			NNSM				N-Nitrosodimethylamine, wu		34438	N-Nitrosodimethylamine, wu	
+NALED	Naled		UG/L	10	HBSL	38855	C128	418	Naled	NALED						38855		
+NAPH	Naphthalene		UG/L	17	NL	34696	2248		Naphthalene	NAPH	Naphthalene		NAPH	 -- Naphthalene, wu		34696	Naphthalene, wu	
+NAPROPAM	Napropamide		UG/L	800	HBSL	79195	6440	1728	Napropamide	NAPROPAM						79195	Napropamide, w,gf<.7u	
+NE	Neon	X	cm3STP/g	0	No Comparison Conc.					NE							Neon, w, diss -- Neon, wu	
+NI	Nickel	X	UG/L	100	MCL	01067	1036		Total Nickel	NI	NICKEL		NI	Nickel, wf	Nickel, GFAA	01067	Nickel, wf	
+NO3N	Nitrate as N	X	MG/L	10	MCL	00618 -- 71850	1040 -- C255		Dissolved Nitrate	NO3N -- NO3	NITRATE + NITRITE (AS N)	NITRATE	NO3	Nitrate, wf	Nitrogen, Nitrite-N	00618 -- 71850	Nitrate, wf	
+NO3NO2N	Nitrate+Nitrite	X	MG/L	10	MCL					NO3NO2N	NITRATE + NITRITE (AS N)		NO3NO2N	NO3+NO2, wf	Nitrate-N plus Nitrite-N		NO3+NO2, wf	
+NO2	Nitrite as N	X	MG/L	1	MCL	00620	1041			NO2 -- NO2N		NITRITE	NO2N	Nitrite, wf	Nitrogen, Nitrite-N	00620	Nitrite, wf	
+NFDHA	Nonafluoro-3,6-dioxaheptanoic acid (NFDHA)		NG/L	0	No Comparison Conc.		2827			NFDHA								
+NORFLUZON	Norflurazon		UG/L	10	HBSL			2019		NORFLUZON				Norflurazon, w,gf<.7u			Norflurazon, w,gf<.7u	
+HMX	Octogen (HMX)		MG/L	0.35	NL	82203	C218			HMX						82203		
+OXAMYL	Oxamyl		UG/L	50	MCL	38865	2036	1910	Oxamyl	OXAMYL				Oxamyl, w,gf<.7u		38865	Oxamyl, w,gf<.7u	
+OXYFLUOREN	Oxyfluorfen		UG/L	20	HBSL			1973	Oxyfluorfen	OXYFLUOREN				Oxyfluorfen, wf			Oxyfluorfen, wf	
+PCNB	PCNB		UG/L	21	RfD	39029	2934		Pentachloronitrobenzene (PCNB)	PCNB -- PECLNO2BZ						39029		
+PARAE	Parathion		UG/L	0.02	HBSL	39540	2064	459	Parathion (Ethyl)	PARAE						39540	Parathion, wf -- Parathion, wu	
+PCP	Pentachlorophenol (PCP)		UG/L	1	MCL	39032	2326		Pentachlorophenol (PCP)	PCP						39032	Pentachlorophenol, wf -- Pentachlorophenol, wu	
+PCATE	Perchlorate		UG/L	6	MCL	A-031	1039			PCATE				Perchlorate, wf -- Perchlorate, wu		A-031	Perchlorate, wf -- Perchlorate, wu	
+PFEESA	Perfluoro(2-ethoxyethane) sulfonic acid (PFEESA)		NG/L	0	No Comparison Conc.		2826			PFEESA								
+PFMPA	Perfluoro-3-methoxypropanoic acid (PFMPA)		NG/L	0	No Comparison Conc.		2823			PFMPA								
+PFMBA	Perfluoro-4-methoxybutanoic acid (PFMBA)		NG/L	0	No Comparison Conc.		2825			PFMBA								
+PFBSA	Perfluorobutane sulfonic acid (PFBS)		NG/L	500	NL	C2801	2801			PFBSA				PFBS, wu		C2801	PFBS, wu	
+PFBTA	Perfluorobutyric acid (PFBA)		NG/L	0	No Comparison Conc.		2819			PFBTA -- PFBA				PFBA, wu		WRD215	PFBA, wu	
+PFDSA	Perfluorodecane sulfonic acid (PFDS)		NG/L	0	No Comparison Conc.					PFDSA				PFDS, wu		WRD216	PFDS, wu	
+PFNDCA	Perfluorodecanoic acid (PFDA)		NG/L	0	No Comparison Conc.	C2809	2807			PFNDCA				PFDA, wu		C2809	PFDA, wu	
+PFDOA	Perfluorododecanoic acid (PFDoDA)		NG/L	0	No Comparison Conc.	C2810	2808			PFDOA						C2810	PFDoDA, wu	
+PFHPSA	Perfluoroheptane sulfonic acid (PFHpS)		NG/L	0	No Comparison Conc.		2829			PFHPSA				PFHpS, wu		WRD218	PFHpS, wu	
+PFHPA	Perfluoroheptanoic acid (PFHpA)		NG/L	0	No Comparison Conc.	C2802	2802			PFHPA				PFHpA, wu		C2802	PFHpA, wu	
+PFHXDA	Perfluorohexadecanoic acid (PFHxDA)		NG/L	0	No Comparison Conc.					PFHXDA						WRD219		
+PFHXSA	Perfluorohexanesulfonic acid (PFHxS)		NG/L	3	NL	C2803	2803			PFHXSA				PFHxS, wu		C2803	PFHxS, wu	
+PFHA	Perfluorohexanoic acid (PFHxA)		NG/L	0	No Comparison Conc.	C2811	2809			PFHA				PFHxA, wu		C2811	PFHxA, wu	
+PFNS	Perfluorononane sulfonic acid (PFNS)		NG/L	0	No Comparison Conc.					PFNS				PFNS, wu		WRD220	PFNS, wu	
+PFNA	Perfluorononanoic acid (PFNA)		NG/L	0	No Comparison Conc.	C2804	2804			PFNA				PFNA, wu		C2804	PFNA, wu	
+PFODA	Perfluorooctadecanoic acid (PFODA)		NG/L	0	No Comparison Conc.					PFODA						WRD221		
+PFOSA	Perfluorooctane sulfonamide (PFOSAm)		NG/L	0	No Comparison Conc.					PFOSA				PFOSA, wu		WRD222	PFOSA, wu	
+PFOS	Perfluorooctane sulfonate (PFOS)		NG/L	6.5	NL	C2805	2805			PFOS -- PFOS_A				PFOS, wu		C2805	PFOS, wu	
+PFOA	Perfluorooctanoic acid (PFOA)		NG/L	5.1	NL	C2806	2806			PFOA				PFOA, wu		C2806	PFOA, wu	
+PFPES	Perfluoropentane sulfonoic acid (PFPeS)		NG/L	0	No Comparison Conc.		2828			PFPES				PFPeS, wu		WRD223	PFPeS, wu	
+PFPA	Perfluoropentanoic acid (PFPeA)		NG/L	0	No Comparison Conc.		2824			PFPA				PFPeA, wu		WRD224	PFPeA, wu	
+PFTEDA	Perfluorotetradecanoic acid (PFTeDA)		NG/L	0	No Comparison Conc.	C2812	2810			PFTEDA				PFTeDA, wu		C2812	PFTeDA, wu	
+PFTRIDA	Perfluorotridecanoic acid (PFTrDA)		NG/L	0	No Comparison Conc.	C2813	2811			PFTRIDA				PFTrDA, wu		C2813	PFTrDA, wu	
+PFUNDCA	Perfluoroundecanoic acid (PFUnDA)		NG/L	0	No Comparison Conc.	C2814	2812			PFUNDCA						C2814	PFUnDA, wu	
+PERMETHRIN	Permethrin		UG/L	4	HBSL	79191	2114	2008		PERMETHRIN				cis-Permethrin, w,gf<.7u		79191	cis-Permethrin, w,gf<.7u	
+PHORATE	Phorate		UG/L	4	HBSL	38870	2605		Phorate	PHORATE				Phorate, w,gf<.7u		38870	Phorate, w,gf<.7u	
+PICLORAM	Picloram		MG/L	0.5	MCL	39720	2040		Picloram	PICLORAM				Picloram, w,gf<.7u		39720	Picloram, w,gf<.7u	
+PCB1016	Polychlorinated Biphenyls (PCBs)		UG/L	0.5	MCL	39516	2383		PCB-1016 -- PCB-1260	PCB1016 -- PCB1260						39516	PCBs, wf -- PCBs, wu	
+PAHTOT	Polynuclear Aromatic Hydrocarbon		UG/L	0	No Comparison Conc.					PAHTOT								
+K	Potassium	X	MG/L	0	No Comparison Conc.	00937	1042		Dissolved Potassium	K	POTASSIUM	POTASSIUM	K	Potassium, wf		00937	Potassium, wf	
+PROMETON	Prometon		UG/L	400	HBSL	39056	2029	499		PROMETON				Prometon, wf		39056	Prometon, wf	
+PROMETRYN	Prometryn		UG/L	300	HBSL	39057	8040	502	Prometryn	PROMETRYN				Prometryn, wf		39057	Prometryn, wf	
+PROPACHLOR	Propachlor (2-Chloro-N-isopropylacetanilide)		UG/L	90	NL	38533	2077			PROPACHLOR						38533	Propachlor, wf	
+PROPANIL	Propanil		UG/L	6	HBSL	39037	2289			PROPANIL				Propanil, w,gf<.7u		39037	Propanil, w,gf<.7u	
+PROPGITE	Propargite		UG/L	1	HBSL	82065	C214	445		PROPGITE				Propargite, w,gf<.7u		82065	Propargite, w,gf<.7u	
+RDX	RDX (hexahydro-1,3,5-trinitro-1,3,5-triazine)		MG/L	0.3	NL	81364	2096			RDX						81364		
+RA-226	Radium 226	X	pCi/L	5	MCL	09501	4020			RA-226				Ra-226, wf, radon method		09501	Ra-226, wf, radon method	
+RA-228	Radium 228	X	pCi/L	5	MCL	11501	4030			RA-228				Ra-228, wf		11501	Ra-228, wf	
+RN-222	Radon 222	X	pCi/L	4000	MCL	82303	4004			RN-222				Rn-222, wu		82303	Rn-222, wu	
+SE	Selenium	X	UG/L	50	MCL	01147	1045		Total Selenium	SE	SELENIUM		SE	Selenium, wf	Selenium, Hydride	01147	Selenium, wf	
+AG	Silver	X	UG/L	100	HBSL	01077	1050		Dissolved Silver -- Total Silver	AG	Silver		AG	Silver, wf	Silver, FAA	01077	Silver, wf	
+SIMAZINE	Simazine		UG/L	4	MCL	39055	2037	531	Simazine	SIMAZINE				Simazine, wf		39055	Simazine, wf	
+NA	Sodium 	X	MG/L	50	Action Level	00929	1052			NA	SODIUM	SODIUM	NA	Sodium, wf	Sodium, FAA	00929	Sodium, wf	
+SC	Specific Conductivity	X	UMHOS/CM	1600	SMCL	00095	1064		Conductance (EC)	COND -- SC	SPECIFIC CONDUCTANCE		COND	SpecCond,wu25degCLab -- Specific cond at 25C	Specific Conductance	00095	SpecCond,wu25degCLab -- Specific cond at 25C	
+STODSOLV	Stoddard Solvent	X	UG/L	0	No Comparison Conc.					STODSOLV								
+SR	Strontium	X	UG/L	4000	HAL-US					SR				Strontium, wf			Strontium, wf	
+SR-90	Strontium 90		pCi/L	8	MCL	13501	4174			SR-90						13501		
+STY	Styrene		UG/L	100	MCL	77128	2996		Styrene	STY	Styrene		STY	Styrene, wu	Styrene	77128	Styrene, wu	
+SULFAMETH	Sulfamethoxazole  		UG/L	0	No Comparison Conc.					SULFAMETH				Sulfamethoxazole, wf			Sulfamethoxazole, wf	
+SO4	Sulfate	X	MG/L	500	SMCL	00945	1055		Dissolved Sulfate	SO4	SULFATE	SULFATE	SO4	Sulfate, wf	Sulfate	00945	Sulfate, wf	
+TEMP	Temperature		CELSIUS	0	No Comparison Conc.					TEMP				Temperature, water			Temperature, water, degrees Celsius	
+TAME	Tertiary amyl methyl ether		UG/L	0	No Comparison Conc.	A-034	C034			TAME	METHYL TERT-AMYL ETHER/ tert-Amyl Methyl Ether (TAME)				METHYL TERT-AMYL ETHER/ tert-Amyl Methyl Ether (TAME)	A-034	Methyl tert-pentyl ether, wu	
+PCE	Tetrachloroethene (PCE)		UG/L	5	MCL	34475	2987		Tetrachloroethene	PCE	TETRACHLOROETHYLENE		PCE	Tetrachloroethene, wu	TETRACHLOROETHYLENE/ TETRACHLOROETHENE (PCE)	34475	Tetrachloroethene, wu	
+TL	Thallium	X	UG/L	2	MCL	01059	1085		Dissolved Thallium	TL	THALLIUM		TL		Thallium, GFAA	01059	Thallium, wf -- Thallium, wu	
+THIABEND	Thiabendazole		UG/L	231	HHBP					THIABEND				Thiabendazole, wf			Thiabendazole, wf	
+THIOBENCARB	Thiobencarb		UG/L	70	MCL	A-001	2727	1933	Thiobencarb	THIOBENCARB				Thiobencarb, w,gf<.7u		A-001	Thiobencarb, w,gf<.7u	
+BZME	Toluene		UG/L	150	MCL	34010	2991		Toluene	BZME	TOLUENE		BZME	Toluene, wu	TOLUENE	34010	Toluene, wu	
+COLIFORM	Total Coliform Bacteria	X	Count	0.99	MCL					COLIFORM	TOTAL COLIFORM		COLIFORM		Total Coliform Bacteria	31505	Total coliform,BGLB,confirmed -- Total coliforms, DSTM PA, w -- Total coliforms, DSTM, water -- Total coliforms, M-EndoMF,imm -- Total coliforms, MI, water	
+TDS	Total Dissolved Solids	X	MG/L	1000	SMCL	70300	1930		Total Dissolved Solids	TDS	TOTAL DISSOLVED SOLIDS		TDS	Diss solids dry@180C	Solids, Total Dissolved	70300	Diss solids dry@180C	
+TOCH	Total Organic Carbon	X	MG/L	0	No Comparison Conc.	00680	2920		Total Organic Carbon	TOC1 -- TOCH				Organic carbon, wf		00680	Organic carbon, wf	
+PHC	Total Petroleum Hydrocarbons	X	UG/L	0	No Comparison Conc.					PHC								
+THM	Total Trihalomethanes 		UG/L	80	MCL	82080	2950			THM	TOTAL TRIHALOMETHANES		TTHM		TOTAL TRIHALOMETHANES	82080	THMs, wu, by summation -- THMs, wu, min sum -- THMs, wu, max sum	
+TOXAP	Toxaphene		UG/L	3	MCL	39400	2020	594	Toxaphene	TOXAP						39400	Toxaphene, wu -- Toxaphene, wf	
+TRICLOPYR	Trichlopyr		UG/L	400	HBSL				Triclopyr	TRICLOPYR				Triclopyr, w,gf<.7u			Triclopyr, w,gf<.7u	
+TCAA	Trichloroacetic Acid		UG/L	0	No Comparison Conc.	82723	2452			TCAA						82723		
+TCE	Trichloroethene (TCE)		UG/L	5	MCL	39180	2984		Trichloroethene	TCE	Trichloroethene/ Trichloroethylene		TCE	Trichloroethene, wu	Trichloroethene/ Trichloroethylene (TCE)	39180	Trichloroethene, wu	
+FC11	Trichlorofluoromethane (Freon 11)		UG/L	150	MCL	34488	2218		Trichlorofluoromethane	FC11	Trichlorofluoromethane (FREON 11)		FC11	CFC-11, wu	Trichlorofluoromethane (FREON 11)	34488	CFC-11, wu	
+TRIFLURALIN	Trifluralin		UG/L	20	HBSL	81284	2055		Trifluralin	TRIFLURALIN				Trifluralin, w,gf<.7u		81284	Trifluralin, w,gf<.7u	
+TRIMETHOP	Trimethoprim		UG/L	0	No Comparison Conc.					TRIMETHOP				Trimethoprim, wf			Trimethoprim, wf	
+H-3	Tritium	X	pCi/L	20000	MCL	07000	4102			H-3				Tritium, wu		07000	Tritium, wu	
+W	Tungsten	X	UG/L	0	No Comparison Conc.					W				Tungsten, wf			Tungsten, wf	
+U	Uranium	X	pCi/L	20	MCL	28011 -- 28012	 -- 4006			U -- UTOT				Uranium, wf -- Uranium, wf		28011 -- 28012	Uranium, wf	
+V	Vanadium	X	UG/L	50	NL	01087	1088			V				Vanadium, wf		01087	Vanadium, wf	
+VC	Vinyl Chloride		UG/L	0.5	MCL	39175	2976		Vinyl chloride	VC	Vinyl Chloride		VC	Vinyl chloride, wu	Vinyl Chloride	39175	Vinyl chloride, wu	
+WARFARIN	Warfarin 		UG/L	2	HBSL					WARFARIN				Warfarin, wf			Warfarin, wf	
+XE	Xenon	X	cm3STP/g	0	No Comparison Conc.					XE							Xenon, w, diss	
+XYLENES1314	Xylene, Isomers m & p		UG/L	1750	MCL	A-014	2963		m + p Xylene	XYLENES1314	M,P-XYLENE		XYLENES1314	m-Xylene plus p-xylene, wu	M,P-XYLENE	A-014	m-Xylene plus p-xylene, wu	
+XYLENES	Xylenes (total)		UG/L	1750	MCL	81551	2955		Xylene, (total)	XYLENES	XYLENES (TOTAL)		XYLENES		XYLENES (TOTAL M, P, O)	81551	Xylene, wu	
+ZN	Zinc	X	MG/L	5	SMCL	01092	1095		Dissolved Zinc -- Total Zinc	ZN	ZINC		ZN	Zinc, wf	Zinc, FAA	01092	Zinc, wf	
+HCO3	bicarbonate HCO3	X	MG/L	0	No Comparison Conc.				Dissolved Bicarbonate (HCO3-)	HCO3	BICARBONATE		HCO3	Bicarbonate,wf,inflect pt,fld			Bicarbonate,wf,inflect pt,fld	
+CO3	carbonate CO3	X	MG/L	0	No Comparison Conc.				Dissolved Carbonate (CO3--)	CO3	CARBONATE		CO3	Carbonate, wf,inflect pt,fld			Carbonate, wf,inflect pt,fld	
+DCE12C	cis-1,2 Dichloroethylene		UG/L	6	MCL	77093	2380		cis-1,2-Dichloroethene	DCE12C	cis-1,2-Dichloroethene/ cis-1,2-Dichloroethylene 		DCE12C		cis-1,2-Dichloroethene/ cis-1,2-Dichloroethylene 	77093	cis-1,2-Dichloroethene, wu	
+OXYGEN18	d-18O in Water	X	per mil	0	No Comparison Conc.					OXYGEN18								
+H2H1RAT	delta H2/H1	X	per mil	0	No Comparison Conc.					H2H1RAT				delta H-2/ H-1, wu			delta H-2/ H-1, wu	
+N15N14NO3	delta N-15, NO3	X	per mil	0	No Comparison Conc.					N15N14NO3				delta N-15/ N-14, NO3, wf			delta N-15/ N-14, NO3, wf	
+O18O16NO3	delta O18, NO3	X	per mil	0	No Comparison Conc.					O18O16NO3				delta O-18/ O-16, NO3, wf			delta O-18/ O-16, NO3, wf	
+O18O16RAT	delta O18/O16 in water	X	per mil	0	No Comparison Conc.					O18O16RAT				delta O-18/ O-16, wu			delta O-18/ O-16, wu	
+DIPE	diisopropyl ether		UG/L	0	No Comparison Conc.	A-036	2245			DIPE				Diisopropyl ether, wu		A-036	Diisopropyl ether, wu	
+XYLM	m-Xylene		UG/L	0	No Comparison Conc.	81710	2995			XYLM					M-XYLENE			
+BTBZN	n-Butylbenzene		UG/L	260	NL	A-010	2422		n-Butylbenzene	BTBZN	n-BUTYLBENZENE		BTBZN	N(4Chlorophenyl)N'methylurea -- n-Butylbenzene, wu	n-BUTYLBENZENE	A-010	N(4Chlorophenyl)N'methylurea -- n-Butylbenzene, wu	
+PBZN	n-Propylbenzene (Isocumene)		UG/L	260	NL	77224	2998			PBZN	n-Propylbenzene		PBZN	n-Propylbenzene, wu	n-Propylbenzene	77224	n-Propylbenzene, wu	
+XYLO	o-Xylene		UG/L	0	No Comparison Conc.	77135	2997		o-Xylene	XYLO	O-XYLENE		XYLO	o-Xylene, wu	O-XYLENE	77135	o-Xylene, wu	
+PORTHO	orthophosphate	X	MG/L	0	No Comparison Conc.	00660	1044			PORTHO				Orthophosphate, wf		00660	Orthophosphate, wf	
+XYLP	p-Xylene		UG/L	0	No Comparison Conc.	78132	2962			XYLP					P-XYLENE			
+PH	pH	X	PH UNITS	0	No Comparison Conc.	00400 -- 00403	C253 -- 1925		pH	PH	PH, LABORATORY		PH	pH -- pH, wu,lab	pH	00400 -- 00403	pH, water, area weighted average, standard units -- pH, water, unfiltered, field, standard units -- pH, wu, lab	
+BTBZS	sec-Butylbenzene		UG/L	260	NL	77350	2428		sec-Butylbenzene	BTBZS	sec-Butylbenzene		BTBZS	sec-Butylbenzene, wu	sec-Butylbenzene	77350	sec-Butylbenzene, wu	
+TEBUTHIURON	tebuthiuron		UG/L	1000	HBSL	45607	2271	1810		TEBUTHIURON				Tebuthiuron, w,gf<.7u		45607	Tebuthiuron, w,gf<.7u	
+TBA	tert-Butyl alcohol (TBA)		UG/L	12	NL	77035	C170			TBA	TERT-BUTYL ALCOHOL				TERT-BUTYL ALCOHOL (TBA)	77035		
+BTBZT	tert-Butylbenzene		UG/L	260	NL	77353	2426		tert-Butylbenzene	BTBZT	tert-Butylbenzene		BTBZT		tert-Butylbenzene	77353	tert-Butylbenzene, wu	
+DCE12T	trans-1,2, Dichloroethylene		UG/L	10	MCL	34546	2979		trans-1,2-Dichloroethene	DCE12T	trans-1,2-Dichloroethene/ trans-1,2-Dichloroethylene 		DCE12T	trans-1,2-Dichloroethene, wu	trans-1,2-Dichloroethene/ trans-1,2-Dichloroethylene 	34546	trans-1,2-Dichloroethene, wu	

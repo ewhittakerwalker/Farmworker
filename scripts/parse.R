@@ -9,7 +9,8 @@ library(leaflet)
 library(deeplr)
 library(polyglotr)
 library(ggmap)
-#library(cld2)
+library(RODBC)
+library(tigris)
 
 dire <- getwd()
 dire <- paste0(dire, "/Desktop/Farmworker")
@@ -17,29 +18,108 @@ dire <- paste0(dire, "/Desktop/Farmworker")
 
 ##crowdsourcing data 
 ## register_google(key = "AIzaSyDt01LDXBHuoBn9xp9-jygsFZlSy91cH-4")
-gsheet_df <- read_csv(paste0(dire, "/data/Farmworker Form Sheet.csv"))
-print(gsheet_df)
-print(colnames(gsheet_df))
+# gsheet_df <- read_csv(paste0(dire, "/data/Farmworker Form Sheet.csv"))
+# print(gsheet_df)
+# print(colnames(gsheet_df))
+# 
+# names(gsheet_df)[names(gsheet_df) == "Address - Address to Report"] <- "Address"
+# names(gsheet_df)[names(gsheet_df) == "City - Address to Report"] <- "City"
+# names(gsheet_df)[names(gsheet_df) == "State - Address to Report"] <- "State"
+# names(gsheet_df)[names(gsheet_df) == "Zip Code - Address to Report"] <- "Zip"
+# 
+# ggmap::register_google(key = "AIzaSyDt01LDXBHuoBn9xp9-jygsFZlSy91cH-4")
+# 
+# gsheet_df$full_address <- paste0(gsheet_df$Address, ", ",
+#                                 gsheet_df$City,", ",
+#                                 gsheet_df$State,", ",
+#                                 gsheet_df$Zip
+#                                 )
+# print(gsheet_df$full_address)
+# latlong <- geocode(gsheet_df$full_address)
+# print(latlong)
+# gsheet_df$lat <- latlong$lat 
+# gsheet_df$long <- latlong$lon
+# 
+# save(gsheet_df, file = paste0(dire, "/data/crowdsourced_data.rda"))
 
-names(gsheet_df)[names(gsheet_df) == "Address - Address to Report"] <- "Address"
-names(gsheet_df)[names(gsheet_df) == "City - Address to Report"] <- "City"
-names(gsheet_df)[names(gsheet_df) == "State - Address to Report"] <- "State"
-names(gsheet_df)[names(gsheet_df) == "Zip Code - Address to Report"] <- "Zip"
 
-ggmap::register_google(key = "AIzaSyDt01LDXBHuoBn9xp9-jygsFZlSy91cH-4")
+## Waterboard ILRP data 
+df_ilrp <- read.delim(paste0(dire, "/data/gama_data/gama_wb_ilrp_statewide_v2.txt"), header = TRUE, sep = "\t", dec = ".")
+print(head(df_ilrp))
+df_ilrp <- df_ilrp[, c("GM_CHEMICAL_NAME", "GM_RESULT", "GM_LATITUDE", "GM_LONGITUDE", "SRC_LATITUDE" ,"SRC_LONGITUDE","SRC_WELL_CATEGORY", "GM_SAMP_COLLECTION_DATE")] 
+# write.csv(df_ilrp, paste0(dire, "/data/ILRP_filtered.csv"))
+# err
+df_ilrp$year <- lapply(df_ilrp$GM_SAMP_COLLECTION_DATE, function(x) substr(x, 7, 10))
+print(df_ilrp$year)
+print(all(df_ilrp$GM_LATITUDE == df_ilrp$SRC_LATITUDE))
+print(all(df_ilrp$GM_LONGITUDE == df_ilrp$SRC_LONGITUDE))
+df_ilrp <- df_ilrp[df_ilrp$year > '2018',]
+df_ilrp <- df_ilrp[df_ilrp$SRC_WELL_CATEGORY == 'Agriculture/irrigation well',]
+print(df_ilrp$year)
+print(unique(df_ilrp$GM_CHEMICAL_NAME))
+df_unique_chemical_names <- unique(df_ilrp$GM_CHEMICAL_NAME)
+#df_ilrp <- unlist(df_ilrp)
+write.csv(df_unique_chemical_names, paste0(dire, "/data/Unique_ILRP_Chemicals.csv"))
+# write.csv(df_ilrp, paste0(dire, "/data/ILRP_filtered.csv"))
 
-gsheet_df$full_address <- paste0(gsheet_df$Address, ", ",
-                                gsheet_df$City,", ",
-                                gsheet_df$State,", ",
-                                gsheet_df$Zip
-                                )
-print(gsheet_df$full_address)
-latlong <- geocode(gsheet_df$full_address)
-print(latlong)
-gsheet_df$lat <- latlong$lat 
-gsheet_df$long <- latlong$lon
+polygons <- st_read(paste0(dire, "/data/tl_2019_06_tract/tl_2019_06_tract.shp"))
+points_sf <- st_as_sf(df_ilrp, coords = c("SRC_LONGITUDE","SRC_LATITUDE"))
+st_crs(points_sf) <- st_crs(polygons)
+points_sf_joined <- st_join(points_sf, polygons, join = st_within)
 
-save(gsheet_df, file = paste0(dire, "/data/crowdsourced_data.rda"))
+
+points_sf_joined <- points_sf_joined[, c("GM_CHEMICAL_NAME", "GM_RESULT",
+                                         "GEOID")]
+
+st_geometry(points_sf_joined) <- NULL
+
+
+ilrp_final_df <- data.frame("GM_CHEMICAL_NAME" = c(), 
+                            "GM_RESULT" = c(), 
+                            "GEOID" = c())
+
+## take the mean of all measurements and geoids with more than one measurement for census tract and append them 
+
+for (measurement in unique(points_sf_joined$GM_CHEMICAL_NAME)) {
+  fil_measure <- points_sf_joined[points_sf_joined$GM_CHEMICAL_NAME == measurement,]
+  print(measurement) 
+  print(fil_measure)
+  for (geoid in unique(fil_measure$GEOID)) {
+    #print(colnames(fil_measure))'
+    print(geoid)
+    fil_measure_geo <- fil_measure[fil_measure$GEOID == geoid,]
+    print(fil_measure_geo)
+    if (nrow(fil_measure_geo) > 1) {
+      #print(fil_measure_geo$GM_RESULT)
+      df_to_add <- data.frame("GM_CHEMICAL_NAME" = c(measurement), 
+                              "GM_RESULT" = c(mean(fil_measure_geo$GM_RESULT)), 
+                              "GEOID" = c(geoid))
+      ilrp_final_df <- rbind(ilrp_final_df, df_to_add)
+    } else {
+      ilrp_final_df <- rbind(ilrp_final_df, fil_measure_geo)
+    }
+  }
+}  
+
+ilrp_final_df <- ilrp_final_df %>%
+  pivot_wider(
+    names_from = GM_CHEMICAL_NAME,
+    values_from = GM_RESULT
+  )
+
+
+### shapefile
+#CA <- sf::read_sf(paste0(dire, "/data/tl_2019_06_tract/tl_2019_06_tract.shp"))
+# #sf::st_set_crs(CA, 4326)
+# df_ilrp_sf <- sf::st_as_sf(df_ilrp, coords = c("GM_LATITUDE", "GM_LONGITUDE"), crs = 4326 )
+# df_ilrp_sf$tract <- as.numeric(st_within(df_ilrp_sf, CA))
+
+# ### your data
+# print(df_ilrp_sf)
+# #print(CA)
+# err
+
+#df_ilrp$census_code <- apply(df_ilrp, 1, function(row) call_geolocator_latlon(row["GM_LATITUDE"], row["GM_LONGITUDE"]))
 
 
 
@@ -115,6 +195,7 @@ df_merge <- merge(df_merge, cidp_hatecrimes_df_for_merge,by="FIPS", all = TRUE)
 df_merge <- merge(df_merge,CES_df,by="GEOID")
 df_merge <- merge(df_merge,HPI_df,by="GEOID")
 df_merge <- merge(df_merge, ROI_df,by="GEOID")
+df_merge <- merge(df_merge, ilrp_final_df,by="GEOID", all = TRUE)
 
 
 ## clean up column names
@@ -214,6 +295,7 @@ df_merge_pop <- merge(df_merge_pop, cidp_hatecrimes_df_for_merge,by="FIPS", all 
 df_merge_pop <- merge(df_merge_pop,CES_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop,HPI_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop, ROI_df,by="GEOID")
+df_merge_pop <- merge(df_merge_pop, ilrp_final_df,by="GEOID", all = TRUE)
 
 add_county_df <- df_merge_pop[,c("GEOID", "County")]
 
@@ -250,7 +332,7 @@ print("saved pop")
 ## pivoting data down for data tab
 print(colnames(df_merge_pop))
 
-df_merge_pop <- df_merge_pop[,c(1, (16:517))]
+df_merge_pop <- df_merge_pop[,c(1, (16:561))]
 df_merge_pop <- df_merge_pop %>% mutate_at(2:503, as.numeric)
 
 df_merge_long <- df_merge_pop %>%
