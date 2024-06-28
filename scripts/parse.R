@@ -11,6 +11,7 @@ library(polyglotr)
 library(ggmap)
 library(RODBC)
 library(tigris)
+library(tidycensus)
 
 dire <- getwd()
 dire <- paste0(dire, "/Desktop/Farmworker")
@@ -121,7 +122,72 @@ ilrp_final_df <- ilrp_final_df %>%
 
 #df_ilrp$census_code <- apply(df_ilrp, 1, function(row) call_geolocator_latlon(row["GM_LATITUDE"], row["GM_LONGITUDE"]))
 
+##B25014
 
+## read in ACS data for california 
+#census_api_key("0bf8e959bfbf94d0149705a2115fc67851523a72", install = TRUE)
+
+# ## get available variables for 2022
+vars <- load_variables(2022, "acs1", cache = TRUE)
+print(vars)
+print(unique(vars$concept))
+print(unique(vars$name))
+## filter by number of occupied rooms
+print(grepl("B25014", unique(vars$name)))
+vars_rent_prices <-  vars %>%  filter(grepl("B25056",name))
+print(vars_rent_prices)
+vars <- vars %>%  filter(grepl("B25014",name))
+# 
+
+# 
+## request ACS data for totals for overcrowding
+acs_data_totals <- get_acs(geography = "tract", variables = "B25014_001",
+                    state = "CA", geometry = FALSE, year = 2022)
+
+## request ACS data for # occupants > 2 per room
+acs_data_2_occupants <- get_acs(geography = "tract", variables = "B25014_007",
+                           state = "CA", geometry = FALSE, year = 2022)
+
+
+prop_2_occup = acs_data_2_occupants$estimate/acs_data_totals$estimate
+
+print(prop_2_occup)
+
+print(identical(acs_data_totals$GEOID, acs_data_2_occupants$GEOID))
+
+overcrowding_df <- data.frame(GEOID = acs_data_totals$GEOID, overcrowding = prop_2_occup)
+print(overcrowding_df)
+
+## request ACS data for totals for median rent by census tract 
+
+vars_rent_prices_alt <-  vars %>%  filter(grepl("B25058",name))
+
+acs_rent_01 <- get_acs(geography = "tract", variables = "B25056_001",
+                    state = "CA", geometry = FALSE, year = 2022)
+
+acs_rent_02 <- get_acs(geography = "tract", variables = "B25056_002",
+                           state = "CA", geometry = FALSE, year = 2022)
+
+acs_rent_median_rent <- get_acs(geography = "tract", variables = "B25058_001",
+                       state = "CA", geometry = FALSE, year = 2022)
+
+median_rent_df <- data.frame(GEOID = acs_rent_median_rent$GEOID, median_rent = acs_rent_median_rent$estimate)
+
+
+#err
+
+# print(acs_data)
+# acs_data$Tenure_by_occupants_per_room <- acs_data$estimate
+# acs_data <- acs_data[ , !(names(acs_data) %in% c("variable", "estimate", "moe"))]
+# #acs_data <- sf::st_as_sf(acs_data)
+# 
+# #st_geometry(acs_data) <- NULL
+# 
+# 
+# acs_data_rent <- get_acs(geography = "tract", variables = "B25056_001",
+#                     state = "CA", geometry = TRUE, year = 2022)
+# 
+# print(acs_data_rent)
 
 
 ## read in all the data and pivot to wide format based on specific columns for each dataset
@@ -192,10 +258,12 @@ map_df$FIPS<- sapply(map_df$GEOID, function(id) str_sub(id,2,5))
 df_merge <- merge(map_df,piv_CHVI,by="FIPS")
 df_merge <- merge(df_merge, cidp_services_df_for_merge,by="FIPS", all = TRUE)
 df_merge <- merge(df_merge, cidp_hatecrimes_df_for_merge,by="FIPS", all = TRUE)
+df_merge <- merge(df_merge, overcrowding_df,by="GEOID", all = TRUE)
+df_merge <- merge(df_merge, median_rent_df,by="GEOID", all = TRUE)
 df_merge <- merge(df_merge,CES_df,by="GEOID")
 df_merge <- merge(df_merge,HPI_df,by="GEOID")
 df_merge <- merge(df_merge, ROI_df,by="GEOID")
-df_merge <- merge(df_merge, ilrp_final_df,by="GEOID", all = TRUE)
+#df_merge <- merge(df_merge, ilrp_final_df,by="GEOID", all = TRUE)
 
 
 ## clean up column names
@@ -292,10 +360,13 @@ print(head(map_df_dropped))
 df_merge_pop <- merge(map_df_dropped,piv_CHVI,by="FIPS")
 df_merge_pop <- merge(df_merge_pop, cidp_services_df_for_merge,by="FIPS", all = TRUE)
 df_merge_pop <- merge(df_merge_pop, cidp_hatecrimes_df_for_merge,by="FIPS", all = TRUE)
+df_merge_pop <- merge(df_merge_pop, overcrowding_df,by="GEOID", all = TRUE)
+df_merge_pop <- merge(df_merge_pop, median_rent_df,by="GEOID", all = TRUE)
 df_merge_pop <- merge(df_merge_pop,CES_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop,HPI_df,by="GEOID")
 df_merge_pop <- merge(df_merge_pop, ROI_df,by="GEOID")
-df_merge_pop <- merge(df_merge_pop, ilrp_final_df,by="GEOID", all = TRUE)
+#df_merge_pop <- merge(df_merge_pop, ilrp_final_df,by="GEOID", all = TRUE)
+#df_merge_pop <- merge(df_merge_pop, overcrowding_df,by="GEOID", all = TRUE)
 
 add_county_df <- df_merge_pop[,c("GEOID", "County")]
 
@@ -332,8 +403,8 @@ print("saved pop")
 ## pivoting data down for data tab
 print(colnames(df_merge_pop))
 
-df_merge_pop <- df_merge_pop[,c(1, (16:561))]
-df_merge_pop <- df_merge_pop %>% mutate_at(2:503, as.numeric)
+df_merge_pop <- df_merge_pop[,c(1, (16:521))]
+df_merge_pop <- df_merge_pop %>% mutate_at(2:507, as.numeric)
 
 df_merge_long <- df_merge_pop %>%
   pivot_longer(!GEOID, names_to = "indication", values_to = "Value")
@@ -353,7 +424,13 @@ df_indicator_choices <- read.csv(paste0(dire, "/data/Indicators_Farmworker_WebAp
 
 indicator_choices <- df_indicator_choices$indicator
 
+
 df_merge_percentile_table <- df_merge_pop
+
+print(indicator_choices)
+print("setdiff")
+print(setdiff(indicator_choices, colnames(df_merge_percentile_table)))
+
 df_merge_percentile_table <- df_merge_percentile_table[c("GEOID", indicator_choices)]
 
 
@@ -380,7 +457,8 @@ ls_high_percentile_indics <- c("extreme_heat_days_2040_2060_percentile",
                                "Lead_percentile",
                                "Pesticides_percentile", 
                                "Air_Quality_percentile", 
-                               "total_incidents_per_100k_percentile")
+                               "total_incidents_per_100k_percentile",
+                               "overcrowding_percentile")
 
 ls_low_percentile_indics <- c("treecanopy_percentile",
                               "Housing_Cost_Burden_percentile", 

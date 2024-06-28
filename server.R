@@ -564,7 +564,7 @@ shinyServer(function(input, output, session) {
     print("above 80th df vv")
     print(above_80th_percentile_df)
     if (length(rownames(above_80th_percentile_df)) > 0) {
-      hazard_sentences(paste(hazard_sentences(), "This census tract has some hazards such as: \n"))
+      hazard_sentences(paste(hazard_sentences(), "This census tract has some hazards such as: \n", "\n"))
       for (i in 1:nrow(above_80th_percentile_df)) {
         indic <- unlist(above_80th_percentile_df[i,"indicator"])
         indic <- dict_server_indicator_to_interpretable_english[paste0(indic)]
@@ -577,22 +577,22 @@ shinyServer(function(input, output, session) {
         if (percent > .80) {
           if (length(as.list(strsplit(indic, "")[[1]])) > 50) {
             hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "\n",
-                                   "which has a percentile", "of", percent, "and a value of", val, "\n"))
+                                   "which has a percentile", "of", percent, "and a value of", val, "\n", "\n"))
           } else if (length(paste(indic, "which has a percentile of", percent) > 50)) { 
             hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "which has a percentile",  
-                                   "\n",  "of", percent, "and a value of", val, "\n"))
+                                   "\n",  "of", percent, "and a value of", val, "\n", "\n"))
           } else {
             hazard_sentences(paste(hazard_sentences(), paste0("High ", indic, ":"), "which has a percentile",  
-                                   "\n",  "of", percent, "and a value of", val, "\n"))
+                                   "\n",  "of", percent, "and a value of", val, "\n", "\n"))
             
           }
         } else {
           if (length(as.list(strsplit(indic, "")[[1]])) > 50) {
             hazard_sentences(paste(hazard_sentences(), paste0("Low ", indic, ":"), "\n",
-                                   "which has a percentile", "of", percent, "and a value of", val, "\n"))
+                                   "which has a percentile", "of", percent, "and a value of", val, "\n", "\n"))
           }  else {
             hazard_sentences(paste(hazard_sentences(), "Low ", indic, "which has a percentile",  
-                                   "\n",  "of", percent, "and a value of", val, "\n"))
+                                   "\n",  "of", percent, "and a value of", val, "\n", "\n"))
             
           }
         }
